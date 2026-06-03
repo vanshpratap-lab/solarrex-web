@@ -1,31 +1,34 @@
 const imgSlider = document.querySelector('.img-slider');
-const items = document.querySelectorAll('.item');
 const imgItems = document.querySelectorAll('.img-item');
 const infoItems = document.querySelectorAll('.info-item');
+const navItems = document.querySelectorAll('.nav-item');
 
-let colors = ['#f5f5f7', '#fafafa', '#f0f2f5', '#f7f7f9', '#f6f5f0', '#eef1f6']
-let indexSlider = 0;
 let index = 0;
 
 const slider = () => {
-    imgSlider.style.transform = `rotate(${indexSlider * 60}deg)`;
-
-    items.forEach(item => {
-        item.style.transform = `rotate(${indexSlider * -60}deg)`;
-    });
-
+    // Update Active Image
     document.querySelector('.img-item.active').classList.remove('active');
     imgItems[index].classList.add('active');
 
+    // Update Active Content
     document.querySelector('.info-item.active').classList.remove('active');
     infoItems[index].classList.add('active');
 
-    document.body.style.background = colors[index]
+    // Update Active Nav Item
+    document.querySelector('.nav-item.active').classList.remove('active');
+    navItems[index].classList.add('active');
 }
 
-// Auto-play the slideshow every 8.5 seconds with smooth transitions
+// Bottom Nav Click Handlers
+navItems.forEach((item, i) => {
+    item.addEventListener('click', () => {
+        index = i;
+        slider();
+    });
+});
+
+// Auto-play the slideshow every 8.5 seconds
 setInterval(() => {
-    indexSlider++;
     index++;
     if(index > imgItems.length - 1)
     {
