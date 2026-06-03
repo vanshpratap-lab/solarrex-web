@@ -1,4 +1,11 @@
 {
+  "name": "solarrex-web",
+  "version": "1.0.0",
+  "description": "Solar Rex landing page",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx -y serve -p 5000"
+  },
   "dependencies": {
     "jpeg-js": "^0.4.4",
     "pngjs": "^7.0.0"
