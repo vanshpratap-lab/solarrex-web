@@ -14,13 +14,22 @@
 }
 
 ::selection {
-    background: #00ff00;
-    color: #000;
+    background: #00a8ff;
+    color: #ffffff;
 }
 
 ::-moz-selection {
-    background: #00ff00;
-    color: #000;
+    background: #00a8ff;
+    color: #ffffff;
+}
+
+/* Prevent image/video highlight, drag, and copy */
+img, video {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    pointer-events: none;
 }
 
 body{
@@ -79,13 +88,19 @@ body{
     opacity: 0;
     pointer-events: none;
     transition: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translateY(20px);
+    transform: translateY(-50px);
 }
 
 .info-item.active {
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);
+}
+
+.info-item.exit {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(50px);
 }
 
 .info-item h2 {
@@ -163,10 +178,19 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    transform: translateY(-80px);
 }
 
 .img-item.active {
     opacity: 1;
+    transform: translateY(0);
+    z-index: 2;
+}
+
+.img-item.exit {
+    opacity: 0;
+    transform: translateY(80px);
+    z-index: 1;
 }
 
 .img-item img {
@@ -191,10 +215,27 @@ body{
     display: flex;
     flex-direction: column;
     gap: 8px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: #ffb300;
+    transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .nav-item.active {
     opacity: 1;
+}
+
+.nav-item.active::after {
+    width: 100%;
 }
 
 .nav-num {
@@ -283,10 +324,31 @@ body{
     opacity: 0.7;
     letter-spacing: 1px;
     text-transform: uppercase;
+    position: relative;
+    padding-bottom: 4px;
+}
+
+.nav-links li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #ffb300;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease-in-out;
 }
 
 .nav-links li a:hover {
+    color: #ffb300;
     opacity: 1;
+}
+
+.nav-links li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
 }
 
 .nav-cta .btn-quote {
@@ -297,13 +359,33 @@ body{
     text-decoration: none;
     border-radius: 50px;
     font-weight: 600;
-    transition: 0.3s;
+    transition: color 0.3s ease, border-color 0.3s ease;
     animation: slideInDown 0.8s ease-out 0.3s both;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.nav-cta .btn-quote::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: #000000;
+    transition: height 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: -1;
 }
 
 .nav-cta .btn-quote:hover {
-    background: #fff;
-    color: #000;
+    color: #ffb300;
+    border-color: #ffb300;
+}
+
+.nav-cta .btn-quote:hover::before {
+    height: 100%;
 }
 
 .nav-menu-btn {
@@ -328,7 +410,7 @@ body{
 
 .btn-primary, .btn-secondary {
     padding: 14px 40px;
-    border-radius: 4px;
+    border-radius: 50px;
     font-size: 14px;
     font-weight: 500;
     text-decoration: none;
@@ -336,6 +418,29 @@ body{
     display: inline-block;
     text-transform: uppercase;
     letter-spacing: 1.5px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Electric Lightning Sweep Pseudo-Elements */
+.btn-primary::after, .btn-secondary::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -100%;
+    width: 40%;
+    height: 200%;
+    transform: rotate(25deg);
+    pointer-events: none;
+    opacity: 0;
+}
+
+.btn-primary::after {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.9) 50%, rgba(255, 255, 255, 0) 100%);
+}
+
+.btn-secondary::after {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(125, 211, 252, 0.9) 50%, rgba(255, 255, 255, 0) 100%);
 }
 
 .btn-primary {
@@ -345,10 +450,15 @@ body{
 }
 
 .btn-primary:hover {
-    background: transparent;
-    color: #fff;
-    border-color: #fff;
-    transform: translateY(-2px);
+    background: #ffb300;
+    color: #000;
+    border-color: #ffc43d;
+    transform: translateY(-3px);
+    animation: yellow-electric 0.15s infinite alternate;
+}
+
+.btn-primary:hover::after {
+    animation: lightning-sweep-fast 0.6s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
 }
 
 .btn-secondary {
@@ -359,10 +469,51 @@ body{
 }
 
 .btn-secondary:hover {
-    background: #fff;
-    color: #000;
-    border-color: #fff;
-    transform: translateY(-2px);
+    background: #00a8ff;
+    color: #fff;
+    border-color: #80d6ff;
+    transform: translateY(-3px);
+    animation: blue-electric 0.15s infinite alternate;
+}
+
+.btn-secondary:hover::after {
+    animation: lightning-sweep-fast 0.6s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+}
+
+/* Electricity Keyframe Animations */
+@keyframes yellow-electric {
+    0% {
+        box-shadow: 0 0 10px rgba(255, 179, 0, 0.9), 0 0 20px rgba(255, 85, 0, 0.6), inset 0 0 8px rgba(255, 255, 255, 0.4);
+    }
+    100% {
+        box-shadow: 0 0 16px rgba(255, 179, 0, 1), 0 0 35px rgba(255, 68, 0, 0.9), inset 0 0 16px rgba(255, 255, 255, 0.8);
+    }
+}
+
+@keyframes blue-electric {
+    0% {
+        box-shadow: 0 0 10px rgba(0, 168, 255, 0.9), 0 0 20px rgba(0, 168, 255, 0.6), inset 0 0 8px rgba(255, 255, 255, 0.4);
+    }
+    100% {
+        box-shadow: 0 0 16px rgba(0, 168, 255, 1), 0 0 35px rgba(0, 210, 255, 0.9), inset 0 0 16px rgba(255, 255, 255, 0.8);
+    }
+}
+
+@keyframes lightning-sweep-fast {
+    0% {
+        left: -100%;
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        left: 150%;
+        opacity: 0;
+    }
 }
 
 /* Hero Section Styles */
@@ -414,6 +565,16 @@ body{
     animation: slideInDown 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s both;
 }
 
+.hero-title::selection {
+    background: transparent;
+    color: #000000;
+}
+
+.hero-title::-moz-selection {
+    background: transparent;
+    color: #000000;
+}
+
 .hero-tagline {
     font-size: 0.95rem;
     font-weight: 300;
@@ -429,19 +590,93 @@ body{
     animation: slideUp 1s ease-out 0.7s both;
 }
 
-.hero-tagline::selection {
-    background: #00ff00;
-    color: #000;
-}
-
 .scroll-indicator {
     position: absolute;
-    bottom: 30px;
+    bottom: 165px;
     left: 50%;
     transform: translateX(-50%);
     color: #fff;
     font-size: 3rem;
     animation: float 2s infinite ease-in-out;
+}
+
+/* Trust Banner Styles */
+.trust-banner {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #000000;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 24px 8%;
+    z-index: 10;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    gap: 15px;
+}
+
+.trust-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.trust-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.trust-item:hover .trust-icon-wrapper {
+    transform: scale(1.1);
+}
+
+.trust-title {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Responsive adjustments for Trust Banner */
+@media (max-width: 768px) {
+    .scroll-indicator {
+        bottom: 270px;
+    }
+    .trust-banner {
+        flex-wrap: wrap;
+        padding: 16px 4%;
+        gap: 16px 10px;
+    }
+    .trust-item {
+        flex: 1 1 40%;
+    }
+    .trust-title {
+        font-size: 12px;
+    }
+    .trust-icon-wrapper {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .scroll-indicator {
+        display: none; /* Hide scroll indicator on very small screens to avoid clutter */
+    }
+    .trust-item {
+        flex: 1 1 100%;
+    }
 }
 
 /* Animations */
