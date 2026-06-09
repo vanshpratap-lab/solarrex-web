@@ -98,6 +98,76 @@ if (overlay) {
     });
 }
 
+// 3D Book Portfolio Logic
+const pageTurnBtn = document.querySelectorAll('.nextprev-btn');
+
+pageTurnBtn.forEach((el, index) => {
+    el.onclick = () => {
+        const pageTurnId = el.getAttribute('data-page');
+        const pageTurn = document.getElementById(pageTurnId);
+
+        if (pageTurn.classList.contains('turn')) {
+            pageTurn.classList.remove('turn');
+            setTimeout(() => {
+                pageTurn.style.zIndex = 20 - index;
+            }, 500);
+        } else {
+            pageTurn.classList.add('turn');
+            setTimeout(() => {
+                pageTurn.style.zIndex = 20 + index;
+            }, 500);
+        }
+    }
+});
+
+const bookPages = document.querySelectorAll('.book-page.page-right');
+const bookContactBtn = document.querySelector('.btn.contact-me');
+
+if (bookContactBtn) {
+    bookContactBtn.onclick = () => {
+        bookPages.forEach((page, index) => {
+            setTimeout(() => {
+                page.classList.add('turn');
+                setTimeout(() => {
+                    page.style.zIndex = 20 + index;
+                }, 500);
+            }, (index + 1) * 200 + 100);
+        });
+    }
+}
+
+let bookTotalPages = bookPages.length;
+let bookPageNumber = 0;
+
+function reverseBookIndex() {
+    bookPageNumber--;
+    if (bookPageNumber < 0) {
+        bookPageNumber = bookTotalPages - 1;
+    }
+}
+
+const backProfileBtn = document.querySelector('.back-profile');
+if (backProfileBtn) {
+    backProfileBtn.onclick = () => {
+        bookPages.forEach((_, index) => {
+            setTimeout(() => {
+                reverseBookIndex();
+                bookPages[bookPageNumber].classList.remove('turn');
+                setTimeout(() => {
+                    reverseBookIndex();
+                    bookPages[bookPageNumber].style.zIndex = 10 + index;
+                }, 500);
+            }, (index + 1) * 200 + 100);
+        });
+    }
+}
+
+const coverRight = document.querySelector('.cover.cover-right');
+if (coverRight) {
+    // Initial opening animation when section is in view? 
+    // For now, let's keep it manual or triggered by a scroll observer for best performance.
+}
+
 // Navbar Scroll Effect
 window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
