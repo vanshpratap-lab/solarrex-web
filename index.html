@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Rex | Sustainable Energy Solutions</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="nav-logo">SOLAR REX</div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Projects</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <div class="nav-cta">
+            <a href="#" class="btn-quote">Get Quote</a>
+        </div>
+        <div class="nav-menu-btn">
+            <i class='bx bx-menu'></i>
+        </div>
+    </nav>
+
+    <!-- Smart Alert Popup (Success Notification) -->
+    <div class="smart-alert" id="smart-alert">
+        <div class="alert-content">
+            <div class="alert-icon">
+                <i class='bx bxs-check-circle'></i>
+            </div>
+            <div class="alert-text">
+                <span class="alert-title">Connect Status</span>
+                <span class="alert-value">Signal Sent</span>
+            </div>
+            <button class="alert-close" id="alert-close-btn">
+                <i class='bx bx-x'></i>
+            </button>
+        </div>
+        <div class="alert-progress" id="alert-progress"></div>
+    </div>
+
+    <section class="hero">
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="video/Wind_turbine_blades_rotate_slowly_202606031912.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">SOLAR REX</h1>
+            <p class="hero-tagline">trust that brings light to your home</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn-primary">Get Free Quote</a>
+                <a href="#" class="btn-secondary">Explore Solutions</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class='bx bx-chevron-down'></i>
+        </div>
+
+        <!-- Trust Badge Banner -->
+        <div class="trust-banner">
+            <div class="trust-item">
+                <div class="trust-icon-wrapper">
+                    <svg viewBox="0 0 100 100" width="100%" height="100%">
+                        <circle cx="50" cy="50" r="46" fill="white" />
+                        <!-- Center person -->
+                        <circle cx="50" cy="38" r="10" fill="none" stroke="black" stroke-width="3"/>
+                        <path d="M32 62 C32 50, 68 50, 68 62" fill="none" stroke="black" stroke-width="3" stroke-linecap="round"/>
+                        <!-- Left person -->
+                        <circle cx="34" cy="44" r="8" fill="none" stroke="black" stroke-width="2.5"/>
+                        <path d="M20 66 C20 56, 42 56, 42 66" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+                        <!-- Right person -->
+                        <circle cx="66" cy="44" r="8" fill="none" stroke="black" stroke-width="2.5"/>
+                        <path d="M58 66 C58 56, 80 56, 80 66" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+                        <!-- Stars -->
+                        <polygon points="32,71 34,76 39,76 35,79 36,84 32,81 28,84 29,79 25,76 30,76" fill="black"/>
+                        <polygon points="50,73 52,78 57,78 53,81 54,86 50,83 46,86 47,81 43,78 48,78" fill="black"/>
+                        <polygon points="68,71 70,76 75,76 71,79 72,84 68,81 64,84 65,79 61,76 66,76" fill="black"/>
+                    </svg>
+                </div>
+                <span class="trust-title">7L+ Happy Customers</span>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon-wrapper">
+                    <svg viewBox="0 0 100 100" width="100%" height="100%">
+                        <circle cx="50" cy="50" r="46" fill="white" />
+                        <!-- Walking lion silhouette -->
+                        <path d="M 32 58 C 30 57, 30 55, 32 54 C 34 53, 36 53, 38 52 C 40 50, 41 47, 43 45 C 45 43, 48 43, 51 45 C 54 42, 58 40, 62 42 C 66 43, 69 46, 71 49 C 73 47, 76 46, 79 48 C 82 50, 83 53, 83 57 C 83 61, 81 63, 77 64 L 75 64 L 75 72 L 71 72 L 71 64 L 68 64 L 66 72 L 63 72 L 65 64 L 53 64 L 52 72 L 49 72 L 50 64 L 43 64 L 41 72 L 38 72 L 40 64 C 36 64, 33 63, 32 60 Z" fill="black" />
+                    </svg>
+                </div>
+                <span class="trust-title">Proudly Made In India</span>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon-wrapper">
+                    <svg viewBox="0 0 100 100" width="100%" height="100%">
+                        <circle cx="50" cy="50" r="46" fill="white" />
+                        <!-- 24h clock ring -->
+                        <path d="M 50 20 A 30 30 0 1 1 26 38" fill="none" stroke="black" stroke-width="3" stroke-linecap="round"/>
+                        <polyline points="22,30 25,38 33,37" fill="none" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <!-- Truck -->
+                        <rect x="36" y="46" width="20" height="12" rx="2" fill="none" stroke="black" stroke-width="3"/>
+                        <path d="M 56 49 L 66 49 L 70 54 L 70 58 L 56 58 Z" fill="none" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+                        <!-- Wheels -->
+                        <circle cx="42" cy="62" r="4" fill="black"/>
+                        <circle cx="62" cy="62" r="4" fill="black"/>
+                        <!-- "24h" Text -->
+                        <text x="50" y="38" font-family="'Montserrat', sans-serif" font-size="14" font-weight="900" fill="black" text-anchor="middle">24h</text>
+                    </svg>
+                </div>
+                <span class="trust-title">Shipped In 24 Hours</span>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon-wrapper">
+                    <svg viewBox="0 0 100 100" width="100%" height="100%">
+                        <circle cx="50" cy="50" r="46" fill="white" />
+                        <!-- Scalloped badge circle -->
+                        <circle cx="50" cy="45" r="18" fill="none" stroke="black" stroke-width="3" stroke-dasharray="6,3"/>
+                        <circle cx="50" cy="45" r="14" fill="none" stroke="black" stroke-width="2"/>
+                        <!-- Star in center -->
+                        <polygon points="50,37 53,43 60,44 55,49 56,56 50,52 44,56 45,49 40,44 47,43" fill="black"/>
+                        <!-- Ribbons -->
+                        <path d="M 42 60 L 38 74 L 46 71 L 48 60" fill="black"/>
+                        <path d="M 58 60 L 62 74 L 54 71 L 52 60" fill="black"/>
+                    </svg>
+                </div>
+                <span class="trust-title">Top Grade Materials</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="solutions">
+        <div class="solutions-container">
+            <div class="solutions-left">
+                <span class="section-label">Our Energy Solutions</span>
+                <div class="info-box">
+                    <div class="info-item active">
+                        <h2>Residential Solar</h2>
+                        <p>Power your home with clean, sustainable energy. Our residential solutions combine high-efficiency panels with smart storage to ensure your family never stays in the dark.</p>
+                        <ul class="benefits">
+                            <li><i class='bx bx-check'></i> 24/7 Backup Power</li>
+                            <li><i class='bx bx-check'></i> Smart Mobile Monitoring</li>
+                            <li><i class='bx bx-check'></i> 25-Year Performance Warranty</li>
+                        </ul>
+                        <a href="#" class="magic-button">
+                            <div class="button__content">
+                                <span class="button__text">Learn More</span>
+                                <div class="button__reflection-1"></div>
+                                <div class="button__reflection-2"></div>
+                            </div>
+                            <img src="Magic Animation Button/star.png" alt="" class="button__star-1">
+                            <img src="Magic Animation Button/star.png" alt="" class="button__star-2">
+                            <img src="Magic Animation Button/circle.png" alt="" class="button__circle-1">
+                            <img src="Magic Animation Button/circle.png" alt="" class="button__circle-2">
+                            <img src="Magic Animation Button/diamond.png" alt="" class="button__diamond">
+                            <img src="Magic Animation Button/triangle.png" alt="" class="button__triangle">
+                            <div class="button__shadow"></div>
+                        </a>
+                    </div>
+
+                    <div class="info-item">
+                        <h2>Commercial Solar</h2>
+                        <p>Reduce operational costs and demonstrate your commitment to sustainability. Our commercial solar systems are designed for maximum ROI and long-term reliability.</p>
+                        <ul class="benefits">
+                            <li><i class='bx bx-check'></i> Reduced Peak Demand Charges</li>
+                            <li><i class='bx bx-check'></i> Federal Tax Incentives</li>
+                            <li><i class='bx bx-check'></i> Scalable Energy Architecture</li>
+                        </ul>
+                        <a href="#" class="magic-button">
+                            <div class="button__content">
+                                <span class="button__text">Learn More</span>
+                                <div class="button__reflection-1"></div>
+                                <div class="button__reflection-2"></div>
+                            </div>
+                            <img src="Magic Animation Button/star.png" alt="" class="button__star-1">
+                            <img src="Magic Animation Button/star.png" alt="" class="button__star-2">
+                            <img src="Magic Animation Button/circle.png" alt="" class="button__circle-1">
+                            <img src="Magic Animation Button/circle.png" alt="" class="button__circle-2">
+                            <img src="Magic Animation Button/diamond.png" alt="" class="button__diamond">
+                            <img src="Magic Animation Button/triangle.png" alt="" class="button__triangle">
+                            <div class="button__shadow"></div>
+                        </a>
+                    </div>
+
+                    <div class="info-item">
+                        <h2>Industrial Solar</h2>
+                        <p>High-capacity energy solutions for heavy industry. We provide the infrastructure needed to power large-scale operations with zero-emission technology.</p>
+                        <ul class="benefits">
+                            <li><i class='bx bx-check'></i> Grid-Scale Battery Storage</li>
+                            <li><i class='bx bx-check'></i> Microgrid Integration</li>
+                            <li><i class='bx bx-check'></i> Carbon Offset Optimization</li>
+                        </ul>
+                        <a href="#" class="magic-button">
+                            <div class="button__content">
+                                <span class="button__text">Learn More</span>
+                                <div class="button__reflection-1"></div>
+                                <div class="button__reflection-2"></div>
+                            </div>
+                            <img src="Magic Animation Button/star.png" alt="" class="button__star-1">
+                            <img src="Magic Animation Button/star.png" alt="" class="button__star-2">
+                            <img src="Magic Animation Button/circle.png" alt="" class="button__circle-1">
+                            <img src="Magic Animation Button/circle.png" alt="" class="button__circle-2">
+                            <img src="Magic Animation Button/diamond.png" alt="" class="button__diamond">
+                            <img src="Magic Animation Button/triangle.png" alt="" class="button__triangle">
+                            <div class="button__shadow"></div>
+                        </a>
+                    </div>
+
+                    <div class="info-item">
+                        <h2>Maintenance & Support</h2>
+                        <p>Maximum uptime guaranteed. Our dedicated support team provides comprehensive monitoring and preventative maintenance to keep your system performing at its peak.</p>
+                        <ul class="benefits">
+                            <li><i class='bx bx-check'></i> 24/7 System Monitoring</li>
+                            <li><i class='bx bx-check'></i> Annual Health Checks</li>
+                            <li><i class='bx bx-check'></i> Priority Technical Support</li>
+                        </ul>
+                        <a href="#" class="magic-button">
+                            <div class="button__content">
+                                <span class="button__text">Learn More</span>
+                                <div class="button__reflection-1"></div>
+                                <div class="button__reflection-2"></div>
+                            </div>
+                            <img src="Magic Animation Button/star.png" alt="" class="button__star-1">
+                            <img src="Magic Animation Button/star.png" alt="" class="button__star-2">
+                            <img src="Magic Animation Button/circle.png" alt="" class="button__circle-1">
+                            <img src="Magic Animation Button/circle.png" alt="" class="button__circle-2">
+                            <img src="Magic Animation Button/diamond.png" alt="" class="button__diamond">
+                            <img src="Magic Animation Button/triangle.png" alt="" class="button__triangle">
+                            <div class="button__shadow"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="solutions-right">
+                <div class="img-box">
+                    <div class="img-slider">
+                        <div class="img-item active" style="--i:1;">
+                            <div class="item">
+                                <img src="images/img1.png">
+                            </div>
+                        </div>
+                        <div class="img-item" style="--i:2;">
+                            <div class="item">
+                                <img src="images/img2.png">
+                            </div>
+                        </div>
+                        <div class="img-item" style="--i:3;">
+                            <div class="item">
+                                <img src="images/img3.png">
+                            </div>
+                        </div>
+                        <div class="img-item" style="--i:4;">
+                            <div class="item">
+                                <img src="images/img4.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="solutions-nav">
+            <div class="nav-item active" data-index="0">
+                <span class="nav-num">01</span>
+                <span class="nav-text">Residential Solar</span>
+            </div>
+            <div class="nav-item" data-index="1">
+                <span class="nav-num">02</span>
+                <span class="nav-text">Commercial Solar</span>
+            </div>
+            <div class="nav-item" data-index="2">
+                <span class="nav-num">03</span>
+                <span class="nav-text">Industrial Solar</span>
+            </div>
+            <div class="nav-item" data-index="3">
+                <span class="nav-num">04</span>
+                <span class="nav-text">Maintenance & Support</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Animated Border Cards -->
+    <section class="section-cards" id="section-3">
+        <article class="animated-cards-wrapper">
+            <section id="_boxes">
+                <ul>
+                    <li>
+                        <figure>
+                            <h2>High Efficiency</h2>
+                            <figcaption>
+                                Our monocrystalline panels deliver industry-leading conversion rates, ensuring maximum power generation even in limited space and low-light environments.
+                            </figcaption>
+                            <a href="#" title="Read More">
+                                <em>Explore Tech</em>
+                                <i>&#10095;&#10095;</i>
+                            </a>
+                        </figure>
+                        <svg preserveAspectRatio="none" stroke="#ffb300" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 108 108" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.84999 4.52304C10.4167 4.87174 12.9833 4.7961 15.55 4.29611C18.1167 3.79612 20.6833 3.77393 23.25 4.22954C25.8167 4.68515 28.3833 4.63313 30.95 4.07349C33.5167 3.51385 36.0833 3.30905 38.65 3.45907C41.2167 3.6091 43.7833 3.64025 46.35 3.55252C48.9167 3.46479 51.4833 3.72872 54.05 4.34432C56.6167 4.95992 59.1833 5.05995 61.75 4.64441C64.3167 4.22888 66.8833 3.95074 69.45 3.81001C72.0167 3.66928 74.5833 3.51867 77.15 3.35817C79.7167 3.19768 82.2833 3.08289 84.85 3.0138C87.4166 2.94472 89.9833 3.10282 92.55 3.48811C95.1167 3.8734 97.5238 4.0717 99.7714 4.08301C102.019 4.09432 103.173 5.38331 103.232 7.94997C103.292 10.5166 103.67 13.0833 104.365 15.65C105.06 18.2166 105.138 20.7833 104.597 23.35C104.057 25.9166 103.853 28.4833 103.984 31.05C104.115 33.6166 103.921 36.1833 103.402 38.75C102.883 41.3166 102.633 43.8833 102.652 46.45C102.671 49.0166 102.93 51.5833 103.427 54.15C103.924 56.7166 104.256 59.2833 104.424 61.85C104.592 64.4166 104.434 66.9833 103.95 69.5499C103.466 72.1166 103.173 74.6833 103.071 77.2499C102.968 79.8166 103.161 82.3833 103.649 84.9499C104.137 87.5166 104.182 90.0833 103.785 92.6499C103.388 95.2166 103.291 97.854 103.494 100.562C103.698 103.27 102.517 104.445 99.95 104.088C97.3834 103.73 94.8167 103.807 92.25 104.318C89.6834 104.83 87.1167 104.777 84.55 104.159C81.9834 103.541 79.4167 103.494 76.8501 104.017C74.2834 104.54 71.7167 104.474 69.1501 103.82C66.5834 103.165 64.0167 102.893 61.4501 103.003C58.8834 103.114 56.3167 103.442 53.7501 103.989C51.1834 104.536 48.6167 104.517 46.0501 103.933C43.4834 103.348 40.9167 103.085 38.3501 103.144C35.7834 103.202 33.2167 103.585 30.65 104.292C28.0834 104.999 25.5167 104.974 22.95 104.217C20.3834 103.46 17.8167 103.267 15.25 103.638C12.6834 104.009 10.049 104.112 7.3471 103.947C4.64516 103.782 3.21816 102.417 3.06612 99.85C2.91407 97.2833 3.27189 94.7166 4.13956 92.15C5.00724 89.5833 5.22889 87.0166 4.80451 84.45C4.38014 81.8833 4.37256 79.3166 4.78179 76.75C5.19101 74.1833 5.23802 71..."></path>
+                        </svg>
+                    </li>
+
+                    <li>
+                        <figure>
+                            <h2>Smart Storage</h2>
+                            <figcaption>
+                                Integrate seamless energy storage with our intelligent battery systems. Store excess solar energy during the day and power your home through the night.
+                            </figcaption>
+                            <a href="#" title="Read More">
+                                <em>View Systems</em>
+                                <i>&#10095;&#10095;</i>
+                            </a>
+                        </figure>
+                        <svg preserveAspectRatio="none" stroke="#00a8ff" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 112 113" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.99995 7.0001H6.09995L10.75 4.97102L15.5 7.11381L20.25 7.65424L25 6.38528L29.75 5.07185L34.5 4.37598L39.25 7.4074L44 7.71973L48.75 9.00461L53.5 7.51571L58.2499 5.1471L63 4.93949L67.75 4.5446L72.5 7.10172L77.2499 5.61113L81.9999 9.29682L86.75 5.8137L91.5 7.16559L96.2499 7.20386L101 7.98377L105.75 5.04723L106.697 11.5001L108.122 16.2501L105.081 21.0001L103.973 25.7501L103.867 30.5001L103.895 35.2501L103.822 40.0001L103.304 44.7501L103.708 49.5001L108.454 54.2501L105.779 59.0001L106.911 63.7501L105.035 68.5001L105.647 73.2501L107.383 78.0001L108.242 82.7501L105.152 87.5001L108.615 92.2501L104.166 97.0001L106.903 101.75L105.494 106.5L101.75 105.427L96.9999 109.341L92.2499 105.701L87.4999 104.923L82.7499 105.233L78 107.709L73.25 107.43L68.5 104.508L63.75 106.291L59 108.664L54.25 105.196L49.5 109.575L44.75 107.241L39.9999 108.489L35.25 106.15L30.5 106.605L25.75 104.843L20.9999 108.664L16.25 106.547L11.5 106.779L6.74995 108.331L4.42624 103L8.16474 98.2501L8.15011 93.5001L5.73984 88.7501L4.98589 84.0001L6.8467 79.2501L5.48534 74.5001L8.23187 69.7501L6.24534 65.0001L4.77584 60.2501L6.44667 55.5001L8.31979 50.7501L5.89976 46.0001L4.09119 41.2501L3.98213 36.5001L3.31506 31.7501L5.71742 27.0001L4.85499 22.2501L5.21783 17.5001L8.43265 12.7501L6.15278 8.00009L5.99995 7.0001Z"></path>
+                        </svg>
+                    </li>
+
+                    <li>
+                        <figure>
+                            <h2>Global Support</h2>
+                            <figcaption>
+                                Our dedicated support team is available 24/7 to ensure your systems are performing at their peak. We provide remote monitoring and rapid response services.
+                            </figcaption>
+                            <a href="#" title="Read More">
+                                <em>Get Support</em>
+                                <i>&#10095;&#10095;</i>
+                            </a>
+                        </figure>
+                        <svg preserveAspectRatio="none" stroke="#ffb300" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" viewBox="0 0 108 108" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.38753 4.89455C5.69587 5.09339 6.0042 5.09227 6.31253 4.89117L7.23753 4.28788C7.54587 4.08679 7.8542 3.88806 8.16253 3.69172L9.08753 3.10267C9.39587 2.90633 9.7042 2.98486 10.0125 3.33827L10.9375 4.39849C11.2459 4.7519 11.5542 4.90381 11.8625 4.85422L12.7875 4.70547C13.0959 4.65588 13.4042 4.50512 13.7125 4.25317L14.6375 3.49732C14.9459 3.24537 15.2542 3.19525 15.5625 3.34697L16.4875 3.8021C16.7959 3.95381 17.1042 4.09265 17.4125 4.21861L18.3375 4.5965C18.6459 4.72246 18.9542 4.61662 19.2625 4.27897L20.1875 3.26604C20.4959 2.92839 20.8042 2.90268 21.1125 3.18891L22.0375 4.04761C22.3459 4.33384 22.6542 4.49937 22.9625 4.5442L23.8875 4.6787C24.1959 4.72354 24.5042 4.64068 24.8125 4.43013L25.7375 3.79848C26.0459 3.58793 26.3542 3.55854 26.6625 3.71033L27.5875 4.16568C27.8959 4.31746 28.2042 4.45217 28.5125 4.5698L29.4375 4.92269C29.7459 5.04032 30.0542 5.12415 30.3625 5.17417L31.2875 5.32425C31.5959 5.37427 31.9042 5.26194 32.2125 4.98725L33.1375 4.16319C33.4459 3.8885 33.7542 3.8652 34.0625 4.0933L34.9875 4.77758C35.2959 5.00568 35.6042 5.05637 35.9125 4.92967L36.8375 4.54957C37.1459 4.42286 37.4542 4.41178 37.7625 4.5163L38.6875 4.82988C38.9959 4.9344 39.3042 4.9964 39.6125 5.01587L40.5375 5.07429C40.8459 5.09377 41.1542 5.04545 41.4625 4.92935L42.3875 4.58105C42.6959 4.46495 43.0042 4.40917 43.3125 4.4137L44.2375 4.42732C44.5459 4.43186 44.8542 4.42243 45.1625 4.39902L46.0875 4.32881C46.3959 4.30541 46.7042 4.17067 47.0125 3.92461L47.9375 3.18642C48.2459 2.94035 48.5542 3.00455 48.8625 3.37902L49.7875 4.50243C50.0959 4.8769 50.4042 4.94819 50.7125 4.71629L51.6375 4.0206C51.9459 3.7887 52.2542 3.58968 52.5625 3.42353L53.4875 2.9251C53.7959 2.75896 54.1042 2.68291 54.4125 2.69696L55.3375 2.7391C55.6459 2.75314 55.9542 2.98145 56.2625 3.42402L57.1875 4.75172C57.4959 5.19429 57.8042 5.39609 58.1125 5.35712L59.0375 5.2402C59.3459 5.20122 59.6542 4.9609 59.9625 4.51923L60.8875 3.19421C61.1959 2.75254 61.5042 2.7598 61.8125 3.216L62.7375 4.58461C63.0459 5..."></path>
+                        </svg>
+                    </li>
+                </ul>
+            </section>
+        </article>
+    </section>
+
+    <!-- Section 4: Empty Placeholder -->
+    <section class="section-empty" id="section-4" style="min-height: 100vh; background: #f5f5f7; display: flex; justify-content: center; align-items: center;">
+        <h2 style="opacity: 0.2; font-size: 3rem;">Section 04</h2>
+    </section>
+
+    <!-- Section 5: Empty Placeholder -->
+    <section class="section-empty" id="section-5" style="min-height: 100vh; background: #fff; display: flex; justify-content: center; align-items: center;">
+        <h2 style="opacity: 0.2; font-size: 3rem;">Section 05</h2>
+    </section>
+
+    <!-- Minimal Footer -->
+    <footer class="footer" style="padding: 60px 8%; background: #000; color: #fff; text-align: center;">
+        <div class="nav-logo" style="color: #fff; margin-bottom: 20px;">SOLAR REX</div>
+        <p style="opacity: 0.5;">&copy; 2026 SOLAR REX. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Quick Connect Mini-Form (Trigger) -->
+    <div class="quick-connect" id="quick-connect">
+        <div class="iphone-frame">
+            <div class="iphone-notch"></div>
+            <div class="quick-header" id="quick-header-trigger" title="Click to Expand">
+                <div class="header-main">
+                    <i class='bx bxs-bolt-circle'></i>
+                    <h3>Quick Connect</h3>
+                </div>
+                <div class="header-controls">
+                    <div class="quick-expand-icon">
+                        <i class='bx bx-expand-alt'></i>
+                    </div>
+                </div>
+            </div>
+            <form class="mini-form">
+                <div class="mini-input-group">
+                    <label>Name</label>
+                    <input type="text" placeholder="Full Name" required>
+                </div>
+                <div class="mini-input-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="email@example.com" required>
+                </div>
+                <button type="submit" class="mini-btn">
+                    <span>Fast Quote</span>
+                    <i class='bx bx-right-arrow-alt'></i>
+                </button>
+            </form>
+            <div class="iphone-home-bar"></div>
+        </div>
+    </div>
+
+    <!-- MacBook Style Expanded Modal -->
+    <div class="quick-modal-overlay" id="quick-modal-overlay">
+        <div class="quick-modal-content" id="quick-modal-content">
+            <div class="modal-header">
+                <div class="mac-controls">
+                    <span class="mac-dot red" id="close-red"></span>
+                    <span class="mac-dot yellow"></span>
+                    <span class="mac-dot green"></span>
+                </div>
+                <h3>Start Your Project</h3>
+                <button class="modal-close-main" id="modal-close-main" title="Close Window">
+                    <i class='bx bx-x'></i>
+                </button>
+            </div>
+            <form class="modal-form">
+                <div class="modal-grid">
+                    <div class="modal-input-group">
+                        <label>Full Name</label>
+                        <input type="text" placeholder="John Doe" required>
+                    </div>
+                    <div class="modal-input-group">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="john@example.com" required>
+                    </div>
+                    <div class="modal-input-group">
+                        <label>Phone Number</label>
+                        <input type="tel" placeholder="+91 00000 00000">
+                    </div>
+                    <div class="modal-input-group">
+                        <label>Service Type</label>
+                        <select>
+                            <option>Residential Solar</option>
+                            <option>Commercial Solar</option>
+                            <option>Industrial Solar</option>
+                            <option>Maintenance</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-input-group full-width">
+                    <label>Tell us about your project</label>
+                    <textarea placeholder="How can we help you?"></textarea>
+                </div>
+                <button type="submit" class="modal-submit">
+                    <span>Submit Request</span>
+                    <i class='bx bx-paper-plane'></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>
