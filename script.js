@@ -331,3 +331,115 @@ document.querySelectorAll('.nav-links li a').forEach(link => {
         navMenuBtn.querySelector('i').classList.remove('bx-x');
     });
 });
+
+// Operations Interactive Showcase (Section 4) Tab Logic
+const opMenuItems = document.querySelectorAll('.operations-menu li');
+const opContents = document.querySelectorAll('.op-content');
+
+if (opMenuItems.length > 0 && opContents.length > 0) {
+    opMenuItems.forEach(item => {
+        item.addEventListener('click', () => {
+            // Remove active class from all menu items
+            opMenuItems.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked menu item
+            item.classList.add('active');
+            
+            // Get the target content ID
+            const targetId = 'content-' + item.getAttribute('data-target');
+            
+            // Hide all content blocks
+            opContents.forEach(content => content.classList.remove('active'));
+            
+            // Show the target content block
+            const targetContent = document.getElementById(targetId);
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+        });
+    });
+}
+
+// Contact Section Form Type Selector
+const typeBtns = document.querySelectorAll('.type-btn');
+
+if (typeBtns.length > 0) {
+    typeBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Scope changes to either the main form or the modal form
+            const wrapper = this.closest('.contact-form-wrapper') || this.closest('.quick-modal-content');
+            const localBtns = wrapper.querySelectorAll('.type-btn');
+            const localSections = wrapper.querySelectorAll('.form-group-section');
+
+            // Remove active from all local buttons
+            localBtns.forEach(b => {
+                b.classList.remove('active');
+                const icon = b.querySelector('i');
+                if (icon) icon.remove();
+            });
+            
+            // Add active to clicked
+            this.classList.add('active');
+            this.insertAdjacentHTML('afterbegin', "<i class='bx bx-radio-circle-marked'></i> ");
+
+            // Switch the form section
+            const target = this.getAttribute('data-target');
+            localSections.forEach(section => {
+                section.classList.remove('active');
+            });
+            const targetSection = document.getElementById('form-' + target);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+        });
+    });
+}
+
+// Case Studies Filter Logic
+const csTabs = document.querySelectorAll('.cs-tab');
+const csCards = document.querySelectorAll('.cs-card');
+
+if (csTabs.length > 0) {
+    csTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Remove active from all tabs
+            csTabs.forEach(t => t.classList.remove('active'));
+            // Add active to clicked tab
+            tab.classList.add('active');
+
+            const filterValue = tab.getAttribute('data-filter');
+
+            // Filter cards
+            csCards.forEach(card => {
+                if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                    card.classList.remove('hide');
+                } else {
+                    card.classList.add('hide');
+                }
+            });
+        });
+    });
+}
+
+// Auto-hide Floating Form when reaching Contact Section
+const contactSection = document.querySelector('.section-contact');
+// Re-select quickConnect globally just to be safe if not available
+const floatingPopup = document.getElementById('quick-connect');
+
+if (contactSection && floatingPopup) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Hide popup
+                floatingPopup.classList.add('hide-popup');
+            } else {
+                // Show popup again
+                floatingPopup.classList.remove('hide-popup');
+            }
+        });
+    }, {
+        threshold: 0.15 // Triggers when 15% of the contact section is visible
+    });
+
+    observer.observe(contactSection);
+}
