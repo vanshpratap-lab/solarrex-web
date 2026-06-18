@@ -292,9 +292,9 @@
                 <ul>
                     <li>
                         <figure>
-                            <h2>High Efficiency</h2>
+                            <h2>Premium Panels</h2>
                             <figcaption>
-                                Our monocrystalline panels deliver industry-leading conversion rates, ensuring maximum power generation even in limited space and low-light environments.
+                                We utilize top-grade Mono PERC Half-Cut panels (540W - 620W), delivering maximum power generation in minimal roof space.
                             </figcaption>
                             <a href="#" title="Read More">
                                 <em>Explore Tech</em>
@@ -308,12 +308,12 @@
 
                     <li>
                         <figure>
-                            <h2>Smart Storage</h2>
+                            <h2>DCR Subsidy</h2>
                             <figcaption>
-                                Integrate seamless energy storage with our intelligent battery systems. Store excess solar energy during the day and power your home through the night.
+                                Take full advantage of massive Government Subsidies on our DCR solar systems. You can save up to ₹78,000 on your home installation.
                             </figcaption>
                             <a href="#" title="Read More">
-                                <em>View Systems</em>
+                                <em>View Savings</em>
                                 <i>&#10095;&#10095;</i>
                             </a>
                         </figure>
@@ -324,12 +324,12 @@
 
                     <li>
                         <figure>
-                            <h2>Global Support</h2>
+                            <h2>Maximum ROI</h2>
                             <figcaption>
-                                Our dedicated support team is available 24/7 to ensure your systems are performing at their peak. We provide remote monitoring and rapid response services.
+                                Slash your electricity bills completely. Our highest-yield systems generate up to 1,950 units per month, saving you up to ₹18,000 monthly!
                             </figcaption>
                             <a href="#" title="Read More">
-                                <em>Get Support</em>
+                                <em>Calculate ROI</em>
                                 <i>&#10095;&#10095;</i>
                             </a>
                         </figure>
@@ -385,7 +385,7 @@
             <!-- Right Column: Content -->
             <div class="operations-right">
                 <div class="op-content active" id="content-mission">
-                    <h3>Sun Trust Energy missions are<br>made for best performance</h3>
+                    <h3>Solar Rex missions are<br>made for best performance</h3>
                     <p>We're finding ways to bring energy to more people in more ways every day, so that all of India can be part of the changing energy system. Because Powering Progress</p>
                     <ul class="op-list">
                         <li><i class='bx bxs-check-circle'></i> Ensuring best operation ore our customers</li>
@@ -531,13 +531,123 @@
         </div>
     </section>
 
+    <!-- Section Pricing Calculator (Light Theme) -->
+    <section class="section-pricing light-theme" id="section-pricing">
+        <div class="pricing-container">
+            <div class="pricing-header">
+                <span class="pricing-subtitle"><i class='bx bxs-diamond'></i> SYSTEM CALCULATOR</span>
+                <h2 class="pricing-title">Calculate Your Return on Investment</h2>
+                <p class="pricing-desc">Select your desired system capacity below to see pricing, generation, and estimated savings. Prices reflect top-grade Mono PERC panels.</p>
+            </div>
+
+            <!-- Layout Container for Animation -->
+            <div class="pricing-animation-container">
+                
+                <!-- Main Calculator Card -->
+                <div class="calculator-main-card">
+                    <!-- Top Display -->
+                    <div class="kw-display-new">
+                        <h2 id="current-kw">3 KW</h2>
+                        <span>SYSTEM SIZE</span>
+                    </div>
+
+                    <!-- Slider -->
+                    <div class="slider-box-new">
+                        <div class="range-container">
+                            <input type="range" id="kw-slider" min="0" max="10" step="1" value="0">
+                            <div class="range-labels">
+                                <span>3KW</span>
+                                <span>15KW</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2x2 Grid -->
+                    <div class="results-grid-new">
+                        <!-- Card 1: DCR -->
+                        <div class="result-card-new">
+                            <div class="r-icon-box r-yellow-box"><i class='bx bx-check-shield r-yellow-icon'></i></div>
+                            <div class="r-info">
+                                <span class="r-label">AFTER SUBSIDY (DCR)</span>
+                                <span class="r-val" id="val-dcr">₹1,12,000</span>
+                                <span class="r-subtext strike-red"><del id="val-dcr-strike">₹1,90,000</del></span>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: NDCR -->
+                        <div class="result-card-new">
+                            <div class="r-icon-box r-blue-box"><i class='bx bx-sun r-blue-icon'></i></div>
+                            <div class="r-info">
+                                <span class="r-label">NDCR PRICE</span>
+                                <span class="r-val" id="val-ndcr">₹1,70,000</span>
+                                <span class="r-subtext">Without Subsidy</span>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: Savings -->
+                        <div class="result-card-new savings-card-full">
+                            <div class="r-icon-box r-green-box"><i class='bx bx-trending-up r-green-icon'></i></div>
+                            <div class="r-info">
+                                <span class="r-label">EST. MONTHLY SAVINGS</span>
+                                <span class="r-val savings-green" id="val-savings">₹3,600 - ₹4,800</span>
+                            </div>
+                        </div>
+
+                        <!-- Card 4: All Details -->
+                        <div class="result-card-new details-list">
+                            <div class="d-row"><i class='bx bx-calendar-star r-yellow-icon'></i> <span id="val-gen">360-480 Units/Mo</span></div>
+                            <div class="d-row"><i class='bx bx-time r-yellow-icon'></i> <span id="val-daily">12-16 Units/Day</span></div>
+                            <div class="d-row"><i class='bx bx-area r-yellow-icon'></i> <span id="val-area">180 SqFt Area</span></div>
+                            <div class="d-row"><i class='bx bx-ruler r-yellow-icon'></i> <span id="val-dim">12×15 Ft Required</span></div>
+                            <div class="d-row"><i class='bx bx-grid-alt r-yellow-icon'></i> <span id="val-panels">6 Panels</span></div>
+                            <div class="d-row"><i class='bx bx-chip r-yellow-icon'></i> <span id="val-watt">540-630W Panel</span></div>
+                        </div>
+                    </div>
+
+                    <div class="calculator-cta">
+                        <button class="btn-primary get-quote-btn-new">GET DETAILED QUOTE</button>
+                    </div>
+                </div>
+
+                <!-- Estimate Receipt (Slides out from behind the card) -->
+                <div class="pricing-receipt-wrapper" id="pricing-receipt-wrapper">
+                    <div class="pricing-receipt" id="pricing-receipt">
+                        <div class="receipt-paper">
+                            <div class="receipt-header">
+                                <div class="receipt-logo">SOLAR REX</div>
+                                <div class="receipt-subtitle">Official Cost Estimate</div>
+                                <div class="receipt-date" id="receipt-date">Date: --/--/----</div>
+                            </div>
+                            <div class="receipt-divider"></div>
+                            <div class="receipt-body" id="receipt-details">
+                                <!-- Dynamically populated table -->
+                            </div>
+                            <div class="receipt-divider"></div>
+                            <div class="receipt-barcode">
+                                <div class="barcode-lines"></div>
+                                <span class="barcode-number">STE-32948-2026</span>
+                            </div>
+                            <div class="receipt-footer">
+                                <p>Thank you for choosing green energy!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- Closes .pricing-animation-container -->
+        </div> <!-- Closes .pricing-container -->
+    </section>
+
+    <!-- Section 7: Blank Snow White Page Placeholder -->
+    <section class="section-blank-white" id="section-7" style="min-height: 100vh; background: #FFFAFA; display: flex; justify-content: center; align-items: center;">
+    </section>
+
     <!-- Section 6: Contact Section -->
     <section class="section-contact" id="section-6">
         <div class="contact-container">
             <!-- Left Side: Contact Info -->
             <div class="contact-info">
                 <div class="contact-subtitle">
-                    <i class='bx bxs-diamond'></i> CONTACT SUN TRUST ENERGY
+                    <i class='bx bxs-diamond'></i> CONTACT SOLAR REX
                 </div>
                 <h2 class="contact-title">Get In Touch With Us</h2>
                 <p class="contact-description">
@@ -700,10 +810,6 @@
                 </form>
             </div>
         </div>
-    </section>
-
-    <!-- Section 7: Blank Snow White Page Placeholder -->
-    <section class="section-blank-white" id="section-7" style="min-height: 100vh; background: #FFFAFA; display: flex; justify-content: center; align-items: center;">
     </section>
 
     <!-- Minimal Footer -->

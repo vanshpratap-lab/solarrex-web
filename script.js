@@ -443,3 +443,129 @@ if (contactSection && floatingPopup) {
 
     observer.observe(contactSection);
 }
+
+// Interactive Pricing Calculator Logic
+const kwSlider = document.getElementById('kw-slider');
+if (kwSlider) {
+    // --- DOM Elements ---
+    const currentKwEl   = document.getElementById('current-kw');
+    const valDcr        = document.getElementById('val-dcr');
+    const valDcrStrike  = document.getElementById('val-dcr-strike');
+    const valNdcr       = document.getElementById('val-ndcr');
+    const valSavings    = document.getElementById('val-savings');
+    const valGen        = document.getElementById('val-gen');
+    const valDaily      = document.getElementById('val-daily');
+    const valArea       = document.getElementById('val-area');
+    const valDim        = document.getElementById('val-dim');
+    const valPanels     = document.getElementById('val-panels');
+    const valWatt       = document.getElementById('val-watt');
+    const receiptDate   = document.getElementById('receipt-date');
+    const receiptDetails = document.getElementById('receipt-details');
+    const pricingReceipt = document.getElementById('pricing-receipt-wrapper');
+
+    // --- Official Pricing Data (from price list) ---
+    // D = daily units, M = monthly units, P = panels, Area in SqFt, dim = dimensions
+    const pricingData = [
+        { kw: 3,  dcr: '₹1,12,000', dcrStrike: '₹1,90,000', ndcr: '₹1,70,000', savings: '₹3,600 - ₹4,800', gen: '360-480 Units/Mo', daily: '12-16 Units/Day',  area: '180 SqFt', dim: '12×15 Ft',  panels: '6 Panels',     watt: '540-630W' },
+        { kw: 4,  dcr: '₹1,52,000', dcrStrike: '₹2,30,000', ndcr: '₹1,90,000', savings: '₹4K - ₹5K',       gen: '480-600 Units/Mo', daily: '16-20 Units/Day',  area: '240 SqFt', dim: '16×15 Ft',  panels: '7 Panels',     watt: '540-630W' },
+        { kw: 5,  dcr: '₹2,02,000', dcrStrike: '₹2,80,000', ndcr: '₹2,25,000', savings: '₹6K - ₹7K',       gen: '600-720 Units/Mo', daily: '20-24 Units/Day',  area: '276 SqFt', dim: '12×23 Ft',  panels: '9 Panels',     watt: '540-630W' },
+        { kw: 6,  dcr: '₹2,52,000', dcrStrike: '₹3,30,000', ndcr: '₹2,50,000', savings: '₹7K - ₹8K',       gen: '720-840 Units/Mo', daily: '24-28 Units/Day',  area: '368 SqFt', dim: '16×23 Ft',  panels: '11 Panels',    watt: '540-630W' },
+        { kw: 7,  dcr: '₹2,92,000', dcrStrike: '₹3,70,000', ndcr: '₹2,85,000', savings: '₹8K - ₹9K',       gen: '840-960 Units/Mo', daily: '28-32 Units/Day',  area: '460 SqFt', dim: '20×23 Ft',  panels: '13 Panels',    watt: '540-630W' },
+        { kw: 8,  dcr: '₹3,42,000', dcrStrike: '₹4,20,000', ndcr: '₹3,20,000', savings: '₹9K - ₹10K',      gen: '960-1080 Units/Mo',daily: '32-36 Units/Day',  area: '480 SqFt', dim: '16×30 Ft',  panels: '15 Panels',    watt: '540-630W' },
+        { kw: 9,  dcr: '₹3,82,000', dcrStrike: '₹4,60,000', ndcr: '₹3,50,000', savings: '₹10K - ₹12K',     gen: '1080-1200 Units/Mo',daily:'36-40 Units/Day',  area: '480 SqFt', dim: '16×30 Ft',  panels: '16-17 Panels', watt: '540-630W' },
+        { kw: 10, dcr: '₹3,80,000', dcrStrike: '₹5,10,000', ndcr: '₹3,80,000', savings: '₹11K - ₹13K',     gen: '1200-1320 Units/Mo',daily:'40-44 Units/Day',  area: '600 SqFt', dim: '20×30 Ft',  panels: '17-18 Panels', watt: '540-630W' },
+        { kw: 11, dcr: 'N/A',        dcrStrike: '',           ndcr: '₹4,20,000', savings: '₹12K - ₹13K',     gen: '1320-1440 Units/Mo',daily:'44-48 Units/Day',  area: '600 SqFt', dim: '20×30 Ft',  panels: '20 Panels',    watt: '540-630W' },
+        { kw: 12, dcr: 'N/A',        dcrStrike: '',           ndcr: '₹4,50,000', savings: '₹13K - ₹15K',     gen: '1440-1560 Units/Mo',daily:'48-52 Units/Day',  area: '720 SqFt', dim: '24×30 Ft',  panels: '22 Panels',    watt: '540-630W' },
+        { kw: 15, dcr: 'N/A',        dcrStrike: '',           ndcr: '₹5,10,000', savings: '₹15K - ₹18K',     gen: '1800-1950 Units/Mo',daily:'60-65 Units/Day',  area: '912 SqFt', dim: '24×38 Ft',  panels: '28 Panels',    watt: '540-630W' }
+    ];
+
+    // --- Update Slider Fill ---
+    function updateSliderBackground(slider) {
+        const pct = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
+        slider.style.background = `linear-gradient(to right, #ffb703 0%, #ffb703 ${pct}%, #e9ecef ${pct}%, #e9ecef 100%)`;
+    }
+
+    // --- Update Pricing Card & Receipt ---
+    function updatePricingCard(index) {
+        const d = pricingData[index];
+        const grid = document.querySelector('.results-grid-new');
+
+        if (currentKwEl) currentKwEl.textContent = `${d.kw} KW`;
+        if (grid) grid.style.opacity = '0.4';
+
+        setTimeout(() => {
+            if (valDcr) {
+                if (d.dcr === 'N/A') {
+                    valDcr.textContent = 'Not Eligible';
+                    if (valDcrStrike) valDcrStrike.innerHTML = '<span style="font-size:10px;color:#e74c3c">No Subsidy Above 10KW</span>';
+                } else {
+                    valDcr.textContent = d.dcr;
+                    if (valDcrStrike) valDcrStrike.innerHTML = `<del>${d.dcrStrike}</del>`;
+                }
+            }
+            if (valNdcr)    valNdcr.textContent    = d.ndcr;
+            if (valSavings) valSavings.textContent  = d.savings;
+            if (valGen)     valGen.textContent      = d.gen;
+            if (valDaily)   valDaily.textContent    = d.daily;
+            if (valArea)    valArea.textContent      = d.area + ' Area';
+            if (valDim)     valDim.textContent       = d.dim + ' Required';
+            if (valPanels)  valPanels.textContent    = d.panels;
+            if (valWatt)    valWatt.textContent      = d.watt + ' Panel';
+            if (grid) grid.style.opacity = '1';
+
+            // Live-update the receipt content
+            const now = new Date();
+            if (receiptDate) receiptDate.textContent = `Date: ${now.getDate()}/${now.getMonth()+1}/${now.getFullYear()}`;
+
+            if (receiptDetails) {
+                receiptDetails.innerHTML = `
+                    <table>
+                        <tr><td>System Size:</td><td>${d.kw} KW</td></tr>
+                        <tr><td>Solar Panels:</td><td>${d.panels}</td></tr>
+                        <tr><td>Panel Spec:</td><td>${d.watt}</td></tr>
+                        <tr><td>Gen (Monthly):</td><td>${d.gen}</td></tr>
+                        <tr><td>Gen (Daily):</td><td>${d.daily}</td></tr>
+                        <tr><td>Roof Space:</td><td>${d.area} (${d.dim})</td></tr>
+                        <tr style="border-top:1px dashed #ccc;">
+                            <td style="padding-top:6px; font-weight:700;">Standard Price:</td>
+                            <td style="padding-top:6px;">${d.ndcr}</td>
+                        </tr>
+                        <tr style="color:#27ae60; font-weight:900;">
+                            <td>Subsidized Price:</td>
+                            <td>${d.dcr === 'N/A' ? '<span style="color:#e74c3c">N/A</span>' : d.dcr}</td>
+                        </tr>
+                        <tr style="border-top:1px dashed #ccc;">
+                            <td style="padding-top:6px;">Est. Savings:</td>
+                            <td style="padding-top:6px; font-weight:800;">${d.savings}</td>
+                        </tr>
+                    </table>
+                `;
+            }
+        }, 150);
+    }
+
+    // --- Slider ---
+    kwSlider.addEventListener('input', (e) => {
+        updateSliderBackground(e.target);
+        updatePricingCard(parseInt(e.target.value));
+    });
+
+    // Init
+    updateSliderBackground(kwSlider);
+    updatePricingCard(0);
+
+    // --- GET DETAILED QUOTE ---
+    const getQuoteBtn = document.querySelector('.get-quote-btn-new');
+    if (getQuoteBtn) {
+        getQuoteBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const mainCard = document.querySelector('.calculator-main-card');
+            if (!mainCard || !pricingReceipt) return;
+
+            // Slide card left, and slide out the receipt
+            mainCard.classList.add('slide-left');
+            pricingReceipt.classList.add('slide-left');
+        });
+    }
+}
