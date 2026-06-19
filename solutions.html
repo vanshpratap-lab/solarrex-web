@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Rex | Energy Solutions</title>
+    <!-- Boxicons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="solutions.css">
+</head>
+<body class="solutions-detail-page">
+    
+    <!-- Page Transition Curtain -->
+    <div class="page-transition-curtain active" id="page-curtain"></div>
+
+    <!-- Header / Navbar -->
+    <nav class="navbar solutions-navbar">
+        <a href="index.html" class="sol-back-btn" id="sol-back-nav">
+            <i class='bx bx-left-arrow-alt'></i> Back to Home
+        </a>
+        <div class="nav-logo" style="animation: none;"><span class="logo-solar">SOLAR</span><span class="logo-rex">REX</span></div>
+        <div class="nav-cta">
+            <a href="index.html#section-6" class="btn-quote">Get Quote</a>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="sol-content-wrapper" id="sol-main-content" style="opacity: 0;">
+        
+        <!-- Hero Section -->
+        <section class="sol-hero">
+            <div class="sol-hero-overlay"></div>
+            <div class="sol-hero-bg" id="sol-hero-image" style="background-image: url('images/cat_residential.png');"></div>
+            <div class="sol-hero-content">
+                <div class="breadcrumbs">
+                    <a href="index.html">Home</a> <i class='bx bx-chevron-right'></i> <span>Energy Solutions</span> <i class='bx bx-chevron-right'></i> <span id="breadcrumb-current">Residential Solar</span>
+                </div>
+                <h1 id="sol-title">Residential Solar Solutions</h1>
+                <p class="sol-subtitle" id="sol-subtitle">Power Your Home, Secure Your Independence</p>
+                <p class="sol-tagline" id="sol-tagline">Slash your electricity bills, get 24/7 backup power, and qualify for 100% government subsidy (DCR compliant).</p>
+            </div>
+        </section>
+
+        <!-- Bento Grid Details Section -->
+        <section class="sol-details-grid">
+            
+            <!-- Grid Item 1: Overview & Highlights -->
+            <div class="grid-item overview-card reveal-on-scroll">
+                <h3><i class='bx bx-info-circle'></i> Solution Overview</h3>
+                <p id="sol-overview-text">Power your home with clean, sustainable energy. Our residential solutions combine high-efficiency panels with smart storage to ensure your family never stays in the dark. We handle the entire engineering, procurement, utility approval, net metering, and subsidy paperwork for a seamless, hassle-free solar transition.</p>
+                <div class="highlights-container">
+                    <h4>Key Highlights</h4>
+                    <ul class="highlights-list" id="sol-highlights">
+                        <li><i class='bx bx-check-circle'></i> 24/7 Backup Power integration with smart storage</li>
+                        <li><i class='bx bx-check-circle'></i> Smart Mobile Monitoring for real-time generation and load tracking</li>
+                        <li><i class='bx bx-check-circle'></i> 25-Year Performance Warranty on top-tier Mono PERC modules</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Grid Item 2: Interactive Specifications Table -->
+            <div class="grid-item specs-card reveal-on-scroll">
+                <h3><i class='bx bx-list-check'></i> Technical Specifications</h3>
+                <div class="table-wrapper">
+                    <table class="specs-table">
+                        <tbody>
+                            <tr>
+                                <td>System Size Range</td>
+                                <td id="spec-range">3 kW to 15 kW</td>
+                            </tr>
+                            <tr>
+                                <td>Module Efficiency</td>
+                                <td id="spec-efficiency">Up to 22.8% (Mono PERC Half-Cut)</td>
+                            </tr>
+                            <tr>
+                                <td>Inverter Standard</td>
+                                <td id="spec-inverter">Solar Rex Smart String Inverter (Grid-Tied)</td>
+                            </tr>
+                            <tr>
+                                <td>Battery Storage Option</td>
+                                <td id="spec-storage">5 kWh - 15 kWh LFP Storage (Optional Upgrade)</td>
+                            </tr>
+                            <tr>
+                                <td>Expected Payback</td>
+                                <td id="spec-payback">3 - 4 Years</td>
+                            </tr>
+                            <tr>
+                                <td>Design Compliance</td>
+                                <td id="spec-compliance">100% DCR Compliant (Subsidy Eligible)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Grid Item 4: Project Execution Timeline -->
+            <div class="grid-item timeline-card reveal-on-scroll">
+                <h3><i class='bx bx-git-commit'></i> Implementation Timeline</h3>
+                <div class="timeline-wrapper">
+                    <div class="timeline-line"></div>
+                    <div class="timeline-step">
+                        <div class="step-dot">1</div>
+                        <div class="step-content">
+                            <h5>Site Audit & Solar Mapping</h5>
+                            <p>Our engineers perform detailed shade analysis, roof load testing, and electrical checks.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-dot">2</div>
+                        <div class="step-content">
+                            <h5>Engineering Design</h5>
+                            <p>AutoCAD blueprints and SLD schematics are generated for zoning and utility grid tie-in approval.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-dot">3</div>
+                        <div class="step-content">
+                            <h5>Utility Application</h5>
+                            <p>Filing for net-metering approval with local DISCOMs and government subsidy registrations.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-dot">4</div>
+                        <div class="step-content">
+                            <h5>Installation & Handover</h5>
+                            <p>Fast mechanical structure assembly, panel mounting, inverter setup, testing, and system activation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="sol-faq-section reveal-on-scroll">
+            <h2 class="faq-section-title"><i class='bx bx-help-circle'></i> Frequently Asked Questions</h2>
+            <div class="faq-container" id="sol-faq-container">
+                <!-- JS will inject FAQs here -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="sol-footer">
+        <div class="footer-container">
+            <p>&copy; 2026 Solar Rex Technologies Private Limited. All Rights Reserved.</p>
+            <p>ISO 9001:2015 & CE Certified Solar Developer.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="solutions.js"></script>
+</body>
+</html>

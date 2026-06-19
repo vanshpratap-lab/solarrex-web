@@ -484,6 +484,23 @@ if (floatingPopup) {
     if (contactSection) observer.observe(contactSection);
     if (pricingSection) observer.observe(pricingSection);
     if (operationsSection) observer.observe(operationsSection);
+
+    // Auto-hide on Hero section (top of the page) for mobile/tablet to avoid overlapping badges
+    const heroSection = document.querySelector('.hero');
+    if (heroSection) {
+        const heroObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    floatingPopup.classList.add('hide-on-hero');
+                } else {
+                    floatingPopup.classList.remove('hide-on-hero');
+                }
+            });
+        }, {
+            threshold: 0.05
+        });
+        heroObserver.observe(heroSection);
+    }
 }
 
 // --- Official Pricing Data (from price list) ---
@@ -595,8 +612,9 @@ if (kwSlider) {
     });
 
     // Init
+    kwSlider.value = 10;
     updateSliderBackground(kwSlider);
-    updatePricingCard(0);
+    updatePricingCard(10);
 
     // --- GET DETAILED QUOTE ---
     const getQuoteBtn = document.querySelector('.get-quote-btn-new');
@@ -723,7 +741,9 @@ const updateSubsidyCalculator = () => {
 };
 
 if (subsidySlider) {
+    subsidySlider.value = 10;
     subsidySlider.addEventListener('input', updateSubsidyCalculator);
+    updateSubsidyCalculator();
 }
 
 // --- ROI Calculator Logic ---
@@ -808,4 +828,106 @@ const updateRoiCalculator = () => {
 
 if (roiBillInput) roiBillInput.addEventListener('input', updateRoiCalculator);
 if (roiTariffInput) roiTariffInput.addEventListener('input', updateRoiCalculator);
+
+// Performant Reveal-on-Scroll Observer (with reverse/reset support)
+const revealElements = document.querySelectorAll('.reveal-on-scroll');
+if (revealElements.length > 0) {
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+            } else {
+                // When scrolling back up, remove the class to reset the animation
+                // This makes the elements hide again and animate back in on next scroll
+                entry.target.classList.remove('revealed');
+            }
+        });
+    }, {
+        threshold: 0.05, // Trigger as soon as 5% of the element enters the viewport
+        rootMargin: '0px 0px -50px 0px' // Offset trigger for smoother visual timing
+    });
+    revealElements.forEach(el => revealObserver.observe(el));
+}
+
+// --- Magic Button Premium Click & Page Transition ---
+document.addEventListener('DOMContentLoaded', () => {
+    const magicButtons = document.querySelectorAll('.magic-button');
+    const curtain = document.getElementById('page-curtain');
+    
+    magicButtons.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            // Only intercept standard clicks (no Cmd/Ctrl clicks)
+            if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+            
+            const href = this.getAttribute('href');
+            if (!href || href === '#' || href.startsWith('javascript:')) return;
+            
+            e.preventDefault();
+            
+            // Cursor coordinates relative to viewport
+            const clickX = e.clientX;
+            const clickY = e.clientY;
+            
+            // 1. Spawning Sparkle/Star Explosion Particles
+            const particleTypes = ['circle', 'star', 'diamond'];
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                const type = particleTypes[Math.floor(Math.random() * particleTypes.length)];
+                particle.className = `click-particle ${type}`;
+                document.body.appendChild(particle);
+                
+                // Position at cursor
+                particle.style.left = `${clickX}px`;
+                particle.style.top = `${clickY}px`;
+                
+                // Random motion vectors
+                const angle = Math.random() * Math.PI * 2;
+                const speed = 50 + Math.random() * 100;
+                const destX = Math.cos(angle) * speed;
+                const destY = Math.sin(angle) * speed;
+                const rotate = (Math.random() - 0.5) * 360;
+                
+                // Web Animations API for smooth hardware-accelerated movement
+                const animation = particle.animate([
+                    { 
+                        transform: `translate(-50%, -50%) rotate(0deg) scale(1) translate(0, 0)`, 
+                        opacity: 1 
+                    },
+                    { 
+                        transform: `translate(-50%, -50%) rotate(${rotate}deg) scale(0) translate(${destX}px, ${destY}px)`, 
+                        opacity: 0 
+                    }
+                ], {
+                    duration: 500 + Math.random() * 400,
+                    easing: 'cubic-bezier(0.16, 1, 0.3, 1)'
+                });
+                
+                animation.onfinish = () => particle.remove();
+            }
+            
+            // 2. Active Shrink Click Effect on Button
+            this.animate([
+                { transform: 'scale(1.1) rotate(-4deg)' },
+                { transform: 'scale(0.92) rotate(-4deg)' },
+                { transform: 'scale(1.1) rotate(-4deg)' }
+            ], {
+                duration: 200,
+                easing: 'ease'
+            });
+            
+            // 3. Circular Expanding Screen Curtain Transition
+            if (curtain) {
+                curtain.style.left = `${clickX}px`;
+                curtain.style.top = `${clickY}px`;
+                curtain.classList.add('active');
+            }
+            
+            // 4. Redirect after transition curtain has fully covered screen
+            setTimeout(() => {
+                window.location.href = href;
+            }, 800);
+        });
+    });
+});
+
 

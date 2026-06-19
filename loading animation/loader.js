@@ -1,13 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Disable body scrolling initially
-    document.body.style.overflow = 'hidden';
-
-    setTimeout(() => {
+    try {
+        const navEntries = performance.getEntriesByType('navigation');
+        const isReload = navEntries.length > 0 && navEntries[0].type === 'reload';
+        const loaderHasRun = sessionStorage.getItem('loaderHasRun');
+        
         const overlay = document.getElementById('loader-overlay');
-        if (overlay) {
-            overlay.classList.add('fade-out');
-            // Restore body scrolling
+        
+        if (loaderHasRun === 'true' && !isReload) {
+            // Return visit: Skip the welcome animation
+            if (overlay) {
+                overlay.style.display = 'none';
+            }
             document.body.style.overflow = '';
+        } else {
+            // First load or manual refresh: Play the animation
+            sessionStorage.setItem('loaderHasRun', 'true');
+            
+            // Disable body scrolling initially
+            document.body.style.overflow = 'hidden';
+            
+            setTimeout(() => {
+                if (overlay) {
+                    overlay.classList.add('fade-out');
+                    // Restore body scrolling
+                    document.body.style.overflow = '';
+                }
+            }, 2800); // 2.8 seconds allows the cursive Welcome drawing animation to complete beautifully
         }
-    }, 2800); // 2.8 seconds loading time allows the cursive Welcome drawing animation to complete beautifully
+    } catch(e) {
+        // Fallback safety
+        document.body.style.overflow = '';
+    }
 });

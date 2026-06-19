@@ -5,17 +5,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solar Rex | Sustainable Energy Solutions</title>
+    <title>Solar Rex | Sustainable Energy Solutions</title>
     <link rel="stylesheet" href="/loading animation/loader.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <script type="module" crossorigin src="/assets/index-Bw0DynG_.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-BdVGAwSt.css">
+  <script type="module" crossorigin src="/assets/main-DthbytXS.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/style-D67Tn9ig.js">
+  <link rel="stylesheet" crossorigin href="/assets/style-B3RQJkYY.css">
 </head>
 
 <body>
 
     <!-- MacBook style loader screen -->
     <div id="loader-overlay">
+        <script>
+            (function() {
+                try {
+                    const navEntries = performance.getEntriesByType('navigation');
+                    const isReload = navEntries.length > 0 && navEntries[0].type === 'reload';
+                    const loaderHasRun = sessionStorage.getItem('loaderHasRun');
+                    if (loaderHasRun === 'true' && !isReload) {
+                        document.getElementById('loader-overlay').style.display = 'none';
+                    } else {
+                        sessionStorage.setItem('loaderHasRun', 'true');
+                    }
+                } catch(e) {}
+            })();
+        </script>
         <div class="welcome-container">
             <span class="welcome-letter" style="--d: 0.1s">W</span>
             <span class="welcome-letter" style="--d: 0.2s">E</span>
@@ -68,76 +83,67 @@
         <div class="trust-banner">
             <div class="trust-item">
                 <div class="trust-icon-wrapper">
-                    <svg viewBox="0 0 100 100" width="100%" height="100%">
-                        <circle cx="50" cy="50" r="46" fill="white" />
-                        <!-- Center person -->
-                        <circle cx="50" cy="38" r="10" fill="none" stroke="black" stroke-width="3"/>
-                        <path d="M32 62 C32 50, 68 50, 68 62" fill="none" stroke="black" stroke-width="3" stroke-linecap="round"/>
-                        <!-- Left person -->
-                        <circle cx="34" cy="44" r="8" fill="none" stroke="black" stroke-width="2.5"/>
-                        <path d="M20 66 C20 56, 42 56, 42 66" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
-                        <!-- Right person -->
-                        <circle cx="66" cy="44" r="8" fill="none" stroke="black" stroke-width="2.5"/>
-                        <path d="M58 66 C58 56, 80 56, 80 66" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
-                        <!-- Stars -->
-                        <polygon points="32,71 34,76 39,76 35,79 36,84 32,81 28,84 29,79 25,76 30,76" fill="black"/>
-                        <polygon points="50,73 52,78 57,78 53,81 54,86 50,83 46,86 47,81 43,78 48,78" fill="black"/>
-                        <polygon points="68,71 70,76 75,76 71,79 72,84 68,81 64,84 65,79 61,76 66,76" fill="black"/>
-                    </svg>
+                    <img src="/assets/trust_customers-D4IGCBbq.png" alt="Happy Customers">
                 </div>
-                <span class="trust-title">7L+ Happy Customers</span>
+                <span class="trust-title">Happy Customers</span>
             </div>
             <div class="trust-item">
                 <div class="trust-icon-wrapper">
-                    <svg viewBox="0 0 100 100" width="100%" height="100%">
-                        <circle cx="50" cy="50" r="46" fill="white" />
-                        <!-- Walking lion silhouette -->
-                        <path d="M 32 58 C 30 57, 30 55, 32 54 C 34 53, 36 53, 38 52 C 40 50, 41 47, 43 45 C 45 43, 48 43, 51 45 C 54 42, 58 40, 62 42 C 66 43, 69 46, 71 49 C 73 47, 76 46, 79 48 C 82 50, 83 53, 83 57 C 83 61, 81 63, 77 64 L 75 64 L 75 72 L 71 72 L 71 64 L 68 64 L 66 72 L 63 72 L 65 64 L 53 64 L 52 72 L 49 72 L 50 64 L 43 64 L 41 72 L 38 72 L 40 64 C 36 64, 33 63, 32 60 Z" fill="black" />
-                    </svg>
+                    <img src="/assets/trust_india-pQOVc3qm.png" alt="Proudly Made In India">
                 </div>
                 <span class="trust-title">Proudly Made In India</span>
             </div>
             <div class="trust-item">
                 <div class="trust-icon-wrapper">
-                    <svg viewBox="0 0 100 100" width="100%" height="100%">
-                        <circle cx="50" cy="50" r="46" fill="white" />
-                        <!-- 24h clock ring -->
-                        <path d="M 50 20 A 30 30 0 1 1 26 38" fill="none" stroke="black" stroke-width="3" stroke-linecap="round"/>
-                        <polyline points="22,30 25,38 33,37" fill="none" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                        <!-- Truck -->
-                        <rect x="36" y="46" width="20" height="12" rx="2" fill="none" stroke="black" stroke-width="3"/>
-                        <path d="M 56 49 L 66 49 L 70 54 L 70 58 L 56 58 Z" fill="none" stroke="black" stroke-width="3" stroke-linejoin="round"/>
-                        <!-- Wheels -->
-                        <circle cx="42" cy="62" r="4" fill="black"/>
-                        <circle cx="62" cy="62" r="4" fill="black"/>
-                        <!-- "24h" Text -->
-                        <text x="50" y="38" font-family="'Montserrat', sans-serif" font-size="14" font-weight="900" fill="black" text-anchor="middle">24h</text>
-                    </svg>
+                    <img src="/assets/trust_install-BQdBU9Da.png" alt="Install Under 48 Hours">
                 </div>
-                <span class="trust-title">Shipped In 24 Hours</span>
+                <span class="trust-title">Install Under 48 Hours</span>
             </div>
             <div class="trust-item">
                 <div class="trust-icon-wrapper">
-                    <svg viewBox="0 0 100 100" width="100%" height="100%">
-                        <circle cx="50" cy="50" r="46" fill="white" />
-                        <!-- Scalloped badge circle -->
-                        <circle cx="50" cy="45" r="18" fill="none" stroke="black" stroke-width="3" stroke-dasharray="6,3"/>
-                        <circle cx="50" cy="45" r="14" fill="none" stroke="black" stroke-width="2"/>
-                        <!-- Star in center -->
-                        <polygon points="50,37 53,43 60,44 55,49 56,56 50,52 44,56 45,49 40,44 47,43" fill="black"/>
-                        <!-- Ribbons -->
-                        <path d="M 42 60 L 38 74 L 46 71 L 48 60" fill="black"/>
-                        <path d="M 58 60 L 62 74 L 54 71 L 52 60" fill="black"/>
-                    </svg>
+                    <img src="/assets/trust_materials-CY1oPuNT.png" alt="Top Grade Materials">
                 </div>
                 <span class="trust-title">Top Grade Materials</span>
             </div>
         </div>
     </section>
 
+    <!-- Quick Connect Mini-Form (Trigger) -->
+    <div class="quick-connect" id="quick-connect">
+        <div class="iphone-frame">
+            <div class="iphone-notch"></div>
+            <div class="quick-header" id="quick-header-trigger" title="Click to Expand">
+                <div class="header-main">
+                    <i class='bx bxs-bolt-circle'></i>
+                    <h3>Quick Connect</h3>
+                </div>
+                <div class="header-controls">
+                    <div class="quick-expand-icon">
+                        <i class='bx bx-expand-alt'></i>
+                    </div>
+                </div>
+            </div>
+            <form class="mini-form">
+                <div class="mini-input-group">
+                    <label>Name</label>
+                    <input type="text" placeholder="Full Name" required>
+                </div>
+                <div class="mini-input-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="email@example.com" required>
+                </div>
+                <button type="submit" class="mini-btn">
+                    <span>Fast Quote</span>
+                    <i class='bx bx-right-arrow-alt'></i>
+                </button>
+            </form>
+            <div class="iphone-home-bar"></div>
+        </div>
+    </div>
+
     <section class="solutions">
         <div class="solutions-container">
-            <div class="solutions-left">
+            <div class="solutions-left reveal-on-scroll reveal-from-left">
                 <span class="section-label">Our Energy Solutions</span>
                 <div class="info-box">
                     <div class="info-item active">
@@ -148,7 +154,7 @@
                             <li><i class='bx bx-check'></i> Smart Mobile Monitoring</li>
                             <li><i class='bx bx-check'></i> 25-Year Performance Warranty</li>
                         </ul>
-                        <a href="#" class="magic-button">
+                        <a href="solutions.html?type=residential-solar" class="magic-button">
                             <div class="button__content">
                                 <span class="button__text">Learn More</span>
                                 <div class="button__reflection-1"></div>
@@ -172,7 +178,7 @@
                             <li><i class='bx bx-check'></i> Federal Tax Incentives</li>
                             <li><i class='bx bx-check'></i> Scalable Energy Architecture</li>
                         </ul>
-                        <a href="#" class="magic-button">
+                        <a href="solutions.html?type=commercial-solar" class="magic-button">
                             <div class="button__content">
                                 <span class="button__text">Learn More</span>
                                 <div class="button__reflection-1"></div>
@@ -196,7 +202,7 @@
                             <li><i class='bx bx-check'></i> Microgrid Integration</li>
                             <li><i class='bx bx-check'></i> Carbon Offset Optimization</li>
                         </ul>
-                        <a href="#" class="magic-button">
+                        <a href="solutions.html?type=industrial-solar" class="magic-button">
                             <div class="button__content">
                                 <span class="button__text">Learn More</span>
                                 <div class="button__reflection-1"></div>
@@ -220,7 +226,7 @@
                             <li><i class='bx bx-check'></i> Annual Health Checks</li>
                             <li><i class='bx bx-check'></i> Priority Technical Support</li>
                         </ul>
-                        <a href="#" class="magic-button">
+                        <a href="solutions.html?type=maintenance-support" class="magic-button">
                             <div class="button__content">
                                 <span class="button__text">Learn More</span>
                                 <div class="button__reflection-1"></div>
@@ -238,7 +244,7 @@
                 </div>
             </div>
 
-            <div class="solutions-right">
+            <div class="solutions-right reveal-on-scroll reveal-from-right">
                 <div class="img-box">
                     <div class="img-slider">
                         <div class="img-item active" style="--i:1;">
@@ -291,7 +297,7 @@
         <article class="animated-cards-wrapper">
             <section id="_boxes">
                 <ul>
-                    <li>
+                    <li class="reveal-on-scroll reveal-from-bottom delay-100">
                         <figure>
                             <h2>Premium Panels</h2>
                             <figcaption>
@@ -307,7 +313,7 @@
                         </svg>
                     </li>
 
-                    <li>
+                    <li class="reveal-on-scroll reveal-from-bottom delay-200">
                         <figure>
                             <h2>DCR Subsidy</h2>
                             <figcaption>
@@ -323,7 +329,7 @@
                         </svg>
                     </li>
 
-                    <li>
+                    <li class="reveal-on-scroll reveal-from-bottom delay-300">
                         <figure>
                             <h2>Maximum ROI</h2>
                             <figcaption>
@@ -347,7 +353,7 @@
     <section class="section-operations" id="section-4">
         <div class="operations-container">
             <!-- Left Column: Menu -->
-            <div class="operations-left">
+            <div class="operations-left reveal-on-scroll reveal-from-left">
                 <div class="operations-label">
                     <i class='bx bxs-diamond'></i> COMPANY FEATURES
                 </div>
@@ -377,14 +383,14 @@
             </div>
 
             <!-- Center Column: Pill Image -->
-            <div class="operations-center">
+            <div class="operations-center reveal-on-scroll reveal-from-bottom">
                 <div class="pill-image-wrapper">
                     <img src="/assets/operations_hero-d58k_NxO.png" alt="Solar Rex Professional Engineer">
                 </div>
             </div>
 
             <!-- Right Column: Content -->
-            <div class="operations-right">
+            <div class="operations-right reveal-on-scroll reveal-from-right">
                 <div class="op-content active" id="content-mission">
                     <h3>Solar Rex missions are<br>made for best performance</h3>
                     <p>We're finding ways to bring energy to more people in more ways every day, so that all of India can be part of the changing energy system. Because Powering Progress</p>
@@ -467,12 +473,12 @@
 
     <!-- Case Studies Section -->
     <section class="section-case-studies" id="section-case-studies">
-        <div class="case-studies-header">
+        <div class="case-studies-header reveal-on-scroll reveal-from-bottom">
             <span class="cs-subtitle"><i class='bx bxs-diamond'></i> OUR CASE STUDIES</span>
             <h2 class="cs-title">Review our case studies to<br>get a better idea</h2>
         </div>
 
-        <div class="cs-filter-tabs">
+        <div class="cs-filter-tabs reveal-on-scroll reveal-fade">
             <div class="cs-tab active" data-filter="all">All</div>
             <div class="cs-tab" data-filter="installation">Installation</div>
             <div class="cs-tab" data-filter="maintainance">Maintainance</div>
@@ -480,10 +486,10 @@
             <div class="cs-tab" data-filter="repair">Repair</div>
         </div>
 
-        <div class="cs-grid">
+        <div class="cs-grid reveal-on-scroll reveal-from-bottom">
             <!-- Card 1 -->
             <div class="cs-card" data-category="installation">
-                <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80" alt="Solar Panels">
+                <img src="/assets/cs_install_comm-CAwM4H0c.png" alt="Solar Panels">
                 <div class="cs-overlay">
                     <h3>Solar Installation</h3>
                     <p>Commercial Plant</p>
@@ -491,7 +497,7 @@
             </div>
             <!-- Card 2 -->
             <div class="cs-card" data-category="maintainance">
-                <img src="https://images.unsplash.com/photo-1504307651254-35680f356f11?w=800&q=80" alt="Workers on building">
+                <img src="/assets/cs_maint_check-DPCQsp2j.png" alt="Workers on building">
                 <div class="cs-overlay">
                     <h3>Panel Maintainance</h3>
                     <p>Routine Checkup</p>
@@ -499,7 +505,7 @@
             </div>
             <!-- Card 3 -->
             <div class="cs-card" data-category="installation">
-                <img src="https://images.unsplash.com/photo-1558449028-b53a39d100fc?w=800&q=80" alt="Solar workers">
+                <img src="/assets/cs_rooftop_res-ky8Po4TR.png" alt="Solar workers">
                 <div class="cs-overlay">
                     <h3>Rooftop Solar</h3>
                     <p>Residential Setup</p>
@@ -507,7 +513,7 @@
             </div>
             <!-- Card 4 -->
             <div class="cs-card" data-category="powergrid">
-                <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&q=80" alt="Power Lines">
+                <img src="/assets/cs_power_grid-BsF2seAI.png" alt="Power Lines">
                 <div class="cs-overlay">
                     <h3>Power Grid</h3>
                     <p>High Voltage Line</p>
@@ -515,7 +521,7 @@
             </div>
             <!-- Card 5 -->
             <div class="cs-card" data-category="repair">
-                <img src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=800&q=80" alt="Engineer inspecting solar">
+                <img src="/assets/cs_inverter_repair-kd-2tZ_9.png" alt="Engineer inspecting solar">
                 <div class="cs-overlay">
                     <h3>Inverter Repair</h3>
                     <p>System Diagnostics</p>
@@ -523,7 +529,7 @@
             </div>
             <!-- Card 6 -->
             <div class="cs-card" data-category="maintainance">
-                <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=800&q=80" alt="Solar installation roof">
+                <img src="/assets/cs_eff_audit-lKor3QUI.png" alt="Solar installation roof">
                 <div class="cs-overlay">
                     <h3>Efficiency Audit</h3>
                     <p>Performance Testing</p>
@@ -535,27 +541,27 @@
     <!-- Section Pricing Calculator (Light Theme) -->
     <section class="section-pricing light-theme" id="section-pricing">
         <div class="pricing-container">
-            <div class="pricing-header">
+            <div class="pricing-header reveal-on-scroll reveal-from-bottom">
                 <span class="pricing-subtitle"><i class='bx bxs-diamond'></i> SYSTEM CALCULATOR</span>
                 <h2 class="pricing-title">Calculate Your Return on Investment</h2>
                 <p class="pricing-desc">Select your desired system capacity below to see pricing, generation, and estimated savings. Prices reflect top-grade Mono PERC panels.</p>
             </div>
 
             <!-- Layout Container for Animation -->
-            <div class="pricing-animation-container">
+            <div class="pricing-animation-container reveal-on-scroll reveal-from-bottom">
                 
                 <!-- Main Calculator Card -->
                 <div class="calculator-main-card">
                     <!-- Top Display -->
                     <div class="kw-display-new">
-                        <h2 id="current-kw">3 KW</h2>
+                        <h2 id="current-kw">15 KW</h2>
                         <span>SYSTEM SIZE</span>
                     </div>
 
                     <!-- Slider -->
                     <div class="slider-box-new">
                         <div class="range-container">
-                            <input type="range" id="kw-slider" min="0" max="10" step="1" value="0">
+                            <input type="range" id="kw-slider" min="0" max="10" step="1" value="10">
                             <div class="range-labels">
                                 <span>3KW</span>
                                 <span>15KW</span>
@@ -579,7 +585,7 @@
                             <div class="r-icon-box r-blue-box"><i class='bx bx-sun r-blue-icon'></i></div>
                             <div class="r-info">
                                 <span class="r-label">NDCR PRICE</span>
-                                <span class="r-val" id="val-ndcr">₹1,70,000</span>
+                                <span class="r-val" id="val-ndcr">₹5,10,000</span>
                                 <span class="r-subtext">Without Subsidy</span>
                             </div>
                         </div>
@@ -589,17 +595,17 @@
                             <div class="r-icon-box r-green-box"><i class='bx bx-trending-up r-green-icon'></i></div>
                             <div class="r-info">
                                 <span class="r-label">EST. MONTHLY SAVINGS</span>
-                                <span class="r-val savings-green" id="val-savings">₹3,600 - ₹4,800</span>
+                                <span class="r-val savings-green" id="val-savings">₹15K - ₹18K</span>
                             </div>
                         </div>
 
                         <!-- Card 4: All Details -->
                         <div class="result-card-new details-list">
-                            <div class="d-row"><i class='bx bx-calendar-star r-yellow-icon'></i> <span id="val-gen">360-480 Units/Mo</span></div>
-                            <div class="d-row"><i class='bx bx-time r-yellow-icon'></i> <span id="val-daily">12-16 Units/Day</span></div>
-                            <div class="d-row"><i class='bx bx-area r-yellow-icon'></i> <span id="val-area">180 SqFt Area</span></div>
-                            <div class="d-row"><i class='bx bx-ruler r-yellow-icon'></i> <span id="val-dim">12×15 Ft Required</span></div>
-                            <div class="d-row"><i class='bx bx-grid-alt r-yellow-icon'></i> <span id="val-panels">6 Panels</span></div>
+                            <div class="d-row"><i class='bx bx-calendar-star r-yellow-icon'></i> <span id="val-gen">1800-1950 Units/Mo</span></div>
+                            <div class="d-row"><i class='bx bx-time r-yellow-icon'></i> <span id="val-daily">60-65 Units/Day</span></div>
+                            <div class="d-row"><i class='bx bx-area r-yellow-icon'></i> <span id="val-area">912 SqFt Area</span></div>
+                            <div class="d-row"><i class='bx bx-ruler r-yellow-icon'></i> <span id="val-dim">24×38 Ft Required</span></div>
+                            <div class="d-row"><i class='bx bx-grid-alt r-yellow-icon'></i> <span id="val-panels">28 Panels</span></div>
                             <div class="d-row"><i class='bx bx-chip r-yellow-icon'></i> <span id="val-watt">540-630W Panel</span></div>
                         </div>
                     </div>
@@ -643,110 +649,46 @@
             <h2 class="categories-title">Popular Categories</h2>
             <div class="categories-grid">
                 
-                <div class="category-item">
+                <div class="category-item reveal-on-scroll reveal-from-bottom delay-100">
                     <div class="category-circle">
-                        <!-- Solar Power System Icon -->
-                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- House base -->
-                            <path d="M12 48 V28 L32 12 L52 28 V48 H12 Z" fill="#ffffff" stroke="#0284c7" stroke-width="2.5" stroke-linejoin="round"/>
-                            <!-- Door -->
-                            <rect x="27" y="38" width="10" height="10" rx="1" fill="#fff" stroke="#0284c7" stroke-width="2"/>
-                            <!-- Solar panel on roof -->
-                            <polygon points="18,24 28,16 38,24 28,32" fill="#3b82f6" stroke="#1d4ed8" stroke-width="2" stroke-linejoin="round"/>
-                            <line x1="28" y1="16" x2="28" y2="32" stroke="#1d4ed8" stroke-width="1.5"/>
-                            <line x1="18" y1="24" x2="38" y2="24" stroke="#1d4ed8" stroke-width="1.5"/>
-                        </svg>
+                        <img src="/assets/cat_power_system-DxJ68PTr.png" alt="Solar Power System">
                     </div>
                     <span class="category-label">Solar Power System</span>
                 </div>
 
-                <div class="category-item">
+                <div class="category-item reveal-on-scroll reveal-from-bottom delay-200">
                     <div class="category-circle">
-                        <!-- Solar Batteries Icon -->
-                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Battery casing -->
-                            <rect x="16" y="20" width="32" height="30" rx="4" fill="#ffffff" stroke="#ff7b00" stroke-width="2.5"/>
-                            <!-- Battery terminals -->
-                            <rect x="22" y="14" width="6" height="6" fill="#ff7b00" stroke="#ff7b00" stroke-width="2"/>
-                            <rect x="36" y="14" width="6" height="6" fill="#ff7b00" stroke="#ff7b00" stroke-width="2"/>
-                            <!-- Bolt indicator -->
-                            <path d="M34 26 L26 35 H33 L30 44 L38 33 H31 L34 26 Z" fill="#ff7b00"/>
-                        </svg>
+                        <img src="/assets/cat_residential-CJL7YAgo.png" alt="Residential Solar">
                     </div>
-                    <span class="category-label">Solar Batteries</span>
+                    <span class="category-label">Residential Solar</span>
                 </div>
 
-                <div class="category-item">
+                <div class="category-item reveal-on-scroll reveal-from-bottom delay-300">
                     <div class="category-circle">
-                        <!-- Solar Inverters Icon -->
-                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Inverter Box -->
-                            <rect x="18" y="12" width="28" height="40" rx="3" fill="#ffffff" stroke="#0284c7" stroke-width="2.5"/>
-                            <!-- Digital display -->
-                            <rect x="24" y="18" width="16" height="10" rx="1" fill="#1e293b" stroke="#0284c7" stroke-width="2"/>
-                            <!-- LED indicator light -->
-                            <circle cx="32" cy="23" r="2" fill="#22c55e"/>
-                            <!-- Vents -->
-                            <line x1="24" y1="36" x2="40" y2="36" stroke="#0284c7" stroke-width="2" stroke-linecap="round"/>
-                            <line x1="24" y1="42" x2="40" y2="42" stroke="#0284c7" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
+                        <img src="/assets/cat_inverters-DhmyNYgK.png" alt="Solar Inverters">
                     </div>
                     <span class="category-label">Solar Inverters</span>
                 </div>
 
-                <div class="category-item">
+                <div class="category-item reveal-on-scroll reveal-from-bottom delay-100">
                     <div class="category-circle">
-                        <!-- Solar Appliances Icon -->
-                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Fan representation -->
-                            <circle cx="24" cy="22" r="3" fill="#ffffff" stroke="#0284c7" stroke-width="2"/>
-                            <path d="M24 19 C25 15, 23 15, 24 19 Z" fill="#0284c7"/>
-                            <path d="M24 25 C23 29, 25 29, 24 25 Z" fill="#0284c7"/>
-                            <path d="M21 22 C17 21, 17 23, 21 22 Z" fill="#0284c7"/>
-                            <path d="M27 22 C31 23, 31 21, 27 22 Z" fill="#0284c7"/>
-                            <!-- Stand -->
-                            <line x1="24" y1="25" x2="24" y2="34" stroke="#0284c7" stroke-width="2"/>
-                            <line x1="20" y1="34" x2="28" y2="34" stroke="#0284c7" stroke-width="2" stroke-linecap="round"/>
-                            <!-- Appliance base box -->
-                            <rect x="30" y="26" width="22" height="18" rx="2" fill="#ffffff" stroke="#ff7b00" stroke-width="2"/>
-                            <circle cx="41" cy="35" r="4" fill="none" stroke="#ff7b00" stroke-width="1.5"/>
-                            <!-- Light bulb -->
-                            <circle cx="46" cy="18" r="5" fill="#ffffff" stroke="#eab308" stroke-width="2"/>
-                            <line x1="46" y1="23" x2="46" y2="25" stroke="#eab308" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
+                        <img src="/assets/cat_commercial-C0ckbv_d.png" alt="Commercial Solar">
                     </div>
-                    <span class="category-label">Solar Appliances</span>
+                    <span class="category-label">Commercial Solar</span>
                 </div>
 
-                <div class="category-item">
+                <div class="category-item reveal-on-scroll reveal-from-bottom delay-200">
                     <div class="category-circle">
-                        <!-- Solar Panels Icon -->
-                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Grid Panel -->
-                            <rect x="12" y="16" width="40" height="32" rx="2" fill="#3b82f6" stroke="#1d4ed8" stroke-width="2.5" stroke-linejoin="round"/>
-                            <!-- Grid lines -->
-                            <line x1="22" y1="16" x2="22" y2="48" stroke="#1d4ed8" stroke-width="1.5"/>
-                            <line x1="32" y1="16" x2="32" y2="48" stroke="#1d4ed8" stroke-width="1.5"/>
-                            <line x1="42" y1="16" x2="42" y2="48" stroke="#1d4ed8" stroke-width="1.5"/>
-                            <line x1="12" y1="26" x2="52" y2="26" stroke="#1d4ed8" stroke-width="1.5"/>
-                            <line x1="12" y1="38" x2="52" y2="38" stroke="#1d4ed8" stroke-width="1.5"/>
-                        </svg>
+                        <img src="/assets/cat_panels-BYGPvU35.png" alt="Solar Panels">
                     </div>
                     <span class="category-label">Solar Panels</span>
                 </div>
 
-                <div class="category-item">
+                <div class="category-item reveal-on-scroll reveal-from-bottom delay-300">
                     <div class="category-circle">
-                        <!-- Solar Lights Icon -->
-                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Solar Street Light -->
-                            <line x1="32" y1="28" x2="32" y2="52" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
-                            <path d="M22 28 H42 L38 20 H26 L22 28 Z" fill="#ffffff" stroke="#0284c7" stroke-width="2.5" stroke-linejoin="round"/>
-                            <polygon points="24,18 40,18 36,12 28,12" fill="#3b82f6" stroke="#1d4ed8" stroke-width="1.5"/>
-                            <polygon points="26,30 38,30 46,46 18,46" fill="rgba(234, 179, 8, 0.15)"/>
-                        </svg>
+                        <img src="/assets/cat_industrial-JUKUaPHO.png" alt="Industrial Solar">
                     </div>
-                    <span class="category-label">Solar Lights</span>
+                    <span class="category-label">Industrial Solar</span>
                 </div>
 
             </div>
@@ -757,7 +699,7 @@
     <section class="section-contact" id="section-6">
         <div class="contact-container">
             <!-- Left Side: Contact Info -->
-            <div class="contact-info">
+            <div class="contact-info reveal-on-scroll reveal-from-left">
                 <div class="contact-subtitle">
                     <i class='bx bxs-diamond'></i> CONTACT SOLAR REX
                 </div>
@@ -788,7 +730,7 @@
             </div>
 
             <!-- Right Side: Contact Form -->
-            <div class="contact-form-wrapper">
+            <div class="contact-form-wrapper reveal-on-scroll reveal-from-right">
                 <div class="form-type-selector">
                     <div class="type-btn active" data-target="residential"><i class='bx bx-radio-circle-marked'></i> Residential</div>
                     <div class="type-btn" data-target="housing">Housing Society</div>
@@ -973,38 +915,7 @@
     </footer>
 
 
-    <!-- Quick Connect Mini-Form (Trigger) -->
-    <div class="quick-connect" id="quick-connect">
-        <div class="iphone-frame">
-            <div class="iphone-notch"></div>
-            <div class="quick-header" id="quick-header-trigger" title="Click to Expand">
-                <div class="header-main">
-                    <i class='bx bxs-bolt-circle'></i>
-                    <h3>Quick Connect</h3>
-                </div>
-                <div class="header-controls">
-                    <div class="quick-expand-icon">
-                        <i class='bx bx-expand-alt'></i>
-                    </div>
-                </div>
-            </div>
-            <form class="mini-form">
-                <div class="mini-input-group">
-                    <label>Name</label>
-                    <input type="text" placeholder="Full Name" required>
-                </div>
-                <div class="mini-input-group">
-                    <label>Email</label>
-                    <input type="email" placeholder="email@example.com" required>
-                </div>
-                <button type="submit" class="mini-btn">
-                    <span>Fast Quote</span>
-                    <i class='bx bx-right-arrow-alt'></i>
-                </button>
-            </form>
-            <div class="iphone-home-bar"></div>
-        </div>
-    </div>
+
 
     <!-- MacBook Style Expanded Modal -->
     <div class="quick-modal-overlay" id="quick-modal-overlay">
@@ -1184,8 +1095,8 @@
                         
                         <div class="calc-interface">
                             <div class="calc-input-group">
-                                <label for="subsidy-kw-slider">System Size: <span id="subsidy-kw-val">3 kW</span></label>
-                                <input type="range" id="subsidy-kw-slider" min="0" max="10" step="1" value="0">
+                                <label for="subsidy-kw-slider">System Size: <span id="subsidy-kw-val">15 kW</span></label>
+                                <input type="range" id="subsidy-kw-slider" min="0" max="10" step="1" value="10">
                                 <div class="range-labels">
                                     <span>3 kW</span>
                                     <span>15 kW</span>
@@ -1195,7 +1106,7 @@
                             <div class="calc-results">
                                 <div class="calc-result-card">
                                     <span class="calc-res-label">Est. System Cost</span>
-                                    <span class="calc-res-val" id="calc-cost">₹1,80,000</span>
+                                    <span class="calc-res-val" id="calc-cost">₹5,10,000</span>
                                 </div>
                                 <div class="calc-result-card subsidy">
                                     <span class="calc-res-label">Govt. Subsidy</span>
@@ -1203,7 +1114,7 @@
                                 </div>
                                 <div class="calc-result-card net">
                                     <span class="calc-res-label">Your Net Investment</span>
-                                    <span class="calc-res-val" id="calc-net">₹1,02,000</span>
+                                    <span class="calc-res-val" id="calc-net">₹4,32,000</span>
                                 </div>
                             </div>
                         </div>
@@ -1289,7 +1200,9 @@
         </div>
     </div>
 
-    <script src="/loading%20animation/loader.js"></script>
+    <div class="page-transition-curtain" id="page-curtain"></div>
+
+    <script src="/loading%20animation/loader.js"></script>
 </body>
 
 </html>
