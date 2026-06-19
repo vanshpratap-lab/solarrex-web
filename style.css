@@ -3846,6 +3846,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
         max-height: 600px;
         margin-top: 20px;
         pointer-events: auto;
+        transform: none;
     }
     
     .pricing-receipt {
