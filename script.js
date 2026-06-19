@@ -466,7 +466,7 @@ if (kwSlider) {
     // --- Official Pricing Data (from price list) ---
     // D = daily units, M = monthly units, P = panels, Area in SqFt, dim = dimensions
     const pricingData = [
-        { kw: 3,  dcr: '₹1,12,000', dcrStrike: '₹1,90,000', ndcr: '₹1,70,000', savings: '₹3,600 - ₹4,800', gen: '360-480 Units/Mo', daily: '12-16 Units/Day',  area: '180 SqFt', dim: '12×15 Ft',  panels: '6 Panels',     watt: '540-630W' },
+        { kw: 3,  dcr: '₹78,000', dcrStrike: '₹1,90,000', ndcr: '₹1,70,000', savings: '₹3,600 - ₹4,800', gen: '360-480 Units/Mo', daily: '12-16 Units/Day',  area: '180 SqFt', dim: '12×15 Ft',  panels: '6 Panels',     watt: '540-630W' },
         { kw: 4,  dcr: '₹1,52,000', dcrStrike: '₹2,30,000', ndcr: '₹1,90,000', savings: '₹4K - ₹5K',       gen: '480-600 Units/Mo', daily: '16-20 Units/Day',  area: '240 SqFt', dim: '16×15 Ft',  panels: '7 Panels',     watt: '540-630W' },
         { kw: 5,  dcr: '₹2,02,000', dcrStrike: '₹2,80,000', ndcr: '₹2,25,000', savings: '₹6K - ₹7K',       gen: '600-720 Units/Mo', daily: '20-24 Units/Day',  area: '276 SqFt', dim: '12×23 Ft',  panels: '9 Panels',     watt: '540-630W' },
         { kw: 6,  dcr: '₹2,52,000', dcrStrike: '₹3,30,000', ndcr: '₹2,50,000', savings: '₹7K - ₹8K',       gen: '720-840 Units/Mo', daily: '24-28 Units/Day',  area: '368 SqFt', dim: '16×23 Ft',  panels: '11 Panels',    watt: '540-630W' },
