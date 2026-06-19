@@ -717,20 +717,6 @@ body {
     border: 1px solid rgba(255,255,255,0.05);
 }
 
-.animated-cards-wrapper #_boxes ul li figure::after {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    width: 60px;
-    height: 60px;
-    border: 15px solid var(--cardAccent);
-    border-radius: 50%;
-    z-index: 2;
-    content: "";
-    animation: hue-rotate 7s linear infinite;
-}
-
-@keyframes hue-rotate { to { filter: hue-rotate(360deg); } }
 
 .animated-cards-wrapper #_boxes ul li figure h2 {
     color: var(--white);
