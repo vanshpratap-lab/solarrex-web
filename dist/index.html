@@ -6,15 +6,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solar Rex | Sustainable Energy Solutions</title>
+    <link rel="stylesheet" href="/loading animation/loader.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <script type="module" crossorigin src="/assets/index-Dq_esfRz.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-CRIzd8wv.css">
+  <script type="module" crossorigin src="/assets/index-dYqiNo0_.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-C41gBeBU.css">
 </head>
 
 <body>
 
+    <!-- MacBook style loader screen -->
+    <div id="loader-overlay">
+        <div class="welcome-container">
+            <span class="welcome-letter" style="--d: 0.1s">W</span>
+            <span class="welcome-letter" style="--d: 0.2s">E</span>
+            <span class="welcome-letter" style="--d: 0.3s">L</span>
+            <span class="welcome-letter" style="--d: 0.4s">C</span>
+            <span class="welcome-letter" style="--d: 0.5s">O</span>
+            <span class="welcome-letter" style="--d: 0.6s">M</span>
+            <span class="welcome-letter" style="--d: 0.7s">E</span>
+        </div>
+    </div>
+
+
     <nav class="navbar">
-        <div class="nav-logo">SOLAR REX</div>
+        <div class="nav-logo"><span class="logo-solar">SOLAR</span><span class="logo-rex">REX</span></div>
         <ul class="nav-links">
             <li><a href="#">Home</a></li>
             <li><a href="#">About</a></li>
@@ -30,22 +45,7 @@
         </div>
     </nav>
 
-    <!-- Smart Alert Popup (Success Notification) -->
-    <div class="smart-alert" id="smart-alert">
-        <div class="alert-content">
-            <div class="alert-icon">
-                <i class='bx bxs-check-circle'></i>
-            </div>
-            <div class="alert-text">
-                <span class="alert-title">Connect Status</span>
-                <span class="alert-value">Signal Sent</span>
-            </div>
-            <button class="alert-close" id="alert-close-btn">
-                <i class='bx bx-x'></i>
-            </button>
-        </div>
-        <div class="alert-progress" id="alert-progress"></div>
-    </div>
+
 
     <section class="hero">
         <video autoplay muted loop playsinline class="hero-video">
@@ -297,7 +297,7 @@
                             <figcaption>
                                 We utilize top-grade Mono PERC Half-Cut panels (540W - 620W), delivering maximum power generation in minimal roof space.
                             </figcaption>
-                            <a href="#" title="Read More">
+                            <a href="#" class="info-hub-trigger" data-hub-tab="tech" title="Read More">
                                 <em>Explore Tech</em>
                                 <i>&#10095;&#10095;</i>
                             </a>
@@ -313,7 +313,7 @@
                             <figcaption>
                                 Take full advantage of massive Government Subsidies on our DCR solar systems. You can save up to ₹78,000 on your home installation.
                             </figcaption>
-                            <a href="#" title="Read More">
+                            <a href="#" class="info-hub-trigger" data-hub-tab="savings" title="Read More">
                                 <em>View Savings</em>
                                 <i>&#10095;&#10095;</i>
                             </a>
@@ -329,7 +329,7 @@
                             <figcaption>
                                 Slash your electricity bills completely. Our highest-yield systems generate up to 1,950 units per month, saving you up to ₹18,000 monthly!
                             </figcaption>
-                            <a href="#" title="Read More">
+                            <a href="#" class="info-hub-trigger" data-hub-tab="roi" title="Read More">
                                 <em>Calculate ROI</em>
                                 <i>&#10095;&#10095;</i>
                             </a>
@@ -571,7 +571,6 @@
                             <div class="r-info">
                                 <span class="r-label">AFTER SUBSIDY (DCR)</span>
                                 <span class="r-val" id="val-dcr">₹78,000</span>
-                                <span class="r-subtext strike-red"><del id="val-dcr-strike">₹1,90,000</del></span>
                             </div>
                         </div>
 
@@ -638,8 +637,120 @@
         </div> <!-- Closes .pricing-container -->
     </section>
 
-    <!-- Section 7: Blank Snow White Page Placeholder -->
-    <section class="section-blank-white" id="section-7" style="min-height: 100vh; background: #FFFAFA; display: flex; justify-content: center; align-items: center;">
+    <!-- Section 7: Popular Categories -->
+    <section class="popular-categories" id="section-7">
+        <div class="categories-container">
+            <h2 class="categories-title">Popular Categories</h2>
+            <div class="categories-grid">
+                
+                <div class="category-item">
+                    <div class="category-circle">
+                        <!-- Solar Power System Icon -->
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- House base -->
+                            <path d="M12 48 V28 L32 12 L52 28 V48 H12 Z" fill="#ffffff" stroke="#0284c7" stroke-width="2.5" stroke-linejoin="round"/>
+                            <!-- Door -->
+                            <rect x="27" y="38" width="10" height="10" rx="1" fill="#fff" stroke="#0284c7" stroke-width="2"/>
+                            <!-- Solar panel on roof -->
+                            <polygon points="18,24 28,16 38,24 28,32" fill="#3b82f6" stroke="#1d4ed8" stroke-width="2" stroke-linejoin="round"/>
+                            <line x1="28" y1="16" x2="28" y2="32" stroke="#1d4ed8" stroke-width="1.5"/>
+                            <line x1="18" y1="24" x2="38" y2="24" stroke="#1d4ed8" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <span class="category-label">Solar Power System</span>
+                </div>
+
+                <div class="category-item">
+                    <div class="category-circle">
+                        <!-- Solar Batteries Icon -->
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Battery casing -->
+                            <rect x="16" y="20" width="32" height="30" rx="4" fill="#ffffff" stroke="#ff7b00" stroke-width="2.5"/>
+                            <!-- Battery terminals -->
+                            <rect x="22" y="14" width="6" height="6" fill="#ff7b00" stroke="#ff7b00" stroke-width="2"/>
+                            <rect x="36" y="14" width="6" height="6" fill="#ff7b00" stroke="#ff7b00" stroke-width="2"/>
+                            <!-- Bolt indicator -->
+                            <path d="M34 26 L26 35 H33 L30 44 L38 33 H31 L34 26 Z" fill="#ff7b00"/>
+                        </svg>
+                    </div>
+                    <span class="category-label">Solar Batteries</span>
+                </div>
+
+                <div class="category-item">
+                    <div class="category-circle">
+                        <!-- Solar Inverters Icon -->
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Inverter Box -->
+                            <rect x="18" y="12" width="28" height="40" rx="3" fill="#ffffff" stroke="#0284c7" stroke-width="2.5"/>
+                            <!-- Digital display -->
+                            <rect x="24" y="18" width="16" height="10" rx="1" fill="#1e293b" stroke="#0284c7" stroke-width="2"/>
+                            <!-- LED indicator light -->
+                            <circle cx="32" cy="23" r="2" fill="#22c55e"/>
+                            <!-- Vents -->
+                            <line x1="24" y1="36" x2="40" y2="36" stroke="#0284c7" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="24" y1="42" x2="40" y2="42" stroke="#0284c7" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <span class="category-label">Solar Inverters</span>
+                </div>
+
+                <div class="category-item">
+                    <div class="category-circle">
+                        <!-- Solar Appliances Icon -->
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Fan representation -->
+                            <circle cx="24" cy="22" r="3" fill="#ffffff" stroke="#0284c7" stroke-width="2"/>
+                            <path d="M24 19 C25 15, 23 15, 24 19 Z" fill="#0284c7"/>
+                            <path d="M24 25 C23 29, 25 29, 24 25 Z" fill="#0284c7"/>
+                            <path d="M21 22 C17 21, 17 23, 21 22 Z" fill="#0284c7"/>
+                            <path d="M27 22 C31 23, 31 21, 27 22 Z" fill="#0284c7"/>
+                            <!-- Stand -->
+                            <line x1="24" y1="25" x2="24" y2="34" stroke="#0284c7" stroke-width="2"/>
+                            <line x1="20" y1="34" x2="28" y2="34" stroke="#0284c7" stroke-width="2" stroke-linecap="round"/>
+                            <!-- Appliance base box -->
+                            <rect x="30" y="26" width="22" height="18" rx="2" fill="#ffffff" stroke="#ff7b00" stroke-width="2"/>
+                            <circle cx="41" cy="35" r="4" fill="none" stroke="#ff7b00" stroke-width="1.5"/>
+                            <!-- Light bulb -->
+                            <circle cx="46" cy="18" r="5" fill="#ffffff" stroke="#eab308" stroke-width="2"/>
+                            <line x1="46" y1="23" x2="46" y2="25" stroke="#eab308" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <span class="category-label">Solar Appliances</span>
+                </div>
+
+                <div class="category-item">
+                    <div class="category-circle">
+                        <!-- Solar Panels Icon -->
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Grid Panel -->
+                            <rect x="12" y="16" width="40" height="32" rx="2" fill="#3b82f6" stroke="#1d4ed8" stroke-width="2.5" stroke-linejoin="round"/>
+                            <!-- Grid lines -->
+                            <line x1="22" y1="16" x2="22" y2="48" stroke="#1d4ed8" stroke-width="1.5"/>
+                            <line x1="32" y1="16" x2="32" y2="48" stroke="#1d4ed8" stroke-width="1.5"/>
+                            <line x1="42" y1="16" x2="42" y2="48" stroke="#1d4ed8" stroke-width="1.5"/>
+                            <line x1="12" y1="26" x2="52" y2="26" stroke="#1d4ed8" stroke-width="1.5"/>
+                            <line x1="12" y1="38" x2="52" y2="38" stroke="#1d4ed8" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <span class="category-label">Solar Panels</span>
+                </div>
+
+                <div class="category-item">
+                    <div class="category-circle">
+                        <!-- Solar Lights Icon -->
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Solar Street Light -->
+                            <line x1="32" y1="28" x2="32" y2="52" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M22 28 H42 L38 20 H26 L22 28 Z" fill="#ffffff" stroke="#0284c7" stroke-width="2.5" stroke-linejoin="round"/>
+                            <polygon points="24,18 40,18 36,12 28,12" fill="#3b82f6" stroke="#1d4ed8" stroke-width="1.5"/>
+                            <polygon points="26,30 38,30 46,46 18,46" fill="rgba(234, 179, 8, 0.15)"/>
+                        </svg>
+                    </div>
+                    <span class="category-label">Solar Lights</span>
+                </div>
+
+            </div>
+        </div>
     </section>
 
     <!-- Section 6: Contact Section -->
@@ -798,15 +909,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- SHARED BOTTOM SECTION -->
-                    <div class="checkbox-group">
-                        <label>
-                            <input type="checkbox" required>
-                            <span>I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</span>
-                        </label>
-                    </div>
-
                     <button type="submit" class="btn-submit-contact">Submit Details</button>
                 </form>
             </div>
@@ -962,6 +1064,180 @@
         </div>
     </div>
 
+    <!-- Info Hub Details Overlay -->
+    <div id="info-hub-overlay" class="info-hub-overlay">
+        <div id="info-hub-content" class="info-hub-content">
+            <div class="info-hub-header">
+                <div class="mac-controls">
+                    <span class="mac-dot red" id="info-hub-close-dot"></span>
+                    <span class="mac-dot yellow"></span>
+                    <span class="mac-dot green"></span>
+                </div>
+                <h3 id="info-hub-title">Solar Information Hub</h3>
+                <button class="info-hub-close-btn" id="info-hub-close-main">&times;</button>
+            </div>
+            <div id="info-hub-body" class="info-hub-body">
+                <!-- Tab 1: Tech Specs -->
+                <div id="hub-section-tech" class="hub-section">
+                    <div class="hub-hero">
+                        <div class="hub-hero-text">
+                            <h4>Mono PERC Half-Cut Cell Technology</h4>
+                            <p>Our premium solar panels utilize cutting-edge Mono PERC (Passivated Emitter and Rear Cell) technology coupled with Half-Cut Cell architecture, optimizing power production even in low-light or partially shaded environments.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="hub-grid">
+                        <div class="hub-card-tech">
+                            <h5>Technical Specifications</h5>
+                            <div class="specs-table">
+                                <div class="spec-row"><span class="spec-label">Module Type</span><span class="spec-value">Mono PERC Half-Cut</span></div>
+                                <div class="spec-row"><span class="spec-label">Peak Power Output</span><span class="spec-value">540W - 620W</span></div>
+                                <div class="spec-row"><span class="spec-label">Module Efficiency</span><span class="spec-value">Up to 22.5%</span></div>
+                                <div class="spec-row"><span class="spec-label">Temperature Coeff.</span><span class="spec-value">-0.34% / °C</span></div>
+                                <div class="spec-row"><span class="spec-label">Product Warranty</span><span class="spec-value">12 Years Premium</span></div>
+                                <div class="spec-row"><span class="spec-label">Performance Warranty</span><span class="spec-value">25 Years Linear (85%)</span></div>
+                            </div>
+                        </div>
+                        
+                        <div class="hub-card-tech">
+                            <h5>Premium Module Structure</h5>
+                            <div class="layer-stack">
+                                <div class="layer-item"><span class="layer-num">1</span> High-Transmittance Tempered Glass (3.2mm)</div>
+                                <div class="layer-item"><span class="layer-num">2</span> Ultraviolet Resistant EVA Encapsulant</div>
+                                <div class="layer-item"><span class="layer-num">3</span> High-Efficiency Mono-Crystalline PERC Cells</div>
+                                <div class="layer-item"><span class="layer-num">4</span> Electrical Insulation Backsheet</div>
+                                <div class="layer-item"><span class="layer-num">5</span> Corrosion-Resistant Anodized Aluminum Frame</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hub-alert info">
+                        <i class='bx bx-info-circle'></i>
+                        <p><strong>Did you know?</strong> Half-cut cell panels reduce resistive losses and split the module's electrical current in half. If partial shading blocks the bottom half of the panel, the top half continues to operate at 100% efficiency, yielding up to 50% more power than standard panels in shaded conditions.</p>
+                    </div>
+                </div>
+
+                <!-- Tab 2: DCR Subsidy -->
+                <div id="hub-section-savings" class="hub-section">
+                    <div class="hub-hero">
+                        <div class="hub-hero-text">
+                            <h4>PM Surya Ghar Subsidy Estimator</h4>
+                            <p>Under the national PM Surya Ghar Muft Bijli Yojana, residential homes can claim direct central subsidies for installing grid-connected solar power systems. See your direct savings below.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="hub-calculator">
+                        <h5>Subsidy Calculator</h5>
+                        <p class="calc-intro">Adjust the slider to see how much you will save on your system size.</p>
+                        
+                        <div class="calc-interface">
+                            <div class="calc-input-group">
+                                <label for="subsidy-kw-slider">System Size: <span id="subsidy-kw-val">3 kW</span></label>
+                                <input type="range" id="subsidy-kw-slider" min="0" max="10" step="1" value="0">
+                                <div class="range-labels">
+                                    <span>3 kW</span>
+                                    <span>15 kW</span>
+                                </div>
+                            </div>
+                            
+                            <div class="calc-results">
+                                <div class="calc-result-card">
+                                    <span class="calc-res-label">Est. System Cost</span>
+                                    <span class="calc-res-val" id="calc-cost">₹1,80,000</span>
+                                </div>
+                                <div class="calc-result-card subsidy">
+                                    <span class="calc-res-label">Govt. Subsidy</span>
+                                    <span class="calc-res-val highlight" id="calc-subsidy">₹78,000</span>
+                                </div>
+                                <div class="calc-result-card net">
+                                    <span class="calc-res-label">Your Net Investment</span>
+                                    <span class="calc-res-val" id="calc-net">₹1,02,000</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="hub-alert success">
+                            <i class='bx bx-check-shield'></i>
+                            <p><strong>DCR Compliance Guarantee:</strong> To qualify for government subsidies, systems must use Domestic Content Requirement (DCR) solar cells and modules, which are proudly made in India. Solar Rex provides 100% DCR certified systems.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 3: ROI -->
+                <div id="hub-section-roi" class="hub-section">
+                    <div class="hub-hero">
+                        <div class="hub-hero-text">
+                            <h4>Maximum ROI & Payback Calculator</h4>
+                            <p>Solar power is not just an eco-friendly choice, it is one of the highest-yielding financial investments. Switch your monthly electricity bill from an ongoing liability into an asset.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="hub-calculator">
+                        <h5>Financial Return Estimator</h5>
+                        
+                        <div class="roi-interface">
+                            <div class="roi-inputs">
+                                <div class="roi-input-group">
+                                    <label for="roi-bill-input">Current Monthly Bill: ₹<span id="roi-bill-val">5,000</span></label>
+                                    <input type="range" id="roi-bill-input" min="1000" max="30000" step="500" value="5000">
+                                </div>
+                                
+                                <div class="roi-input-group">
+                                    <label for="roi-tariff-input">Electricity Tariff: ₹<span id="roi-tariff-val">8</span>/unit</label>
+                                    <input type="range" id="roi-tariff-input" min="5" max="15" step="0.5" value="8">
+                                </div>
+                            </div>
+                            
+                            <div class="roi-metrics-grid">
+                                <div class="roi-metric-card">
+                                    <span class="roi-met-label">Recommended System</span>
+                                    <span class="roi-met-val" id="roi-size">5 kW</span>
+                                </div>
+                                
+                                <div class="roi-metric-card green">
+                                    <span class="roi-met-label">Est. Payback Period</span>
+                                    <span class="roi-met-val" id="roi-payback">3.2 Years</span>
+                                </div>
+                                
+                                <div class="roi-metric-card">
+                                    <span class="roi-met-label">Annual Savings</span>
+                                    <span class="roi-met-val" id="roi-annual">₹60,000</span>
+                                </div>
+                                
+                                <div class="roi-metric-card orange">
+                                    <span class="roi-met-label">25-Year Savings</span>
+                                    <span class="roi-met-val" id="roi-lifetime">₹27,85,000</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="roi-environmental">
+                            <h5>Your Environmental Footprint (Annual Impact)</h5>
+                            <div class="env-grid">
+                                <div class="env-item">
+                                    <i class='bx bx-tree' style='color: #2ed573;'></i>
+                                    <span class="env-val" id="env-trees">96 Trees</span>
+                                    <span class="env-label">Equiv. Trees Planted</span>
+                                </div>
+                                <div class="env-item">
+                                    <i class='bx bx-cloud-light' style='color: #a8d5ba;'></i>
+                                    <span class="env-val" id="env-co2">6.0 Tons</span>
+                                    <span class="env-label">CO2 Emissions Saved</span>
+                                </div>
+                                <div class="env-item">
+                                    <i class='bx bx-car' style='color: #00a8ff;'></i>
+                                    <span class="env-val" id="env-miles">15,000 km</span>
+                                    <span class="env-label">Equiv. Car Miles Avoided</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/loading%20animation/loader.js"></script>
 </body>
 
 </html>

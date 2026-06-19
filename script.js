@@ -5,25 +5,22 @@ const navItems = document.querySelectorAll('.nav-item');
 const solutionsSection = document.querySelector('.solutions');
 const navbar = document.querySelector('.navbar');
 
-let index = 0;
-let isAnimating = false;
+// Logo click → smooth scroll to top with pulse animation
+const navLogo = document.querySelector('.nav-logo');
+if (navLogo) {
+    navLogo.style.cursor = 'pointer';
+    navLogo.addEventListener('click', () => {
+        // Flash pulse effect on logo
+        navLogo.classList.add('logo-pulse');
+        setTimeout(() => navLogo.classList.remove('logo-pulse'), 600);
 
-// Alert Notification Logic
-const smartAlert = document.getElementById('smart-alert');
-const alertCloseBtn = document.getElementById('alert-close-btn');
-
-const showSuccessAlert = () => {
-    smartAlert.classList.add('active');
-    setTimeout(() => {
-        smartAlert.classList.remove('active');
-    }, 5000); // Auto-hide after 5 seconds
-};
-
-if (alertCloseBtn) {
-    alertCloseBtn.addEventListener('click', () => {
-        smartAlert.classList.remove('active');
+        // Smooth scroll to very top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 }
+
+let index = 0;
+let isAnimating = false;
 
 // Form Submission Handlers
 const modalForm = document.querySelector('.modal-form');
@@ -32,7 +29,7 @@ const miniForm = document.querySelector('.mini-form');
 const handleFormSubmit = (e) => {
     e.preventDefault();
     closeQuickModal(); // Close modal if it was open
-    showSuccessAlert(); // Show the renamed success alert
+    alert("Your request has been submitted successfully!");
     e.target.reset(); // Clear form fields
 };
 
@@ -332,6 +329,18 @@ document.querySelectorAll('.nav-links li a').forEach(link => {
     });
 });
 
+// Close menu when clicking outside of the navbar menu drawer
+document.addEventListener('click', (e) => {
+    if (navLinks && navLinks.classList.contains('active') && 
+        !navLinks.contains(e.target) && !navMenuBtn.contains(e.target)) {
+        navLinks.classList.remove('active');
+        document.body.classList.remove('menu-active');
+        if (navMenuBtn.querySelector('i')) {
+            navMenuBtn.querySelector('i').classList.remove('bx-x');
+        }
+    }
+});
+
 // Operations Interactive Showcase (Section 4) Tab Logic
 const opMenuItems = document.querySelectorAll('.operations-menu li');
 const opContents = document.querySelectorAll('.op-content');
@@ -421,9 +430,10 @@ if (csTabs.length > 0) {
     });
 }
 
-// Auto-hide Floating Form when reaching Contact Section or Pricing Section
+// Auto-hide Floating Form when reaching Contact, Pricing, or Operations Sections
 const contactSection = document.querySelector('.section-contact');
 const pricingSection = document.querySelector('.section-pricing');
+const operationsSection = document.querySelector('.section-operations');
 const floatingPopup = document.getElementById('quick-connect');
 
 if (floatingPopup) {
@@ -441,6 +451,12 @@ if (floatingPopup) {
                 } else {
                     floatingPopup.classList.remove('hide-popup-pricing');
                 }
+            } else if (entry.target === operationsSection) {
+                if (entry.isIntersecting) {
+                    floatingPopup.classList.add('hide-popup-operations');
+                } else {
+                    floatingPopup.classList.remove('hide-popup-operations');
+                }
             }
         });
     }, {
@@ -449,7 +465,24 @@ if (floatingPopup) {
 
     if (contactSection) observer.observe(contactSection);
     if (pricingSection) observer.observe(pricingSection);
+    if (operationsSection) observer.observe(operationsSection);
 }
+
+// --- Official Pricing Data (from price list) ---
+// D = daily units, M = monthly units, P = panels, Area in SqFt, dim = dimensions
+const pricingData = [
+    { kw: 3,  dcr: '₹78,000', dcrStrike: '₹1,90,000', ndcr: '₹1,70,000', savings: '₹3,600 - ₹4,800', gen: '360-480 Units/Mo', daily: '12-16 Units/Day',  area: '180 SqFt', dim: '12×15 Ft',  panels: '6 Panels',     watt: '540-630W' },
+    { kw: 4,  dcr: '₹78,000', dcrStrike: '₹2,30,000', ndcr: '₹1,90,000', savings: '₹4K - ₹5K',       gen: '480-600 Units/Mo', daily: '16-20 Units/Day',  area: '240 SqFt', dim: '16×15 Ft',  panels: '7 Panels',     watt: '540-630W' },
+    { kw: 5,  dcr: '₹78,000', dcrStrike: '₹2,80,000', ndcr: '₹2,25,000', savings: '₹6K - ₹7K',       gen: '600-720 Units/Mo', daily: '20-24 Units/Day',  area: '276 SqFt', dim: '12×23 Ft',  panels: '9 Panels',     watt: '540-630W' },
+    { kw: 6,  dcr: '₹78,000', dcrStrike: '₹3,30,000', ndcr: '₹2,50,000', savings: '₹7K - ₹8K',       gen: '720-840 Units/Mo', daily: '24-28 Units/Day',  area: '368 SqFt', dim: '16×23 Ft',  panels: '11 Panels',    watt: '540-630W' },
+    { kw: 7,  dcr: '₹78,000', dcrStrike: '₹3,70,000', ndcr: '₹2,85,000', savings: '₹8K - ₹9K',       gen: '840-960 Units/Mo', daily: '28-32 Units/Day',  area: '460 SqFt', dim: '20×23 Ft',  panels: '13 Panels',    watt: '540-630W' },
+    { kw: 8,  dcr: '₹78,000', dcrStrike: '₹4,20,000', ndcr: '₹3,20,000', savings: '₹9K - ₹10K',      gen: '960-1080 Units/Mo',daily: '32-36 Units/Day',  area: '480 SqFt', dim: '16×30 Ft',  panels: '15 Panels',    watt: '540-630W' },
+    { kw: 9,  dcr: '₹78,000', dcrStrike: '₹4,60,000', ndcr: '₹3,50,000', savings: '₹10K - ₹12K',     gen: '1080-1200 Units/Mo',daily:'36-40 Units/Day',  area: '480 SqFt', dim: '16×30 Ft',  panels: '16-17 Panels', watt: '540-630W' },
+    { kw: 10, dcr: '₹78,000', dcrStrike: '₹5,10,000', ndcr: '₹3,80,000', savings: '₹11K - ₹13K',     gen: '1200-1320 Units/Mo',daily:'40-44 Units/Day',  area: '600 SqFt', dim: '20×30 Ft',  panels: '17-18 Panels', watt: '540-630W' },
+    { kw: 11, dcr: '₹78,000', dcrStrike: '',           ndcr: '₹4,20,000', savings: '₹12K - ₹13K',     gen: '1320-1440 Units/Mo',daily:'44-48 Units/Day',  area: '600 SqFt', dim: '20×30 Ft',  panels: '20 Panels',    watt: '540-630W' },
+    { kw: 12, dcr: '₹78,000', dcrStrike: '',           ndcr: '₹4,50,000', savings: '₹13K - ₹15K',     gen: '1440-1560 Units/Mo',daily:'48-52 Units/Day',  area: '720 SqFt', dim: '24×30 Ft',  panels: '22 Panels',    watt: '540-630W' },
+    { kw: 15, dcr: '₹78,000', dcrStrike: '',           ndcr: '₹5,10,000', savings: '₹15K - ₹18K',     gen: '1800-1950 Units/Mo',daily:'60-65 Units/Day',  area: '912 SqFt', dim: '24×38 Ft',  panels: '28 Panels',    watt: '540-630W' }
+];
 
 // Interactive Pricing Calculator Logic
 const kwSlider = document.getElementById('kw-slider');
@@ -470,21 +503,7 @@ if (kwSlider) {
     const receiptDetails = document.getElementById('receipt-details');
     const pricingReceipt = document.getElementById('pricing-receipt-wrapper');
 
-    // --- Official Pricing Data (from price list) ---
-    // D = daily units, M = monthly units, P = panels, Area in SqFt, dim = dimensions
-    const pricingData = [
-        { kw: 3,  dcr: '₹78,000', dcrStrike: '₹1,90,000', ndcr: '₹1,70,000', savings: '₹3,600 - ₹4,800', gen: '360-480 Units/Mo', daily: '12-16 Units/Day',  area: '180 SqFt', dim: '12×15 Ft',  panels: '6 Panels',     watt: '540-630W' },
-        { kw: 4,  dcr: '₹78,000', dcrStrike: '₹2,30,000', ndcr: '₹1,90,000', savings: '₹4K - ₹5K',       gen: '480-600 Units/Mo', daily: '16-20 Units/Day',  area: '240 SqFt', dim: '16×15 Ft',  panels: '7 Panels',     watt: '540-630W' },
-        { kw: 5,  dcr: '₹78,000', dcrStrike: '₹2,80,000', ndcr: '₹2,25,000', savings: '₹6K - ₹7K',       gen: '600-720 Units/Mo', daily: '20-24 Units/Day',  area: '276 SqFt', dim: '12×23 Ft',  panels: '9 Panels',     watt: '540-630W' },
-        { kw: 6,  dcr: '₹78,000', dcrStrike: '₹3,30,000', ndcr: '₹2,50,000', savings: '₹7K - ₹8K',       gen: '720-840 Units/Mo', daily: '24-28 Units/Day',  area: '368 SqFt', dim: '16×23 Ft',  panels: '11 Panels',    watt: '540-630W' },
-        { kw: 7,  dcr: '₹78,000', dcrStrike: '₹3,70,000', ndcr: '₹2,85,000', savings: '₹8K - ₹9K',       gen: '840-960 Units/Mo', daily: '28-32 Units/Day',  area: '460 SqFt', dim: '20×23 Ft',  panels: '13 Panels',    watt: '540-630W' },
-        { kw: 8,  dcr: '₹78,000', dcrStrike: '₹4,20,000', ndcr: '₹3,20,000', savings: '₹9K - ₹10K',      gen: '960-1080 Units/Mo',daily: '32-36 Units/Day',  area: '480 SqFt', dim: '16×30 Ft',  panels: '15 Panels',    watt: '540-630W' },
-        { kw: 9,  dcr: '₹78,000', dcrStrike: '₹4,60,000', ndcr: '₹3,50,000', savings: '₹10K - ₹12K',     gen: '1080-1200 Units/Mo',daily:'36-40 Units/Day',  area: '480 SqFt', dim: '16×30 Ft',  panels: '16-17 Panels', watt: '540-630W' },
-        { kw: 10, dcr: '₹78,000', dcrStrike: '₹5,10,000', ndcr: '₹3,80,000', savings: '₹11K - ₹13K',     gen: '1200-1320 Units/Mo',daily:'40-44 Units/Day',  area: '600 SqFt', dim: '20×30 Ft',  panels: '17-18 Panels', watt: '540-630W' },
-        { kw: 11, dcr: '₹78,000', dcrStrike: '',           ndcr: '₹4,20,000', savings: '₹12K - ₹13K',     gen: '1320-1440 Units/Mo',daily:'44-48 Units/Day',  area: '600 SqFt', dim: '20×30 Ft',  panels: '20 Panels',    watt: '540-630W' },
-        { kw: 12, dcr: '₹78,000', dcrStrike: '',           ndcr: '₹4,50,000', savings: '₹13K - ₹15K',     gen: '1440-1560 Units/Mo',daily:'48-52 Units/Day',  area: '720 SqFt', dim: '24×30 Ft',  panels: '22 Panels',    watt: '540-630W' },
-        { kw: 15, dcr: '₹78,000', dcrStrike: '',           ndcr: '₹5,10,000', savings: '₹15K - ₹18K',     gen: '1800-1950 Units/Mo',daily:'60-65 Units/Day',  area: '912 SqFt', dim: '24×38 Ft',  panels: '28 Panels',    watt: '540-630W' }
-    ];
+
 
     // --- Update Slider Fill ---
     function updateSliderBackground(slider) {
@@ -576,3 +595,199 @@ if (kwSlider) {
         });
     }
 }
+
+// --- Solar Info Hub Logic ---
+const infoHubOverlay = document.getElementById('info-hub-overlay');
+const infoHubContent = document.getElementById('info-hub-content');
+const infoHubTitle = document.getElementById('info-hub-title');
+const infoHubCloseDot = document.getElementById('info-hub-close-dot');
+const infoHubCloseMain = document.getElementById('info-hub-close-main');
+const infoHubTriggers = document.querySelectorAll('.info-hub-trigger');
+const hubSections = document.querySelectorAll('.hub-section');
+
+// Tab titles
+const tabTitles = {
+    tech: "Premium Panels: Solar Tech & Hardware",
+    savings: "Government Subsidies & DCR Savings",
+    roi: "Maximum ROI & Yield Analysis"
+};
+
+const openInfoHub = (tabName) => {
+    if (!infoHubOverlay) return;
+
+    // Set header title
+    if (infoHubTitle && tabTitles[tabName]) {
+        infoHubTitle.textContent = tabTitles[tabName];
+    }
+
+    // Toggle active section
+    hubSections.forEach(section => {
+        if (section.id === `hub-section-${tabName}`) {
+            section.classList.add('active');
+        } else {
+            section.classList.remove('active');
+        }
+    });
+
+    // Open overlay
+    infoHubOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    // Trigger initial calculator updates if opening calculator tabs
+    if (tabName === 'savings') {
+        updateSubsidyCalculator();
+    } else if (tabName === 'roi') {
+        updateRoiCalculator();
+    }
+};
+
+const closeInfoHub = () => {
+    if (!infoHubOverlay) return;
+    infoHubOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+};
+
+// Bind trigger events
+infoHubTriggers.forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        const tabName = trigger.getAttribute('data-hub-tab');
+        openInfoHub(tabName);
+    });
+});
+
+// Bind close events
+if (infoHubCloseDot) infoHubCloseDot.addEventListener('click', closeInfoHub);
+if (infoHubCloseMain) infoHubCloseMain.addEventListener('click', closeInfoHub);
+if (infoHubOverlay) {
+    infoHubOverlay.addEventListener('click', (e) => {
+        if (e.target === infoHubOverlay) closeInfoHub();
+    });
+}
+
+// --- Subsidy Calculator Logic ---
+const subsidySlider = document.getElementById('subsidy-kw-slider');
+const subsidyKwVal = document.getElementById('subsidy-kw-val');
+const calcCost = document.getElementById('calc-cost');
+const calcSubsidy = document.getElementById('calc-subsidy');
+const calcNet = document.getElementById('calc-net');
+
+const formatINR = (amount) => {
+    return '₹' + amount.toLocaleString('en-IN');
+};
+
+const updateSubsidyCalculator = () => {
+    if (!subsidySlider) return;
+    const index = parseInt(subsidySlider.value);
+    const d = pricingData[index];
+    
+    // Update label
+    if (subsidyKwVal) subsidyKwVal.textContent = `${d.kw} kW`;
+    
+    // Calculation based on official price list (pricingData)
+    let cost = 0;
+    let subsidy = 0;
+    
+    if (d.dcr === 'N/A') {
+        cost = parseInt(d.ndcr.replace(/[^0-9]/g, '')) || 0;
+        subsidy = 0;
+    } else {
+        const costStr = d.dcrStrike || d.ndcr;
+        cost = parseInt(costStr.replace(/[^0-9]/g, '')) || 0;
+        subsidy = parseInt(d.dcr.replace(/[^0-9]/g, '')) || 0;
+    }
+    const net = cost - subsidy;
+    
+    // Update texts
+    if (calcCost) calcCost.textContent = formatINR(cost);
+    if (calcSubsidy) calcSubsidy.textContent = formatINR(subsidy);
+    if (calcNet) calcNet.textContent = formatINR(net);
+};
+
+if (subsidySlider) {
+    subsidySlider.addEventListener('input', updateSubsidyCalculator);
+}
+
+// --- ROI Calculator Logic ---
+const roiBillInput = document.getElementById('roi-bill-input');
+const roiBillVal = document.getElementById('roi-bill-val');
+const roiTariffInput = document.getElementById('roi-tariff-input');
+const roiTariffVal = document.getElementById('roi-tariff-val');
+const roiSize = document.getElementById('roi-size');
+const roiPayback = document.getElementById('roi-payback');
+const roiAnnual = document.getElementById('roi-annual');
+const roiLifetime = document.getElementById('roi-lifetime');
+const envTrees = document.getElementById('env-trees');
+const envCo2 = document.getElementById('env-co2');
+const envMiles = document.getElementById('env-miles');
+
+const updateRoiCalculator = () => {
+    if (!roiBillInput || !roiTariffInput) return;
+    
+    const monthlyBill = parseInt(roiBillInput.value);
+    const tariff = parseFloat(roiTariffInput.value);
+    
+    // Update labels
+    if (roiBillVal) roiBillVal.textContent = monthlyBill.toLocaleString('en-IN');
+    if (roiTariffVal) roiTariffVal.textContent = tariff;
+    
+    // Calculations
+    const monthlyUnits = monthlyBill / tariff;
+    const dailyUnits = monthlyUnits / 30;
+    
+    // Recommended size: 1 kW generates ~4 units/day on average
+    let targetSize = dailyUnits / 4;
+    if (targetSize < 3) targetSize = 3;
+    
+    // Find closest size in official pricingData list
+    let closestIdx = 0;
+    let minDiff = Infinity;
+    pricingData.forEach((d, idx) => {
+        const diff = Math.abs(d.kw - targetSize);
+        if (diff < minDiff) {
+            minDiff = diff;
+            closestIdx = idx;
+        }
+    });
+    const d = pricingData[closestIdx];
+    
+    // Update recommended size label
+    if (roiSize) roiSize.textContent = `${d.kw} kW`;
+    
+    // Annual Savings (approx 90% bill reduction)
+    const annualSavings = Math.round(monthlyBill * 0.9 * 12);
+    if (roiAnnual) roiAnnual.textContent = formatINR(annualSavings);
+    
+    // Payback Period from pricingData
+    let cost = 0;
+    let subsidy = 0;
+    if (d.dcr === 'N/A') {
+        cost = parseInt(d.ndcr.replace(/[^0-9]/g, '')) || 0;
+        subsidy = 0;
+    } else {
+        const costStr = d.dcrStrike || d.ndcr;
+        cost = parseInt(costStr.replace(/[^0-9]/g, '')) || 0;
+        subsidy = parseInt(d.dcr.replace(/[^0-9]/g, '')) || 0;
+    }
+    const netInvestment = cost - subsidy;
+    const paybackYears = netInvestment / annualSavings;
+    if (roiPayback) roiPayback.textContent = `${paybackYears.toFixed(1)} Years`;
+    
+    // Lifetime Savings (25-Year cumulative savings with 5% tariff inflation/yr)
+    let lifetimeSavings = 0;
+    let annual = annualSavings;
+    for (let i = 0; i < 25; i++) {
+        lifetimeSavings += annual;
+        annual *= 1.05;
+    }
+    if (roiLifetime) roiLifetime.textContent = formatINR(Math.round(lifetimeSavings));
+    
+    // Environmental Impact
+    if (envTrees) envTrees.textContent = `${Math.round(d.kw * 19.2)} Trees`;
+    if (envCo2) envCo2.textContent = `${(d.kw * 1.2).toFixed(1)} Tons`;
+    if (envMiles) envMiles.textContent = `${(d.kw * 3000).toLocaleString('en-IN')} km`;
+};
+
+if (roiBillInput) roiBillInput.addEventListener('input', updateRoiCalculator);
+if (roiTariffInput) roiTariffInput.addEventListener('input', updateRoiCalculator);
+
