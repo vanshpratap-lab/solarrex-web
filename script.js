@@ -427,21 +427,22 @@ const pricingSection = document.querySelector('.section-pricing');
 const floatingPopup = document.getElementById('quick-connect');
 
 if (floatingPopup) {
-    const intersectingSections = new Set();
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                intersectingSections.add(entry.target);
-            } else {
-                intersectingSections.delete(entry.target);
+            if (entry.target === contactSection) {
+                if (entry.isIntersecting) {
+                    floatingPopup.classList.add('hide-popup-contact');
+                } else {
+                    floatingPopup.classList.remove('hide-popup-contact');
+                }
+            } else if (entry.target === pricingSection) {
+                if (entry.isIntersecting) {
+                    floatingPopup.classList.add('hide-popup-pricing');
+                } else {
+                    floatingPopup.classList.remove('hide-popup-pricing');
+                }
             }
         });
-        
-        if (intersectingSections.size > 0) {
-            floatingPopup.classList.add('hide-popup');
-        } else {
-            floatingPopup.classList.remove('hide-popup');
-        }
     }, {
         threshold: 0.15 // Triggers when 15% of the section is visible
     });
