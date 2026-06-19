@@ -671,9 +671,9 @@ body {
     z-index: 1;
 }
 
-.animated-cards-wrapper #_boxes ul li:nth-child(1) { --cardAccent: var(--primary-color); }
-.animated-cards-wrapper #_boxes ul li:nth-child(2) { --cardAccent: var(--secondary-color); }
-.animated-cards-wrapper #_boxes ul li:nth-child(3) { --cardAccent: var(--primary-color); }
+.animated-cards-wrapper #_boxes ul li:nth-child(1) { --cardAccent: #ff7b00; }
+.animated-cards-wrapper #_boxes ul li:nth-child(2) { --cardAccent: #ff7b00; }
+.animated-cards-wrapper #_boxes ul li:nth-child(3) { --cardAccent: #ff7b00; }
 
 .animated-cards-wrapper #_boxes ul li::after {
     position: absolute;
@@ -682,13 +682,8 @@ body {
     z-index: -2;
     border-radius: 8px;
     background-color: #000;
-    filter: drop-shadow(0px 0px 35px var(--cardAccent)) hue-rotate(0deg);
+    filter: drop-shadow(0px 0px 35px var(--cardAccent));
     content: "";
-    animation: hue-rotate-special 7s linear infinite;
-}
-
-@keyframes hue-rotate-special {
-    to { filter: drop-shadow(0px 0px 35px var(--cardAccent)) hue-rotate(360deg); }
 }
 
 .animated-cards-wrapper #_boxes ul li svg {
@@ -698,15 +693,16 @@ body {
     height: 100%;
     pointer-events: none;
     z-index: -1;
+    stroke: var(--cardAccent) !important;
 }
 
 .animated-cards-wrapper #_boxes ul li:nth-child(1) svg { stroke-dasharray: 331 66; animation: dash 7s linear infinite reverse; }
 .animated-cards-wrapper #_boxes ul li:nth-child(2) svg { stroke-dasharray: 307 131; animation: dash2 9s linear infinite; }
 .animated-cards-wrapper #_boxes ul li:nth-child(3) svg { stroke-dasharray: 309 154; animation: dash3 5s linear infinite alternate-reverse; }
 
-@keyframes dash { to { stroke-dashoffset: -397px; filter: hue-rotate(360deg); } }
-@keyframes dash2 { to { stroke-dashoffset: -438px; filter: hue-rotate(360deg); } }
-@keyframes dash3 { to { stroke-dashoffset: -463px; filter: hue-rotate(360deg); } }
+@keyframes dash { to { stroke-dashoffset: -397px; } }
+@keyframes dash2 { to { stroke-dashoffset: -438px; } }
+@keyframes dash3 { to { stroke-dashoffset: -463px; } }
 
 .animated-cards-wrapper #_boxes ul li figure {
     background-color: #1a1d23;
