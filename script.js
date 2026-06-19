@@ -37,6 +37,41 @@ document.querySelectorAll('.footer-nav-link').forEach(link => {
     });
 });
 
+// ── Secure Phone Dialer ──────────────────────────────────────────────────────
+// The number is never stored as plain text; it is reconstructed at runtime.
+// Only activates on touch-capable devices (phones, tablets) where calling is possible.
+// Nothing is stored in the DOM — number is assembled in memory only on click.
+(function () {
+    // Obfuscated segments — split, reversed, rejoined at call-time only
+    const _s = ['\x39', '\x31', '\x30', '\x39', '\x39', '\x32', '\x33', '\x30', '\x30', '\x31'];
+    const _p = '\x39\x31'; // country code digits (no +)
+
+    const isTouchDevice = () =>
+        ('ontouchstart' in window) ||
+        (navigator.maxTouchPoints > 0) ||
+        (navigator.msMaxTouchPoints > 0) ||
+        /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+
+    const dial = () => {
+        if (!isTouchDevice()) return; // desktop: do nothing
+        const num = '\x74\x65\x6c\x3a\x2b' + _p + _s.join('');
+        const a = document.createElement('a');
+        a.href = num;
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => document.body.removeChild(a), 500);
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.secure-phone-trigger').forEach(el => {
+            el.addEventListener('click', (e) => { e.preventDefault(); dial(); });
+            el.addEventListener('touchend', (e) => { e.preventDefault(); dial(); });
+        });
+    });
+})();
+// ────────────────────────────────────────────────────────────────────────────
+
 let index = 0;
 let isAnimating = false;
 
