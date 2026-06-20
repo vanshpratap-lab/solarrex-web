@@ -123,47 +123,6 @@
                 </div>
             </div>
 
-            <!-- Grid Item 3: Interactive Financial Dashboard / Calculator -->
-            <div class="grid-item calc-card reveal-on-scroll">
-                <div class="calc-header">
-                    <h3><i class='bx bx-calculator'></i> ROI & Financial Estimator</h3>
-                    <span class="calc-badge" id="calc-badge-label">Residential Solar</span>
-                </div>
-                <p class="calc-desc" id="calc-instruction-text">Adjust the slider below to select your system size and calculate estimated costs, government subsidy, and monthly returns.</p>
-                
-                <div class="calculator-box">
-                    <div class="slider-container">
-                        <label for="sol-kw-slider">Select System Capacity: <span id="sol-kw-val">10 kW</span></label>
-                        <input type="range" id="sol-kw-slider" min="3" max="15" step="1" value="10">
-                        <div class="slider-ticks" id="slider-ticks-container">
-                            <!-- JS will inject ticks -->
-                        </div>
-                    </div>
-
-                    <div class="calc-results-grid">
-                        <div class="result-tile">
-                            <span class="tile-label">Est. System Cost</span>
-                            <span class="tile-value" id="sol-calc-cost">₹5,10,000</span>
-                        </div>
-                        <div class="result-tile subsidy-tile">
-                            <span class="tile-label" id="sol-subsidy-label">Govt. Subsidy (DCR)</span>
-                            <span class="tile-value" id="sol-calc-subsidy">₹78,000</span>
-                        </div>
-                        <div class="result-tile net-tile">
-                            <span class="tile-label">Your Net Investment</span>
-                            <span class="tile-value" id="sol-calc-net">₹4,32,000</span>
-                        </div>
-                        <div class="result-tile savings-tile">
-                            <span class="tile-label">Monthly Savings Est.</span>
-                            <span class="tile-value" id="sol-calc-savings">₹10K - ₹12K</span>
-                        </div>
-                    </div>
-                    
-                    <p class="subsidy-note" id="sol-calc-note">
-                        *Government subsidies are strictly available for domestic content requirement (DCR) systems proudly manufactured in India. Solar Rex guarantees 100% compliant materials.
-                    </p>
-                </div>
-            </div>
 
             <!-- Grid Item 4: Project Execution Timeline -->
             <div class="grid-item timeline-card reveal-on-scroll">
@@ -211,61 +170,6 @@
             </div>
         </section>
 
-        <!-- Quote Inquiry Form -->
-        <section class="sol-inquiry-section reveal-on-scroll" id="section-inquiry">
-            <div class="inquiry-card">
-                <div class="inquiry-info">
-                    <h2>Ready to switch to Solar?</h2>
-                    <p>Request a detailed engineering estimate customized for your specific energy needs. Our consultants will contact you within 24 hours.</p>
-                    <div class="contact-details">
-                        <p><i class='bx bx-phone'></i> +91 1800 200 4545 (Toll Free)</p>
-                        <p><i class='bx bx-envelope'></i> solar.consult@solarrex.com</p>
-                    </div>
-                </div>
-                <div class="inquiry-form-wrapper">
-                    <form class="sol-form" id="sol-inquiry-form">
-                        <input type="hidden" name="solution_type" id="form-solution-type" value="residential">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="client-name">Full Name</label>
-                                <input type="text" id="client-name" name="name" required placeholder="John Doe">
-                            </div>
-                            <div class="form-group">
-                                <label for="client-phone">Phone Number</label>
-                                <input type="tel" id="client-phone" name="whatsapp" required placeholder="+91 98765 43210">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="client-email">Email Address</label>
-                            <input type="email" id="client-email" name="email" required placeholder="john@example.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="client-capacity">Requested System Size (kW)</label>
-                            <select id="client-capacity" name="capacity">
-                                <option value="3">3 kW</option>
-                                <option value="5">5 kW</option>
-                                <option value="8">8 kW</option>
-                                <option value="10" selected>10 kW</option>
-                                <option value="15">15 kW</option>
-                                <option value="other">Other / Custom</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="client-message">Specific Requirements</label>
-                            <textarea id="client-message" name="message" rows="4" placeholder="Any specific roof type, load constraints, or battery storage needs..."></textarea>
-                        </div>
-                        <button type="submit" class="submit-inquiry-btn">
-                            Send Request <i class='bx bx-right-arrow-alt'></i>
-                        </button>
-                    </form>
-                    <div class="success-message" id="form-success">
-                        <i class='bx bx-check-circle'></i>
-                        <h4>Thank You!</h4>
-                        <p>Your inquiry has been logged successfully. An engineer will contact you shortly.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
 
     </main>
 

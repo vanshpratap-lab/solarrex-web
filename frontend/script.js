@@ -388,16 +388,34 @@ const headerTrigger = document.getElementById('quick-header-trigger');
 const closeRed = document.getElementById('close-red');
 const modalCloseMain = document.getElementById('modal-close-main');
 
+let bodyScrollPosition = 0;
+
+const lockBodyScroll = () => {
+    bodyScrollPosition = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${bodyScrollPosition}px`;
+    document.body.style.width = '100%';
+    document.body.style.overflow = 'hidden';
+    document.body.classList.add('modal-open');
+};
+
+const unlockBodyScroll = () => {
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    document.body.style.overflow = '';
+    document.body.classList.remove('modal-open');
+    window.scrollTo(0, bodyScrollPosition);
+};
+
 const openQuickModal = () => {
     overlay.classList.add('active');
-    document.body.classList.add('modal-open');
-    document.body.style.overflow = 'hidden';
+    lockBodyScroll();
 };
 
 const closeQuickModal = () => {
     overlay.classList.remove('active');
-    document.body.classList.remove('modal-open');
-    document.body.style.overflow = '';
+    unlockBodyScroll();
 };
 
 // Check if device is desktop
@@ -436,11 +454,7 @@ if (closeRed) {
     });
 }
 
-if (overlay) {
-    overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) closeQuickModal();
-    });
-}
+// Click outside overlay disabled to trap user activity inside the popup
 
 // 3D Book Portfolio Logic
 const pageTurnBtn = document.querySelectorAll('.nextprev-btn');
@@ -1032,8 +1046,7 @@ const openInfoHub = (tabName) => {
 
     // Open overlay
     infoHubOverlay.classList.add('active');
-    document.body.classList.add('modal-open');
-    document.body.style.overflow = 'hidden';
+    lockBodyScroll();
 
     // Trigger initial calculator updates if opening calculator tabs
     if (tabName === 'savings') {
@@ -1049,8 +1062,7 @@ const openInfoHub = (tabName) => {
 const closeInfoHub = () => {
     if (!infoHubOverlay) return;
     infoHubOverlay.classList.remove('active');
-    document.body.classList.remove('modal-open');
-    document.body.style.overflow = '';
+    unlockBodyScroll();
 };
 
 // Bind trigger events
@@ -1065,11 +1077,8 @@ infoHubTriggers.forEach(trigger => {
 // Bind close events
 if (infoHubCloseDot) infoHubCloseDot.addEventListener('click', closeInfoHub);
 if (infoHubCloseMain) infoHubCloseMain.addEventListener('click', closeInfoHub);
-if (infoHubOverlay) {
-    infoHubOverlay.addEventListener('click', (e) => {
-        if (e.target === infoHubOverlay) closeInfoHub();
-    });
-}
+
+// Click outside overlay disabled to trap user activity inside the popup
 
 // --- Subsidy Calculator Logic ---
 const subsidySlider = document.getElementById('subsidy-kw-slider');

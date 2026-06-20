@@ -53,6 +53,26 @@ const solutionData = {
             {
                 q: 'What maintenance is required for residential solar?',
                 a: 'Residential systems require minimal maintenance. Cleaning the panels with water once every 2 weeks to remove dust is usually sufficient to maintain optimal generation output. We offer automated pressure nozzles as well.'
+            },
+            {
+                q: 'Can I run my air conditioner on solar power?',
+                a: 'Yes, solar systems can easily run air conditioners. For a standard 1.5-ton AC, a 5 kW or larger solar system is recommended to handle the starting current and continuous load.'
+            },
+            {
+                q: 'What happens to my solar panels during heavy rain or hail?',
+                a: 'Our solar panels are built with tempered, impact-resistant glass certified to withstand hail, heavy winds, and extreme monsoon rains. Rain actually helps clean dust off the panels, improving generation.'
+            },
+            {
+                q: 'Does solar still work on cloudy or rainy days?',
+                a: 'Yes, solar panels still generate electricity on cloudy or rainy days by utilizing diffused sunlight, though their efficiency will be reduced to about 10-25% of their peak capacity.'
+            },
+            {
+                q: 'Is it possible to go completely off-grid with Solar Rex?',
+                a: 'Yes, we design hybrid and off-grid systems with premium lithium battery banks (ESS) that allow you to be 100% independent of the utility grid, though a grid-tied hybrid system is generally more cost-effective.'
+            },
+            {
+                q: 'How does the solar subsidy get credited to my account?',
+                a: 'Once the net-metering is installed and inspected by the DISCOM officer, the subsidy amount is directly credited to your registered bank account via DBT (Direct Benefit Transfer) within 30 to 45 days.'
             }
         ]
     },
@@ -104,6 +124,26 @@ const solutionData = {
             {
                 q: 'What happens if our building roof has shade or obstructions?',
                 a: 'Our engineering team performs a full 3D lidar shading analysis. We configure string optimization or install micro-inverters so that shaded areas do not affect the output of the remaining panel segments.'
+            },
+            {
+                q: 'Do you offer Power Purchase Agreements (PPA) / OPEX models for commercial clients?',
+                a: 'Yes. For commercial projects above 100 kW, we offer OPEX/PPA models where we install and maintain the system, and you only pay for the solar energy generated at a rate 30-40% lower than your utility grid tariff.'
+            },
+            {
+                q: 'How does solar impact our building\'s property value?',
+                a: 'Installing solar increases property value by reducing operating expenses and improving the building\'s energy rating. It also counts towards green building certifications (LEED/IGBC).'
+            },
+            {
+                q: 'What is the typical ROI period for a commercial system?',
+                a: 'With commercial tariffs being higher, the typical payback period is between 3 to 4 years. When including first-year Accelerated Depreciation tax shields, the payback can be as short as 2.5 years.'
+            },
+            {
+                q: 'How do you monitor the health of multiple commercial sites?',
+                a: 'We provide a centralized Enterprise SCADA Dashboard that aggregates real-time performance, alerts, and degradation analytics across all your facility locations.'
+            },
+            {
+                q: 'Can commercial solar systems integrate with existing diesel generators (DG)?',
+                a: 'Yes, we install advanced DG-Solar PV controllers that synchronize solar generation with your diesel generators, reducing diesel consumption by up to 70% without compromising power stability.'
             }
         ]
     },
@@ -165,6 +205,26 @@ const solutionData = {
             {
                 q: 'What is the lifetime of a utility-scale industrial solar plant?',
                 a: 'The solar panels are warrantied to perform for 25 years (maintaining at least 85% efficiency). The structural steel frames and cabling are engineered to exceed 30 years. Inverters generally require component servicing or swap at Year 12.'
+            },
+            {
+                q: 'What is the policy for Open Access solar for heavy industries?',
+                a: 'For industries consuming high amounts of power, we facilitate Open Access solar, allowing you to procure green power from our off-site solar parks via the grid if your rooftop space is insufficient.'
+            },
+            {
+                q: 'Can a megawatt-scale solar plant support heavy machinery starting loads?',
+                a: 'Yes. By utilizing smart grid-forming inverters and Battery Energy Storage Systems (BESS), our systems handle high-surge starting currents and reactive power requirements of heavy industrial machinery.'
+            },
+            {
+                q: 'How do you handle grid outages in an industrial setup?',
+                a: 'We install grid-interactive hybrid systems with rapid anti-islanding protection and battery storage. In the event of a grid outage, the system seamlessly transitions to microgrid mode in milliseconds to keep critical loads running.'
+            },
+            {
+                q: 'What certifications and approvals are handled by Solar Rex?',
+                a: 'We manage the entire lifecycle of approvals, including CEIG (Chief Electrical Inspector to Government) clearance, structural stability certificates, DISCOM connectivity permissions, and environmental clearances.'
+            },
+            {
+                q: 'What warranty is provided on industrial inverters and structures?',
+                a: 'We provide a standard 5-to-10 year warranty on inverters (extendable to 20 years) and a 10-year warranty on hot-dip galvanized mounting structures, alongside the standard 25-year panel performance warranty.'
             }
         ]
     },
@@ -215,6 +275,26 @@ const solutionData = {
             {
                 q: 'What is thermal imaging and how does it prevent failures?',
                 a: 'We use infrared thermal cameras to scan panels. Defective solar cells or loose cable connectors generate heat and appear as bright "hot spots" under thermal imaging. Catching these early prevents cell degradation and fire hazards.'
+            },
+            {
+                q: 'How often should solar panels be washed?',
+                a: 'Typically, twice a month is ideal to prevent soiling losses. In dusty industrial zones or near highways, weekly cleanings may be required. We offer automated robotic dry-cleaning solutions as well.'
+            },
+            {
+                q: 'Do you provide maintenance for systems installed by other developers?',
+                a: 'Yes, we provide full diagnostic audits, performance optimization, and Annual Maintenance Contracts (AMC) for existing third-party solar installations.'
+            },
+            {
+                q: 'What is the response time (SLA) for system faults?',
+                a: 'Under our Premium AMC, we guarantee a remote diagnostic response within 2 hours and an on-site technician deployment within 4 hours for any critical system outages.'
+            },
+            {
+                q: 'How does drone thermography identify defect zones?',
+                a: 'High-resolution thermal cameras mounted on drones scan the entire array to detect hot spots, micro-cracks, and bypassed diodes that are invisible to the naked eye, preventing system degradation and fire risks.'
+            },
+            {
+                q: 'Is inverter servicing covered in the AMC?',
+                a: 'Yes, the AMC covers regular inverter air filter cleaning, thermal inspection of contactors, firmware updates, and diagnostic sweeps to prevent sudden inverter failure.'
             }
         ]
     }
@@ -291,117 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const specCompliance = document.getElementById('spec-compliance');
     if (specCompliance) specCompliance.textContent = data.specCompliance;
-    // Hide calculator card for maintenance-support and industrial-solar pages
-    const calcCard = document.querySelector('.calc-card');
-    if (calcCard) {
-        if (type === 'maintenance-support' || type === 'industrial-solar') {
-            calcCard.style.display = 'none';
-        } else {
-            calcCard.style.display = '';
-        }
-    }
-    
-    // E. Inject Calculator Texts
-    const calcBadgeLabel = document.getElementById('calc-badge-label');
-    if (calcBadgeLabel) calcBadgeLabel.textContent = data.calcBadge;
-    
-    const calcInstructionText = document.getElementById('calc-instruction-text');
-    if (calcInstructionText) calcInstructionText.textContent = data.calcInstruction;
-    
-    const solSubsidyLabel = document.getElementById('sol-subsidy-label');
-    if (solSubsidyLabel) solSubsidyLabel.textContent = data.calcLabel;
-    
-    const solCalcNote = document.getElementById('sol-calc-note');
-    if (solCalcNote) solCalcNote.textContent = data.calcNote;
-    
-    // F. Setup Inquiry Form Hidden Fields and Options
-    const formSolutionType = document.getElementById('form-solution-type');
-    if (formSolutionType) formSolutionType.value = type;
-    
-    const clientCapacity = document.getElementById('client-capacity');
-    if (clientCapacity) {
-        clientCapacity.innerHTML = '';
-        data.sliderValues.forEach(val => {
-            const opt = document.createElement('option');
-            const unit = type === 'maintenance-support' ? `${val} kW System` : (type === 'industrial-solar' && val >= 1000 ? `${(val/1000).toFixed(1)} MW` : `${val} kW`);
-            opt.value = val;
-            opt.textContent = unit;
-            if (val === data.sliderValues[Math.floor(data.sliderValues.length / 2)]) {
-                opt.selected = true;
-            }
-            clientCapacity.appendChild(opt);
-        });
-        const customOpt = document.createElement('option');
-        customOpt.value = 'other';
-        customOpt.textContent = 'Other / Custom Capacity';
-        clientCapacity.appendChild(customOpt);
-    }
-    
-    // G. Setup Interactive Calculator Slider
-    const kwSlider = document.getElementById('sol-kw-slider');
-    const kwValLabel = document.getElementById('sol-kw-val');
-    const solCalcCost = document.getElementById('sol-calc-cost');
-    const solCalcSubsidy = document.getElementById('sol-calc-subsidy');
-    const solCalcNet = document.getElementById('sol-calc-net');
-    const solCalcSavings = document.getElementById('sol-calc-savings');
-    const ticksContainer = document.getElementById('slider-ticks-container');
-    
-    const updateCalculator = () => {
-        if (!kwSlider) return;
-        const sliderIndex = parseInt(kwSlider.value);
-        const actualKw = data.sliderValues[sliderIndex];
-        
-        // Label display
-        const displayUnit = type === 'maintenance-support' ? `${actualKw} kW System` : (type === 'industrial-solar' && actualKw >= 1000 ? `${(actualKw/1000).toFixed(1)} MW` : `${actualKw} kW`);
-        if (kwValLabel) kwValLabel.textContent = displayUnit;
-        
-        // Calculations
-        const calc = data.calculatorEngine(actualKw);
-        
-        if (solCalcCost) {
-            solCalcCost.textContent = calc.customFormat ? calc.cost : formatINR(calc.cost);
-        }
-        if (solCalcSubsidy) {
-            solCalcSubsidy.textContent = calc.customFormat ? calc.subsidy : formatINR(calc.subsidy);
-        }
-        if (solCalcNet) {
-            solCalcNet.textContent = calc.customFormat ? calc.net : formatINR(calc.net);
-        }
-        if (solCalcSavings) {
-            solCalcSavings.textContent = calc.savings;
-        }
-        
-        // Keep Inquiry form value synced
-        if (clientCapacity) {
-            clientCapacity.value = actualKw;
-        }
-    };
-    
-    if (kwSlider) {
-        kwSlider.min = 0;
-        kwSlider.max = data.sliderValues.length - 1;
-        kwSlider.step = 1;
-        
-        // default value to middle index
-        const defaultIndex = Math.floor(data.sliderValues.length / 2);
-        kwSlider.value = defaultIndex;
-        
-        // Generate Ticks
-        ticksContainer.innerHTML = '';
-        data.sliderValues.forEach((val, idx) => {
-            const tick = document.createElement('span');
-            const unit = type === 'maintenance-support' ? `${val}k` : (type === 'industrial-solar' ? (val >= 1000 ? `${(val/1000).toFixed(0)}M` : `${val}k`) : `${val}k`);
-            tick.textContent = unit;
-            tick.addEventListener('click', () => {
-                kwSlider.value = idx;
-                updateCalculator();
-            });
-            ticksContainer.appendChild(tick);
-        });
-        
-        kwSlider.addEventListener('input', updateCalculator);
-        updateCalculator();
-    }
+
     
     // H. Inject FAQs securely with DOM API (fixes HIGH-03 innerHTML XSS)
     const solFaqContainer = document.getElementById('sol-faq-container');
@@ -448,128 +418,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // I. Setup Form Submissions (fixes CRIT-02 - fake form submit)
-    const inquiryForm = document.getElementById('sol-inquiry-form');
-    const formSuccess = document.getElementById('form-success');
-    
-    if (inquiryForm && formSuccess) {
-        const showFormError = (msg) => {
-            let errDiv = inquiryForm.querySelector('.form-error-banner');
-            if (!errDiv) {
-                errDiv = document.createElement('div');
-                errDiv.className = 'form-error-banner';
-                errDiv.style.color = '#ef4444';
-                errDiv.style.fontSize = '0.9rem';
-                errDiv.style.marginTop = '12px';
-                errDiv.style.padding = '10px';
-                errDiv.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
-                errDiv.style.borderLeft = '4px solid #ef4444';
-                errDiv.style.borderRadius = '4px';
-                inquiryForm.appendChild(errDiv);
-            }
-            errDiv.innerHTML = msg.replace(/\n/g, '<br>');
-            errDiv.style.display = 'block';
-        };
 
-        const hideFormError = () => {
-            const errDiv = inquiryForm.querySelector('.form-error-banner');
-            if (errDiv) errDiv.style.display = 'none';
-        };
-
-        inquiryForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const nameEl = document.getElementById('client-name');
-            const phoneEl = document.getElementById('client-phone');
-            const emailEl = document.getElementById('client-email');
-            const capacityEl = document.getElementById('client-capacity');
-            const messageEl = document.getElementById('client-message');
-            const typeEl = document.getElementById('form-solution-type');
-
-            const name = nameEl ? nameEl.value.trim() : '';
-            const phone = phoneEl ? phoneEl.value.trim() : '';
-            const email = emailEl ? emailEl.value.trim() : '';
-            const capacity = capacityEl ? capacityEl.value : '';
-            const message = messageEl ? messageEl.value.trim() : '';
-            const solutionType = typeEl ? typeEl.value : '';
-
-            const errors = [];
-            
-            // Client side validations
-            if (name.length < 3) {
-                errors.push("Name must be at least 3 characters.");
-            } else if (!/^[A-Za-z\s]+$/.test(name)) {
-                errors.push("Name must contain letters and spaces only.");
-            }
-
-            const cleanPhone = phone.replace(/[^\d]/g, '');
-            if (cleanPhone.length < 10) {
-                errors.push("Phone number must contain at least 10 digits.");
-            }
-
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                errors.push("Please enter a valid email address.");
-            }
-
-            if (errors.length > 0) {
-                showFormError(errors.join('\n'));
-                return;
-            }
-
-            // Build payload mapped to Google Sheets schema
-            const payload = {
-                Timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
-                Category: `Solution Page Inquiry (${solutionType})`,
-                Name: name,
-                Email: email,
-                WhatsApp: phone,
-                Pincode: 'Inquiry Form',
-                HousingSociety: '',
-                CompanyName: '',
-                City: 'Solutions Detail Page',
-                Designation: '',
-                AverageMonthlyBill: `System capacity size selected: ${capacity} kW. Message: ${message}`
-            };
-
-            const submitBtn = inquiryForm.querySelector('button[type="submit"]');
-            const originalBtnText = submitBtn ? submitBtn.textContent : 'Send Request';
-            
-            if (submitBtn) {
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = 'Sending... <i class="bx bx-loader-alt bx-spin" style="margin-left: 8px;"></i>';
-            }
-
-            try {
-                hideFormError();
-                const response = await fetch('/api/submit-form', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(payload)
-                });
-                
-                const result = await response.json();
-                if (response.ok && result.status === 'success') {
-                    inquiryForm.style.opacity = '0.1';
-                    inquiryForm.style.pointerEvents = 'none';
-                    formSuccess.classList.add('active');
-                    inquiryForm.reset();
-                } else {
-                    showFormError("Submission failed: " + (result.message || "Please check your network and try again."));
-                }
-            } catch (err) {
-                console.error("Inquiry form submit error:", err);
-                showFormError("Network error: Could not submit request. Please check your internet connection.");
-            } finally {
-                if (submitBtn) {
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = originalBtnText;
-                }
-            }
-        });
-    }
     
     // J. Screen Reveal Transition Out on Load
     const curtain = document.getElementById('page-curtain');
