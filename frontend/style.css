@@ -1032,6 +1032,13 @@ body {
     transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
+.quick-connect.hide-on-hero {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: translateY(100px) scale(0.85) !important;
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
 @media (max-width: 1024px) {
     .quick-connect {
         position: fixed !important;
