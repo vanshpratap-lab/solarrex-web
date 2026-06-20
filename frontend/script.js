@@ -1324,6 +1324,64 @@ document.addEventListener('DOMContentLoaded', () => {
     if (heroVideo) {
         // Prevent right-click context menu on video
         heroVideo.addEventListener('contextmenu', e => e.preventDefault());
+
+        // List of possible relative and absolute paths for the video
+        const videoPaths = [
+            'video/hero.mp4',
+            '/video/hero.mp4',
+            'public/video/hero.mp4',
+            'frontend/public/video/hero.mp4',
+            'dist/video/hero.mp4',
+            '../video/hero.mp4'
+        ];
+        let currentPathIndex = 0;
+        let videoLoaded = false;
+
+        const tryNextPath = () => {
+            if (videoLoaded) return;
+            if (currentPathIndex < videoPaths.length) {
+                const path = videoPaths[currentPathIndex];
+                console.log(`Testing hero video path: ${path}`);
+                currentPathIndex++;
+                
+                // Set the src attribute and trigger load
+                heroVideo.src = path;
+                heroVideo.load();
+            } else {
+                console.error('All fallback video paths failed to load. Please check the video file configuration.');
+            }
+        };
+
+        // Try next path if the current one triggers an error
+        heroVideo.addEventListener('error', () => {
+            console.warn(`Video path failed: ${heroVideo.src}`);
+            tryNextPath();
+        });
+
+        // Mark as loaded when the browser has successfully pre-resolved the source
+        heroVideo.addEventListener('loadedmetadata', () => {
+            videoLoaded = true;
+            console.log(`Successfully resolved hero video at: ${heroVideo.src}`);
+            forcePlay();
+        });
+
+        // Fail-safe to force play (bypasses some browser restrictions)
+        const forcePlay = () => {
+            if (heroVideo.paused) {
+                heroVideo.play().then(() => {
+                    console.log('Hero video playback started successfully.');
+                }).catch(err => {
+                    console.warn('Autoplay blocked by browser. Awaiting user interaction:', err);
+                });
+            }
+        };
+
+        // Start testing the video paths
+        tryNextPath();
+
+        // If blocked, play on first user interaction
+        document.addEventListener('click', forcePlay, { once: true });
+        document.addEventListener('touchstart', forcePlay, { once: true });
     }
 
     if (heroTap && heroVideo && indicator && indicatorIcon) {
