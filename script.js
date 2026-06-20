@@ -19,6 +19,30 @@ if (navLogo) {
     });
 }
 
+// Header nav links & CTA → smooth scroll to sections
+document.querySelectorAll('.header-nav-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = link.dataset.target;
+        if (target === 'top') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            const section = document.getElementById(target);
+            if (section) {
+                const offset = 80; // account for fixed navbar height
+                const top = section.getBoundingClientRect().top + window.scrollY - offset;
+                window.scrollTo({ top, behavior: 'smooth' });
+            }
+        }
+        
+        // Close mobile menu if active
+        const navLinks = document.querySelector('.nav-links');
+        if (navLinks && navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+        }
+    });
+});
+
 // Footer nav links → smooth scroll to sections
 document.querySelectorAll('.footer-nav-link').forEach(link => {
     link.addEventListener('click', (e) => {
