@@ -2883,6 +2883,11 @@ body {
     overflow: hidden;
 }
 
+/* Fix for white logos on white background */
+.partner-box img[src*="vikram_solar"] {
+    filter: brightness(0);
+}
+
 .partner-box:hover {
     transform: translateY(-10px) scale(1.05);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
