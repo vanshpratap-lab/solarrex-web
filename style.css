@@ -5148,3 +5148,8 @@ input[type="range"]::-webkit-slider-thumb:hover {
     width: 10px;
     height: 10px;
 }
+
+/* Modal Open Scroll Locking */
+body.modal-open {
+    overflow: hidden !important;
+}

@@ -369,12 +369,14 @@ const modalCloseMain = document.getElementById('modal-close-main');
 
 const openQuickModal = () => {
     overlay.classList.add('active');
+    document.body.classList.add('modal-open');
     document.body.style.overflow = 'hidden';
 };
 
 const closeQuickModal = () => {
     overlay.classList.remove('active');
-    document.body.style.overflow = 'auto';
+    document.body.classList.remove('modal-open');
+    document.body.style.overflow = '';
 };
 
 // Check if device is desktop
@@ -972,6 +974,7 @@ const openInfoHub = (tabName) => {
 
     // Open overlay
     infoHubOverlay.classList.add('active');
+    document.body.classList.add('modal-open');
     document.body.style.overflow = 'hidden';
 
     // Trigger initial calculator updates if opening calculator tabs
@@ -988,6 +991,7 @@ const openInfoHub = (tabName) => {
 const closeInfoHub = () => {
     if (!infoHubOverlay) return;
     infoHubOverlay.classList.remove('active');
+    document.body.classList.remove('modal-open');
     document.body.style.overflow = '';
 };
 
