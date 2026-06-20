@@ -291,6 +291,15 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const specCompliance = document.getElementById('spec-compliance');
     if (specCompliance) specCompliance.textContent = data.specCompliance;
+    // Hide calculator card for maintenance-support page
+    const calcCard = document.querySelector('.calc-card');
+    if (calcCard) {
+        if (type === 'maintenance-support') {
+            calcCard.style.display = 'none';
+        } else {
+            calcCard.style.display = '';
+        }
+    }
     
     // E. Inject Calculator Texts
     const calcBadgeLabel = document.getElementById('calc-badge-label');
