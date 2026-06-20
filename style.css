@@ -8,6 +8,10 @@
     box-sizing: border-box;
 }
 
+html {
+    overflow-x: hidden;
+}
+
 :root {
     --primary-color: #ffb300;
     --primary-light: #ffc43d;
@@ -959,7 +963,7 @@ body {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    width: 210px;
+    width: 175px;
     z-index: 5000;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     animation: quickPopUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 0.5s,
@@ -973,10 +977,12 @@ body {
     100% { opacity: 0; transform: translateX(150%) scale(0.9); }
 }
 
-.quick-connect.hide-popup-contact,
-.quick-connect.hide-popup-operations {
-    animation: hideSmoothly 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
-    pointer-events: none;
+/* Hide popup in the contact section on all device screens */
+.quick-connect.hide-popup-contact {
+    opacity: 0 !important;
+    transform: translateX(150%) scale(0.9) !important;
+    pointer-events: none !important;
+    animation: none !important;
 }
 
 @media (max-width: 1024px) {
@@ -986,10 +992,10 @@ body {
         right: 20px !important;
         left: auto !important;
         width: auto !important;
-        max-width: 196px !important;
+        max-width: 165px !important;
         display: block !important;
         opacity: 1 !important;
-        transform: translateY(0) scale(0.9) !important;
+        transform: translateY(0) scale(0.8) !important;
         transform-origin: bottom right !important;
         z-index: 5000 !important;
         pointer-events: auto !important;
@@ -1000,18 +1006,25 @@ body {
     .quick-connect.hide-on-hero {
         opacity: 0 !important;
         pointer-events: none !important;
-        transform: translateY(100px) scale(0.8) !important;
+        transform: translateY(100px) scale(0.7) !important;
+    }
+    
+    .quick-connect.hide-popup-contact,
+    .quick-connect.hide-popup-operations {
+        opacity: 0 !important;
+        pointer-events: none !important;
+        transform: translateX(150%) scale(0.8) !important;
     }
     
     .quick-connect:hover {
-        transform: translateY(-5px) scale(0.92) !important;
+        transform: translateY(-5px) scale(0.82) !important;
     }
     
     .iphone-frame {
-        max-width: 180px !important;
-        border-width: 6px !important;
-        border-radius: 28px !important;
-        padding: 20px 12px 12px !important;
+        max-width: 150px !important;
+        border-width: 5px !important;
+        border-radius: 20px !important;
+        padding: 16px 10px 10px !important;
         aspect-ratio: auto !important;
         margin: 0 auto !important;
         box-shadow: 0 15px 35px rgba(0,0,0,0.3) !important;
@@ -1049,14 +1062,14 @@ body {
 /* Authentic iPhone Pro Frame Styles */
 .iphone-frame {
     background: var(--white);
-    border-radius: 28px;
-    padding: 22px 14px 12px;
-    border: 7px solid #1a1a1a;
+    border-radius: 20px;
+    padding: 16px 10px 10px;
+    border: 5px solid #1a1a1a;
     box-shadow: 0 25px 50px rgba(0,0,0,0.4);
     position: relative;
     overflow: visible;
     width: 100%;
-    max-width: 196px;
+    max-width: 165px;
     margin: 0 auto;
 }
 
@@ -1283,7 +1296,7 @@ body {
 }
 
 .mac-controls {
-    display: flex;
+    display: none !important;
     gap: 8px;
     position: absolute;
     left: 20px;
@@ -3546,9 +3559,19 @@ body {
 
 .section-pricing.light-theme .pricing-desc {
     font-size: 16px;
-    color: #5f6368;
+    color: #2b6cb0;
     max-width: 600px;
     margin: 0 auto;
+    background-color: #ebf8ff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    display: inline-block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.section-pricing.light-theme .pricing-desc::selection {
+    background-color: #feebc8;
+    color: #c05621;
 }
 
 .calculator-wrapper {

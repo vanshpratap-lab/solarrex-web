@@ -554,6 +554,13 @@ const pricingData = [
     { kw: 15, dcr: '₹78,000', dcrStrike: '',           ndcr: '₹5,10,000', savings: '₹15K - ₹18K',     gen: '1800-1950 Units/Mo',daily:'60-65 Units/Day',  area: '912 SqFt', dim: '24×38 Ft',  panels: '28 Panels',    watt: '540-630W' }
 ];
 
+// --- Update Slider Fill ---
+function updateSliderBackground(slider) {
+    if (!slider) return;
+    const pct = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
+    slider.style.background = `linear-gradient(to right, #ffb703 0%, #ffb703 ${pct}%, #e9ecef ${pct}%, #e9ecef 100%)`;
+}
+
 // Interactive Pricing Calculator Logic
 const kwSlider = document.getElementById('kw-slider');
 if (kwSlider) {
@@ -572,14 +579,6 @@ if (kwSlider) {
     const receiptDate   = document.getElementById('receipt-date');
     const receiptDetails = document.getElementById('receipt-details');
     const pricingReceipt = document.getElementById('pricing-receipt-wrapper');
-
-
-
-    // --- Update Slider Fill ---
-    function updateSliderBackground(slider) {
-        const pct = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
-        slider.style.background = `linear-gradient(to right, #ffb703 0%, #ffb703 ${pct}%, #e9ecef ${pct}%, #e9ecef 100%)`;
-    }
 
     // --- Update Pricing Card & Receipt ---
     function updatePricingCard(index) {
@@ -706,8 +705,11 @@ const openInfoHub = (tabName) => {
 
     // Trigger initial calculator updates if opening calculator tabs
     if (tabName === 'savings') {
+        if (subsidySlider) updateSliderBackground(subsidySlider);
         updateSubsidyCalculator();
     } else if (tabName === 'roi') {
+        if (roiBillInput) updateSliderBackground(roiBillInput);
+        if (roiTariffInput) updateSliderBackground(roiTariffInput);
         updateRoiCalculator();
     }
 };
@@ -777,7 +779,11 @@ const updateSubsidyCalculator = () => {
 
 if (subsidySlider) {
     subsidySlider.value = 10;
-    subsidySlider.addEventListener('input', updateSubsidyCalculator);
+    subsidySlider.addEventListener('input', (e) => {
+        updateSliderBackground(e.target);
+        updateSubsidyCalculator();
+    });
+    updateSliderBackground(subsidySlider);
     updateSubsidyCalculator();
 }
 
@@ -861,8 +867,20 @@ const updateRoiCalculator = () => {
     if (envMiles) envMiles.textContent = `${(d.kw * 3000).toLocaleString('en-IN')} km`;
 };
 
-if (roiBillInput) roiBillInput.addEventListener('input', updateRoiCalculator);
-if (roiTariffInput) roiTariffInput.addEventListener('input', updateRoiCalculator);
+if (roiBillInput) {
+    roiBillInput.addEventListener('input', (e) => {
+        updateSliderBackground(e.target);
+        updateRoiCalculator();
+    });
+    updateSliderBackground(roiBillInput);
+}
+if (roiTariffInput) {
+    roiTariffInput.addEventListener('input', (e) => {
+        updateSliderBackground(e.target);
+        updateRoiCalculator();
+    });
+    updateSliderBackground(roiTariffInput);
+}
 
 // Performant Reveal-on-Scroll Observer (with reverse/reset support)
 const revealElements = document.querySelectorAll('.reveal-on-scroll');
