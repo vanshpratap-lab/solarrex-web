@@ -291,10 +291,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const specCompliance = document.getElementById('spec-compliance');
     if (specCompliance) specCompliance.textContent = data.specCompliance;
-    // Hide calculator card for maintenance-support page
+    // Hide calculator card for maintenance-support and industrial-solar pages
     const calcCard = document.querySelector('.calc-card');
     if (calcCard) {
-        if (type === 'maintenance-support') {
+        if (type === 'maintenance-support' || type === 'industrial-solar') {
             calcCard.style.display = 'none';
         } else {
             calcCard.style.display = '';
