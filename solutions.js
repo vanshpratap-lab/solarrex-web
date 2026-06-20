@@ -6,7 +6,7 @@ const solutionData = {
         title: 'Residential Solar Solutions',
         subtitle: 'Power Your Home, Secure Your Independence',
         tagline: 'Slash your electricity bills, get 24/7 backup power, and qualify for 100% government subsidy (DCR compliant).',
-        image: 'images/cat_residential.png',
+        image: 'images/categories/cat_residential.png',
         overview: 'Power your home with clean, sustainable energy. Our residential solutions combine high-efficiency panels with smart storage to ensure your family never stays in the dark. We handle the entire engineering, procurement, utility approval, net metering, and subsidy paperwork for a seamless, hassle-free solar transition.',
         highlights: [
             '24/7 Backup Power integration with smart lithium battery storage',
@@ -60,7 +60,7 @@ const solutionData = {
         title: 'Commercial Solar Plants',
         subtitle: 'Scale Operations, Minimize Overhead Costs',
         tagline: 'Designed for corporate buildings, hospitals, and educational institutions with maximum ROI and tax benefits.',
-        image: 'images/cat_commercial.png',
+        image: 'images/categories/cat_commercial.png',
         overview: 'Reduce operational costs and demonstrate your commitment to sustainability. Our commercial solar systems are designed for maximum ROI and long-term reliability. We structure commercial contracts with flexible CAPEX or OPEX models, optimizing energy output and protecting your operations against rising commercial tariff rates.',
         highlights: [
             'Drastic reduction in peak demand tariff charges',
@@ -112,7 +112,7 @@ const solutionData = {
         title: 'Industrial Megawatt Solutions',
         subtitle: 'High-Capacity Zero-Emission Infrastructure',
         tagline: 'Turn-key megawatt-scale rooftop and ground-mounted solar grids for manufacturing hubs, warehouses, and factories.',
-        image: 'images/cat_industrial.png',
+        image: 'images/categories/cat_industrial.png',
         overview: 'High-capacity energy solutions for heavy industry. We provide the infrastructure needed to power large-scale operations with zero-emission technology. From structural steel reinforcement to substation integration and high-voltage grid connection, our industrial projects are engineered for extreme load conditions and long-term durability.',
         highlights: [
             'Megawatt-scale BESS container storage systems',
@@ -174,7 +174,7 @@ const solutionData = {
         title: 'Solar Maintenance & Support',
         subtitle: 'Protect Your Asset, Maximize Lifetime Yield',
         tagline: 'Complete diagnostic testing, panel washing, and priority inverter repair services to ensure peak output.',
-        image: 'images/operations_hero.png',
+        image: 'images/decorations/operations_hero.png',
         overview: 'Maximum uptime guaranteed. Our dedicated support team provides comprehensive monitoring and preventative maintenance to keep your system performing at its peak. Dust accumulation (soiling) and inverter component heating can degrade solar yield by up to 25%. Our AMC services cover systematic cleaning, thermal drone imaging, and priority SLA responses.',
         highlights: [
             '24/7 IoT remote monitoring with automated yield alert system',
