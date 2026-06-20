@@ -7,14 +7,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solar Rex | Sustainable Energy Solutions</title>
     <meta name="description" content="Solar Rex provides premium sustainable solar energy solutions for residential, commercial, and industrial roofs. Save on electricity bills with government subsidies.">
+    <meta name="theme-color" content="#f39c12">
+    <link rel="canonical" href="https://solarrex.in/">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://solarrex.in/">
+    <meta property="og:title" content="Solar Rex | Sustainable Energy Solutions">
+    <meta property="og:description" content="Solar Rex provides premium sustainable solar energy solutions for residential, commercial, and industrial roofs. Save on electricity bills with government subsidies.">
+    <meta property="og:image" content="https://solarrex.in/images/og-cover.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://solarrex.in/">
+    <meta property="twitter:title" content="Solar Rex | Sustainable Energy Solutions">
+    <meta property="twitter:description" content="Solar Rex provides premium sustainable solar energy solutions for residential, commercial, and industrial roofs. Save on electricity bills with government subsidies.">
+    <meta property="twitter:image" content="https://solarrex.in/images/og-cover.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Anton&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/loading animation/loader.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Anton&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <script type="module" crossorigin src="/assets/main-BJbwKYgT.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/style-DBQFIoqX.js">
-  <link rel="stylesheet" crossorigin href="/assets/style-C7nItxgL.css">
+  <script type="module" crossorigin src="/assets/main-BDn6Hp-5.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/style-CMrpVzO4.js">
+  <link rel="stylesheet" crossorigin href="/assets/style-CN4hJzKV.css">
+  <link rel="stylesheet" crossorigin href="/assets/main-SyBI4n1a.css">
 </head>
 
 <body>
@@ -67,16 +85,23 @@
     <main>
 
     <section class="hero">
-        <video autoplay muted loop playsinline class="hero-video" width="1920" height="1080" id="hero-video">
+        <video autoplay muted loop playsinline preload="auto" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" class="hero-video" width="1920" height="1080" id="hero-video">
+            <source src="/video/hero.mp4" type="video/mp4">
             <track kind="captions" src="data:text/vtt," srclang="en" label="English" default>
         </video>
+        <div class="hero-video-tap" id="hero-video-tap" aria-label="Toggle video playback"></div>
+        <div class="hero-video-indicator" id="hero-video-indicator">
+            <div class="hero-video-indicator-icon" id="hero-video-indicator-icon">
+                <i class='bx bx-pause' id="video-indicator-bx"></i>
+            </div>
+        </div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1 class="hero-title">SOLAR REX</h1>
             <p class="hero-tagline">trust that brings light to your home</p>
             <div class="hero-buttons">
-                <a href="#" class="btn-primary">Get Free Quote</a>
-                <a href="#" class="btn-secondary">Explore Solutions</a>
+                <a href="#section-6" class="btn-primary header-nav-link" data-target="section-6">Get Free Quote</a>
+                <a href="solutions.html" class="btn-secondary magic-button">Explore Solutions</a>
             </div>
         </div>
         <div class="scroll-indicator">
@@ -464,7 +489,7 @@
                 </div>
                 <!-- Waaree -->
                 <div class="partner-box">
-                    <img src="/assets/waaree-DEw00eW1.png" alt="Waaree Energies Logo" width="1547" height="454" loading="lazy">
+                    <img src="/assets/waaree-CVmCwRUW.png" alt="Waaree Energies Logo" width="300" height="88" loading="lazy">
                 </div>
                 <!-- Vikram Solar -->
                 <div class="partner-box">
@@ -472,15 +497,15 @@
                 </div>
                 <!-- Havells -->
                 <div class="partner-box">
-                    <img src="/assets/havells-8tJbGKJZ.png" alt="Havells India Logo" width="1552" height="270" loading="lazy">
+                    <img src="/assets/havells-DjUEuyRY.png" alt="Havells India Logo" width="300" height="52" loading="lazy">
                 </div>
                 <!-- Luminous -->
                 <div class="partner-box">
-                    <img src="/assets/luminous-Dj5HgROC.png" alt="Luminous Power Technologies Logo" width="1280" height="800" loading="lazy">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAC7CAMAAADot1MIAAADAFBMVEUAP6oARrkAQ7YARrkARrYARrkARbYATbAAR7cARrgAO7YARroARrcAO8MAQ7YARrkAR7gARroAR7sAP78AQ7MAT78AQrYAQ7oARboARrgAPbYAR7kAQ7cASLkARLoAN7gAR7kAQ8wAR7YAO8IARbgAPr8ARrkARrgAR7oASrwAS8MARLoARLkAO7QARrkAPr8ARsYAS7sAQrsAR7oARbkASrQAR7oAR8EAQ7oAR7oAR7kAR7kAR7gAR7kARrkARroAPr8ATcQAP78ARsMARrkAQrsASrQASLYASbUAPq8AR7sAAAAzAAAzADMzAGYzAJkzAMwzAP8zMwAzMzMzM2YzM5kzM8wzM/8zZgAzZjMzZmYzZpkzZswzZv8zmQAzmTMzmWYzmZkzmcwzmf8zzAAzzDMzzGYzzJkzzMwzzP8z/wAz/zMz/2Yz/5kz/8wz//9mAABmADNmAGZmAJlmAMxmAP9mMwBmMzNmM2ZmM5lmM8xmM/9mZgBmZjNmZmZmZplmZsxmZv9mmQBmmTNmmWZmmZlmmcxmmf9mzABmzDNmzGZmzJlmzMxmzP9m/wBm/zNm/2Zm/5lm/8xm//+ZAACZADOZAGaZAJmZAMyZAP+ZMwCZMzOZM2aZM5mZM8yZM/+ZZgCZZjOZZmaZZpmZZsyZZv+ZmQCZmTOZmWaZmZmZmcyZmf+ZzACZzDOZzGaZzJmZzMyZzP+Z/wCZ/zOZ/2aZ/5mZ/8yZ///MAADMADPMAGbMAJnMAMzMAP/MMwDMMzPMM2bMM5nMM8zMM//MZgDMZjPMZmbMZpnMZszMZv/MmQDMmTPMmWbMmZnMmczMmf/MzADMzDPMzGbMzJnMzMzMzP/M/wDM/zPM/2bM/5nM/8zM////AAD/ADP/AGb/AJn/AMz/AP//MwD/MzP/M2b/M5n/M8z/M///ZgD/ZjP/Zmb/Zpn/Zsz/Zv//mQD/mTP/mWb/mZn/mcz/mf//zAD/zDP/zGb/zJn/zMz/zP///wD//zP//2b//5n//8z///86OQCcAAAATHRSTlMW/mehPYxUGLJ4KINNIFuSun15FkEeYRuZxDCtcII5IrUcWyhbNkRRdTsgSGEguB4iQiunazxMMCNRiWJusXGfJhguKaozQlJKHlgAwv36GAAABV1JREFUeJzt3Ftv00AQBWBGFAQqUoiEoAaBghTEVWnF5QFBQUggIfb//x+USxvbO7M7x7HXSXrOU7te785+jVMnjnMrMO7c8ndliAWEWECIBYRYQIgFhFhAiAWEWECIBYRYQIgFhFhAiAWEWECIBYRYQIgFhFhAiAWEWECIBYRYQIgFhFhAiAWEWECIBYRYQIgFhFhAiAWEWECIBYRYQIgFhFhAiAWEWECIBYRYQIgFhFhAiAWEWECIBYRYQIgFhFhAiAWEWECIBYRYQIgFhFhAiAWEWECIBYRYQIgFhFhAiHUTseayTC9DVauhqmPFqqSW3Yb6nBjqGuu83qnVTdu0aLQttI61YZwb7LZmY3MN5uDa1sQU2lCfVawz93zBW0MZrPXxZwwPYmWGusZalMW66Avrk7bAxIMlhZUbaiys6U5DmxRKF0eh6bGKYT2yDpWHQ2NZfyf3tOWxxKyjHyxrgSJy+0ZifbCxrPXZM9hYchRY0hFrc1bpKOhGYEk6EJaUxpo6C65NMCTWg73Gmlkz2SW4enfEkr3GkjiTAbHs9R0olizbT+wS+sQKl9pTvDpv1Pa71e3TtldhLNkR670LK4TwMj+5MW2r19d1twcHiCUqlqOCzlj1pR8t1pfs5L7DcLv26hixgjWeOm/Udl8dbdW1INb8MLBaLU8a6y+GJX1gSUes5b9Ddd64TS+vPNZkEKyJOl7rRURnrGosLBkEq9nhzKxVnTdua1zzEJE3h4t1msOya1XndRT/oxzWaW2L0ohiSXks5UgcCitc/zTd/hj2Gat18tAYtBiW6FjP9w1Lf6ocDGuqL277xk2Ir1g4q1ZmM+qNmpVd9Z3bT/GNYXvHmtV/V9foq1rbNe5n1Bs1K7u6ztFa4/aNJfXf1bdlfFVrRZfA0iauimAFbY2+qpU9R8OSsbDCvmPlnraIJXUPYvkfWRmtvX9k3Sl5GKpaJbBmyqy+qptNhbHsD/wMiRWUJfqqbjaVxtLqLo/18ECw5vuAFYbEWvSHFZ1AHBBWaI+z6XdPLfh1D1jh+LDmasHpOe1pvyceWu8OHyuoBaersqdNnT98HR/rmxfrsgyWfWpajY819WJZ54la24+47Vm++k3DEI8scWKdpK+2TobAUtrii2PmM9tH7ZaUHbEk/hDR6j93e/94xFzZEJbzUzTR7hd3leE2P/1d7vCztflXDqsxkvJefu5P2CeWdU4dtbYb1hcTo7214TKbAaz8fKF9988YWF27vRoBqyqNlS0LMC2NJYNhXXbD2tz+9g8u3ro03Q9WUNc46wtLOwtxlHW1NE/1jmG8WK6yJN/SM1a6LOO1taP4QbGCY42ri6pFsbaLdFTvGcaL5SkrXUEYAitV1ubzAdZFm9Scu2JNstMNiaW/wIvv7Fb7pE3/ZHqEDlghMZ/SY/1JhqhTvJs2Uq7JdYTVF+l44OTuWsSwgrX9cfBjzXrHyt8jna7+avtbffOL0A0r5Kqqt55Gx+5uWPoHSO0jsW1lVP8006E1hvVVBeoO4t56GjWtfj/piqX2M8uKqfTqse31bwwRPeeN7pPEtuWfeLHM1dsv5dIoy+72UjsLqydD3uHrVeYLa64xc167n3qXJD7ZfSTfRVMoxAJCLCDEAkIsIMQCQiwgxAJCLCDEAkIsIMQCQiwgxAJCLCDEAkIsIMQCQiwgxAJCLCDEAkIsIMQCQiwgxAJCLCDEAkIsIMQCQiwgxAJCLCDEAkIsIMQCQiwgxAJCLCDEAkIsIMQCQiwgxAJCLCDEAkIsIMQCQiwgxAJCLCDEAkIsIMQCQiwgxAJCLCDEAkIsIMQCQiwgxAJCrODPf57irzhbMvFxAAAAAElFTkSuQmCC" alt="Luminous Power Technologies Logo" width="300" height="187" loading="lazy">
                 </div>
                 <!-- Polycab -->
                 <div class="partner-box">
-                    <img src="/assets/polycab-BPioYsb8.png" alt="Polycab India Logo" width="1549" height="420" loading="lazy">
+                    <img src="/assets/polycab-C9IIGLio.png" alt="Polycab India Logo" width="300" height="81" loading="lazy">
                 </div>
                 <!-- Adani Solar -->
                 <div class="partner-box">
@@ -494,7 +519,7 @@
                 </div>
                 <!-- Waaree -->
                 <div class="partner-box">
-                    <img src="/assets/waaree-DEw00eW1.png" alt="Waaree Energies Logo" width="1547" height="454" loading="lazy">
+                    <img src="/assets/waaree-CVmCwRUW.png" alt="Waaree Energies Logo" width="300" height="88" loading="lazy">
                 </div>
                 <!-- Vikram Solar -->
                 <div class="partner-box">
@@ -502,15 +527,15 @@
                 </div>
                 <!-- Havells -->
                 <div class="partner-box">
-                    <img src="/assets/havells-8tJbGKJZ.png" alt="Havells India Logo" width="1552" height="270" loading="lazy">
+                    <img src="/assets/havells-DjUEuyRY.png" alt="Havells India Logo" width="300" height="52" loading="lazy">
                 </div>
                 <!-- Luminous -->
                 <div class="partner-box">
-                    <img src="/assets/luminous-Dj5HgROC.png" alt="Luminous Power Technologies Logo" width="1280" height="800" loading="lazy">
+                    <img src="data:image/png;base64,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" alt="Luminous Power Technologies Logo" width="300" height="187" loading="lazy">
                 </div>
                 <!-- Polycab -->
                 <div class="partner-box">
-                    <img src="/assets/polycab-BPioYsb8.png" alt="Polycab India Logo" width="1549" height="420" loading="lazy">
+                    <img src="/assets/polycab-C9IIGLio.png" alt="Polycab India Logo" width="300" height="81" loading="lazy">
                 </div>
                 <!-- Adani Solar -->
                 <div class="partner-box">
@@ -530,7 +555,7 @@
         <div class="cs-filter-tabs reveal-on-scroll reveal-fade">
             <div class="cs-tab active" data-filter="all">All</div>
             <div class="cs-tab" data-filter="installation">Installation</div>
-            <div class="cs-tab" data-filter="maintainance">Maintainance</div>
+            <div class="cs-tab" data-filter="maintenance">Maintenance</div>
             <div class="cs-tab" data-filter="powergrid">Power grid</div>
             <div class="cs-tab" data-filter="repair">Repair</div>
         </div>
@@ -545,10 +570,10 @@
                 </div>
             </div>
             <!-- Card 2 -->
-            <div class="cs-card" data-category="maintainance">
+            <div class="cs-card" data-category="maintenance">
                 <img src="/assets/cs_maint_check-DPCQsp2j.png" alt="Solar Panels Maintenance Check" width="1024" height="1024" loading="lazy">
                 <div class="cs-overlay">
-                    <h3>Panel Maintainance</h3>
+                    <h3>Panel Maintenance</h3>
                     <p>Routine Checkup</p>
                 </div>
             </div>
@@ -577,7 +602,7 @@
                 </div>
             </div>
             <!-- Card 6 -->
-            <div class="cs-card" data-category="maintainance">
+            <div class="cs-card" data-category="maintenance">
                 <img src="/assets/cs_eff_audit-lKor3QUI.png" alt="Solar System Efficiency Performance Audit" width="1024" height="1024" loading="lazy">
                 <div class="cs-overlay">
                     <h3>Efficiency Audit</h3>
@@ -901,7 +926,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="submit-btn-new">
+                    <button type="submit" class="btn-submit-contact">
                         <span>Submit Details</span>
                         <i class='bx bx-right-arrow-alt'></i>
                     </button>
@@ -1281,8 +1306,7 @@
     </div>
 
     <div class="page-transition-curtain" id="page-curtain"></div>
-
-    <script src="/loading%20animation/loader.js"></script>
+
 </body>
 
 </html>

@@ -308,10 +308,23 @@ const handleFormSubmit = async (e) => {
 
     // Show loading state on submit button
     const submitBtn = form.querySelector('button[type="submit"]') || form.querySelector('.btn-submit-contact') || form.querySelector('.modal-submit');
-    const originalBtnText = submitBtn ? submitBtn.innerHTML : '';
+    let spinner = null;
+    let buttonTextSpan = null;
+    let originalText = '';
+    
     if (submitBtn) {
+        buttonTextSpan = submitBtn.querySelector('span');
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span>Submitting...</span> <i class="bx bx-loader-alt bx-spin" style="margin-left: 8px;"></i>';
+        originalText = buttonTextSpan ? buttonTextSpan.textContent : submitBtn.textContent;
+        if (buttonTextSpan) {
+            buttonTextSpan.textContent = 'Submitting...';
+        } else {
+            submitBtn.textContent = 'Submitting...';
+        }
+        spinner = document.createElement('i');
+        spinner.className = 'bx bx-loader-alt bx-spin';
+        spinner.style.marginLeft = '8px';
+        submitBtn.appendChild(spinner);
     }
 
     try {
@@ -328,30 +341,38 @@ const handleFormSubmit = async (e) => {
         
         if (response.ok && result.status === 'success') {
             showTerminalAlert("Status: 200 OK\nPayload successfully securely logged to Sheet.\nThank you for reaching out to Solar Rex!", true);
+            if (typeof closeQuickModal === 'function') closeQuickModal();
+            form.reset();
+            const activeRadioPills = form.querySelectorAll('.radio-pill-group');
+            activeRadioPills.forEach(group => {
+                const firstInput = group.querySelector('input[type="radio"]');
+                if (firstInput) firstInput.checked = true;
+            });
         } else {
-            // Local fallback for dev/testing when serverless is not hosted
-            console.log("Serverless function not active, submitting directly for fallback testing:", data);
-            showTerminalAlert("Status: 200 OK (Test Mode)\nForm values logged locally in console.\nConfigure GOOGLE_SCRIPT_URL on server.", true);
+            // Server responded but returned a non-success status
+            console.error("Form submission error from server:", result);
+            showTerminalAlert([
+                "Submission failed — server returned an error.",
+                result.message || "Please try again or contact us directly."
+            ], false);
         }
-
-        if (typeof closeQuickModal === 'function') closeQuickModal();
-        form.reset();
-        
-        const activeRadioPills = form.querySelectorAll('.radio-pill-group');
-        activeRadioPills.forEach(group => {
-            const firstInput = group.querySelector('input[type="radio"]');
-            if (firstInput) firstInput.checked = true;
-        });
     } catch (error) {
-        console.error("Form submission failed:", error);
-        // Fallback alert for testing offline
-        showTerminalAlert("Status: 200 OK (Offline Mode)\nForm logged locally for testing.\nSubmissions stored successfully.", true);
-        if (typeof closeQuickModal === 'function') closeQuickModal();
-        form.reset();
+        console.error("Form submission failed — network error:", error);
+        showTerminalAlert([
+            "Network error — could not reach the server.",
+            "Please check your internet connection and try again."
+        ], false);
     } finally {
         if (submitBtn) {
             submitBtn.disabled = false;
-            submitBtn.innerHTML = originalBtnText;
+            if (buttonTextSpan) {
+                buttonTextSpan.textContent = originalText;
+            } else {
+                submitBtn.textContent = originalText;
+            }
+            if (spinner && spinner.parentNode) {
+                spinner.parentNode.removeChild(spinner);
+            }
         }
     }
 };
@@ -886,28 +907,65 @@ if (kwSlider) {
             if (receiptDate) receiptDate.textContent = `Date: ${now.getDate()}/${now.getMonth()+1}/${now.getFullYear()}`;
 
             if (receiptDetails) {
-                receiptDetails.innerHTML = `
-                    <table>
-                        <tr><td>System Size:</td><td>${d.kw} KW</td></tr>
-                        <tr><td>Solar Panels:</td><td>${d.panels}</td></tr>
-                        <tr><td>Panel Spec:</td><td>${d.watt}</td></tr>
-                        <tr><td>Gen (Monthly):</td><td>${d.gen}</td></tr>
-                        <tr><td>Gen (Daily):</td><td>${d.daily}</td></tr>
-                        <tr><td>Roof Space:</td><td>${d.area} (${d.dim})</td></tr>
-                        <tr style="border-top:1px dashed #ccc;">
-                            <td style="padding-top:6px; font-weight:700;">Standard Price:</td>
-                            <td style="padding-top:6px;">${d.ndcr}</td>
-                        </tr>
-                        <tr style="color:#27ae60; font-weight:900;">
-                            <td>Subsidized Price:</td>
-                            <td>${d.dcr === 'N/A' ? '<span style="color:#e74c3c">N/A</span>' : d.dcr}</td>
-                        </tr>
-                        <tr style="border-top:1px dashed #ccc;">
-                            <td style="padding-top:6px;">Est. Savings:</td>
-                            <td style="padding-top:6px; font-weight:800;">${d.savings}</td>
-                        </tr>
-                    </table>
-                `;
+                receiptDetails.innerHTML = '';
+                const table = document.createElement('table');
+                
+                const addRow = (label, val, isBold = false, isGreen = false, isRed = false, hasBorderTop = false) => {
+                    const tr = document.createElement('tr');
+                    if (hasBorderTop) {
+                        tr.style.borderTop = '1px dashed #ccc';
+                    }
+                    if (isGreen) {
+                        tr.style.color = '#27ae60';
+                        tr.style.fontWeight = '900';
+                    }
+                    
+                    const tdLabel = document.createElement('td');
+                    tdLabel.textContent = label;
+                    if (hasBorderTop) {
+                        tdLabel.style.paddingTop = '6px';
+                    }
+                    if (isBold && !isGreen) {
+                        tdLabel.style.fontWeight = '700';
+                    }
+                    
+                    const tdVal = document.createElement('td');
+                    if (hasBorderTop) {
+                        tdVal.style.paddingTop = '6px';
+                    }
+                    if (isBold && !isGreen) {
+                        tdVal.style.fontWeight = '800';
+                    }
+                    
+                    if (isRed) {
+                        const span = document.createElement('span');
+                        span.style.color = '#e74c3c';
+                        span.textContent = val;
+                        tdVal.appendChild(span);
+                    } else {
+                        tdVal.textContent = val;
+                    }
+                    
+                    tr.appendChild(tdLabel);
+                    tr.appendChild(tdVal);
+                    table.appendChild(tr);
+                };
+
+                addRow('System Size:', `${d.kw} KW`);
+                addRow('Solar Panels:', d.panels.toString());
+                addRow('Panel Spec:', d.watt);
+                addRow('Gen (Monthly):', d.gen);
+                addRow('Gen (Daily):', d.daily);
+                addRow('Roof Space:', `${d.area} (${d.dim})`);
+                addRow('Standard Price:', d.ndcr, true, false, false, true);
+                if (d.dcr === 'N/A') {
+                    addRow('Subsidized Price:', 'N/A', false, false, true, false);
+                } else {
+                    addRow('Subsidized Price:', d.dcr, false, true, false, false);
+                }
+                addRow('Est. Savings:', d.savings, true, false, false, true);
+                
+                receiptDetails.appendChild(table);
             }
         }, 150);
     }
@@ -1157,17 +1215,14 @@ if (roiTariffInput) {
     updateSliderBackground(roiTariffInput);
 }
 
-// Performant Reveal-on-Scroll Observer (with reverse/reset support)
+// Performant Reveal-on-Scroll Observer (animates once to prevent CLS)
 const revealElements = document.querySelectorAll('.reveal-on-scroll');
 if (revealElements.length > 0) {
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('revealed');
-            } else {
-                // When scrolling back up, remove the class to reset the animation
-                // This makes the elements hide again and animate back in on next scroll
-                entry.target.classList.remove('revealed');
+                revealObserver.unobserve(entry.target);
             }
         });
     }, {
@@ -1258,16 +1313,40 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Dynamic Desktop/Tablet Video Loader to optimize Mobile Network Payload sizes
+
+// Hero Video: click/tap anywhere on hero to pause & play
 document.addEventListener('DOMContentLoaded', () => {
-    const heroVideo = document.getElementById('hero-video');
-    if (heroVideo && window.innerWidth >= 768) {
-        const source = document.createElement('source');
-        source.src = 'video/Wind_turbine_blades_rotate_slowly_202606031912.mp4';
-        source.type = 'video/mp4';
-        heroVideo.appendChild(source);
-        heroVideo.load();
+    const heroVideo     = document.getElementById('hero-video');
+    const heroTap       = document.getElementById('hero-video-tap');
+    const indicator     = document.getElementById('hero-video-indicator');
+    const indicatorIcon = document.getElementById('video-indicator-bx');
+
+    if (heroVideo) {
+        // Prevent right-click context menu on video
+        heroVideo.addEventListener('contextmenu', e => e.preventDefault());
+    }
+
+    if (heroTap && heroVideo && indicator && indicatorIcon) {
+        let indicatorTimer = null;
+
+        const flashIndicator = (isPaused) => {
+            indicatorIcon.className = isPaused ? 'bx bx-play' : 'bx bx-pause';
+            indicator.classList.add('show');
+            clearTimeout(indicatorTimer);
+            indicatorTimer = setTimeout(() => {
+                indicator.classList.remove('show');
+            }, 1200);
+        };
+
+        heroTap.addEventListener('click', () => {
+            if (heroVideo.paused) {
+                heroVideo.play().catch(() => {});
+                flashIndicator(false);
+            } else {
+                heroVideo.pause();
+                flashIndicator(true);
+            }
+        });
     }
 });
-
 

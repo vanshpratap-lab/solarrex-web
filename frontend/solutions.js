@@ -80,7 +80,6 @@ const solutionData = {
         calcLabel: 'Year 1 Tax Shield',
         sliderValues: [25, 40, 60, 80, 100],
         calculatorEngine: (kw) => {
-            // cost approx 40-45k/kw
             const costs = { 25: 1125000, 40: 1760000, 60: 2580000, 80: 3360000, 100: 4000000 };
             const cost = costs[kw] || (kw * 40000);
             const taxShield = Math.round(cost * 0.12); // standard first year depreciation tax shield (30% of 40%)
@@ -132,7 +131,6 @@ const solutionData = {
         calcLabel: 'Year 1 Tax Shield',
         sliderValues: [250, 500, 750, 1000, 2000],
         calculatorEngine: (kw) => {
-            // cost approx 35-39k/kw
             const costs = { 250: 9750000, 500: 19000000, 750: 27750000, 1000: 36000000, 2000: 70000000 };
             const cost = costs[kw] || (kw * 35000);
             const taxShield = Math.round(cost * 0.12);
@@ -229,12 +227,13 @@ const formatINR = (amount) => {
 
 // 3. Dynamic Page Builder
 document.addEventListener('DOMContentLoaded', () => {
-    // A. Parse query parameter
+    // A. Parse and whitelist query parameter
     const params = new URLSearchParams(window.location.search);
-    const type = params.get('type') || 'residential-solar';
+    const VALID = ['residential-solar', 'commercial-solar', 'industrial-solar', 'maintenance-support'];
+    const type = VALID.includes(params.get('type')) ? params.get('type') : 'residential-solar';
     
     // Find dataset
-    const data = solutionData[type] || solutionData['residential-solar'];
+    const data = solutionData[type];
     
     // B. Inject Text Contents
     document.title = `Solar Rex | ${data.title}`;
@@ -315,7 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
         clientCapacity.innerHTML = '';
         data.sliderValues.forEach(val => {
             const opt = document.createElement('option');
-            const unit = type === 'maintenance-support' ? 'kW System' : (type === 'industrial-solar' && val >= 1000 ? `${(val/1000).toFixed(1)} MW` : `${val} kW`);
+            const unit = type === 'maintenance-support' ? `${val} kW System` : (type === 'industrial-solar' && val >= 1000 ? `${(val/1000).toFixed(1)} MW` : `${val} kW`);
             opt.value = val;
             opt.textContent = unit;
             if (val === data.sliderValues[Math.floor(data.sliderValues.length / 2)]) {
@@ -344,27 +343,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const actualKw = data.sliderValues[sliderIndex];
         
         // Label display
-        const displayUnit = type === 'maintenance-support' ? 'kW System' : (type === 'industrial-solar' && actualKw >= 1000 ? `${(actualKw/1000).toFixed(1)} MW` : `${actualKw} kW`);
+        const displayUnit = type === 'maintenance-support' ? `${actualKw} kW System` : (type === 'industrial-solar' && actualKw >= 1000 ? `${(actualKw/1000).toFixed(1)} MW` : `${actualKw} kW`);
         if (kwValLabel) kwValLabel.textContent = displayUnit;
         
         // Calculations
-        const calcData = data.calculatorEngine(actualKw);
+        const calc = data.calculatorEngine(actualKw);
         
-        if (calcData.customFormat) {
-            // Industrial formatting (Lakhs and Crores)
-            const formatShort = (val) => {
-                if (val >= 10000000) return `₹${(val/10000000).toFixed(2)} Cr`;
-                return `₹${(val/100000).toFixed(1)} Lakhs`;
-            };
-            if (solCalcCost) solCalcCost.textContent = formatShort(calcData.cost);
-            if (solCalcSubsidy) solCalcSubsidy.textContent = formatShort(calcData.subsidy);
-            if (solCalcNet) solCalcNet.textContent = formatShort(calcData.net);
-        } else {
-            if (solCalcCost) solCalcCost.textContent = formatINR(calcData.cost);
-            if (solCalcSubsidy) solCalcSubsidy.textContent = formatINR(calcData.subsidy);
-            if (solCalcNet) solCalcNet.textContent = formatINR(calcData.net);
+        if (solCalcCost) {
+            solCalcCost.textContent = calc.customFormat ? calc.cost : formatINR(calc.cost);
         }
-        if (solCalcSavings) solCalcSavings.textContent = calcData.savings;
+        if (solCalcSubsidy) {
+            solCalcSubsidy.textContent = calc.customFormat ? calc.subsidy : formatINR(calc.subsidy);
+        }
+        if (solCalcNet) {
+            solCalcNet.textContent = calc.customFormat ? calc.net : formatINR(calc.net);
+        }
+        if (solCalcSavings) {
+            solCalcSavings.textContent = calc.savings;
+        }
         
         // Keep Inquiry form value synced
         if (clientCapacity) {
@@ -372,7 +368,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
     
-    if (kwSlider && ticksContainer) {
+    if (kwSlider) {
         kwSlider.min = 0;
         kwSlider.max = data.sliderValues.length - 1;
         kwSlider.step = 1;
@@ -385,7 +381,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ticksContainer.innerHTML = '';
         data.sliderValues.forEach((val, idx) => {
             const tick = document.createElement('span');
-            const unit = type === 'maintenance-support' ? 'kW' : (type === 'industrial-solar' ? (val >= 1000 ? `${(val/1000).toFixed(1)}M` : `${val}k`) : `${val}k`);
+            const unit = type === 'maintenance-support' ? `${val}k` : (type === 'industrial-solar' ? (val >= 1000 ? `${(val/1000).toFixed(0)}M` : `${val}k`) : `${val}k`);
             tick.textContent = unit;
             tick.addEventListener('click', () => {
                 kwSlider.value = idx;
@@ -398,25 +394,36 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCalculator();
     }
     
-    // H. Inject FAQs
+    // H. Inject FAQs securely with DOM API (fixes HIGH-03 innerHTML XSS)
     const solFaqContainer = document.getElementById('sol-faq-container');
     if (solFaqContainer) {
         solFaqContainer.innerHTML = '';
         data.faqs.forEach((faq, idx) => {
             const item = document.createElement('div');
             item.className = 'faq-item';
-            item.innerHTML = `
-                <button class="faq-question-btn">
-                    <span>${faq.q}</span>
-                    <i class='bx bx-chevron-down'></i>
-                </button>
-                <div class="faq-answer">
-                    <p>${faq.a}</p>
-                </div>
-            `;
+            
+            const btn = document.createElement('button');
+            btn.className = 'faq-question-btn';
+            
+            const qSpan = document.createElement('span');
+            qSpan.textContent = faq.q;
+            btn.appendChild(qSpan);
+            
+            const icon = document.createElement('i');
+            icon.className = 'bx bx-chevron-down';
+            btn.appendChild(icon);
+            
+            const answerDiv = document.createElement('div');
+            answerDiv.className = 'faq-answer';
+            
+            const answerP = document.createElement('p');
+            answerP.textContent = faq.a;
+            answerDiv.appendChild(answerP);
+            
+            item.appendChild(btn);
+            item.appendChild(answerDiv);
             
             // Accordion toggle behavior
-            const btn = item.querySelector('.faq-question-btn');
             btn.addEventListener('click', () => {
                 const isActive = item.classList.contains('active');
                 
@@ -432,17 +439,126 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // I. Setup Form Submissions
+    // I. Setup Form Submissions (fixes CRIT-02 - fake form submit)
     const inquiryForm = document.getElementById('sol-inquiry-form');
     const formSuccess = document.getElementById('form-success');
+    
     if (inquiryForm && formSuccess) {
-        inquiryForm.addEventListener('submit', (e) => {
+        const showFormError = (msg) => {
+            let errDiv = inquiryForm.querySelector('.form-error-banner');
+            if (!errDiv) {
+                errDiv = document.createElement('div');
+                errDiv.className = 'form-error-banner';
+                errDiv.style.color = '#ef4444';
+                errDiv.style.fontSize = '0.9rem';
+                errDiv.style.marginTop = '12px';
+                errDiv.style.padding = '10px';
+                errDiv.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+                errDiv.style.borderLeft = '4px solid #ef4444';
+                errDiv.style.borderRadius = '4px';
+                inquiryForm.appendChild(errDiv);
+            }
+            errDiv.innerHTML = msg.replace(/\n/g, '<br>');
+            errDiv.style.display = 'block';
+        };
+
+        const hideFormError = () => {
+            const errDiv = inquiryForm.querySelector('.form-error-banner');
+            if (errDiv) errDiv.style.display = 'none';
+        };
+
+        inquiryForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            // Fade form slightly and show successful state
-            inquiryForm.style.opacity = '0.3';
-            inquiryForm.style.pointerEvents = 'none';
-            formSuccess.classList.add('active');
+            const nameEl = document.getElementById('client-name');
+            const phoneEl = document.getElementById('client-phone');
+            const emailEl = document.getElementById('client-email');
+            const capacityEl = document.getElementById('client-capacity');
+            const messageEl = document.getElementById('client-message');
+            const typeEl = document.getElementById('form-solution-type');
+
+            const name = nameEl ? nameEl.value.trim() : '';
+            const phone = phoneEl ? phoneEl.value.trim() : '';
+            const email = emailEl ? emailEl.value.trim() : '';
+            const capacity = capacityEl ? capacityEl.value : '';
+            const message = messageEl ? messageEl.value.trim() : '';
+            const solutionType = typeEl ? typeEl.value : '';
+
+            const errors = [];
+            
+            // Client side validations
+            if (name.length < 3) {
+                errors.push("Name must be at least 3 characters.");
+            } else if (!/^[A-Za-z\s]+$/.test(name)) {
+                errors.push("Name must contain letters and spaces only.");
+            }
+
+            const cleanPhone = phone.replace(/[^\d]/g, '');
+            if (cleanPhone.length < 10) {
+                errors.push("Phone number must contain at least 10 digits.");
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                errors.push("Please enter a valid email address.");
+            }
+
+            if (errors.length > 0) {
+                showFormError(errors.join('\n'));
+                return;
+            }
+
+            // Build payload mapped to Google Sheets schema
+            const payload = {
+                Timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+                Category: `Solution Page Inquiry (${solutionType})`,
+                Name: name,
+                Email: email,
+                WhatsApp: phone,
+                Pincode: 'Inquiry Form',
+                HousingSociety: '',
+                CompanyName: '',
+                City: 'Solutions Detail Page',
+                Designation: '',
+                AverageMonthlyBill: `System capacity size selected: ${capacity} kW. Message: ${message}`
+            };
+
+            const submitBtn = inquiryForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn ? submitBtn.textContent : 'Send Request';
+            
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = 'Sending... <i class="bx bx-loader-alt bx-spin" style="margin-left: 8px;"></i>';
+            }
+
+            try {
+                hideFormError();
+                const response = await fetch('/api/submit-form', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+                
+                const result = await response.json();
+                if (response.ok && result.status === 'success') {
+                    inquiryForm.style.opacity = '0.1';
+                    inquiryForm.style.pointerEvents = 'none';
+                    formSuccess.classList.add('active');
+                    inquiryForm.reset();
+                } else {
+                    showFormError("Submission failed: " + (result.message || "Please check your network and try again."));
+                }
+            } catch (err) {
+                console.error("Inquiry form submit error:", err);
+                showFormError("Network error: Could not submit request. Please check your internet connection.");
+            } finally {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalBtnText;
+                }
+            }
         });
     }
     
@@ -476,15 +592,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // L. Scroll Reveal Observer binding
+    // L. Scroll Reveal Observer binding (fixes MED-05 layout jank on scroll up)
     const revealElements = document.querySelectorAll('.reveal-on-scroll');
     if (revealElements.length > 0) {
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('revealed');
-                } else {
-                    entry.target.classList.remove('revealed');
+                    revealObserver.unobserve(entry.target);
                 }
             });
         }, {

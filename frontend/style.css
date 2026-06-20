@@ -277,6 +277,50 @@ body {
     height: 100%;
     object-fit: cover;
     z-index: -2;
+    transition: opacity 0.4s ease;
+}
+
+/* Invisible click/tap overlay for video play/pause control */
+.hero-video-tap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    cursor: default;
+    background: transparent;
+}
+
+/* Subtle play/pause icon flash — not a player, just feedback */
+.hero-video-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.6);
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.hero-video-indicator.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+.hero-video-indicator-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+.hero-video-indicator-icon i {
+    font-size: 28px;
+    color: #fff;
 }
 
 .hero-overlay {
@@ -285,16 +329,17 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.65));
     z-index: -1;
 }
 
 .hero-content {
     color: var(--white);
     text-align: center;
-    z-index: 1;
+    z-index: 5;
     opacity: 0;
     animation: fadeIn 1.5s ease forwards, slideUp 1s cubic-bezier(0.23, 1, 0.32, 1) 0.3s both;
+    position: relative;
 }
 
 .hero-title {
@@ -1769,6 +1814,9 @@ body {
         border-radius: 30px;
         box-sizing: border-box;
     }
+    .hero-video {
+        display: block;
+    }
     .hero-tagline {
         display: none;
     }
@@ -1781,13 +1829,13 @@ body {
     .trust-banner {
         position: relative;
         margin-top: auto;
-        flex-wrap: nowrap;
-        justify-content: space-between;
+        flex-wrap: wrap;
+        justify-content: center;
         padding: 20px 3%;
-        gap: 10px;
+        gap: 20px 10px;
     }
     .trust-item {
-        flex: 1;
+        flex: 0 0 calc(50% - 10px);
         flex-direction: column;
         align-items: center;
         text-align: center;
@@ -1847,13 +1895,13 @@ body {
         box-sizing: border-box;
     }
     .trust-banner {
-        padding: 15px 2%;
-        flex-wrap: nowrap;
-        justify-content: space-between;
-        gap: 8px;
+        padding: 20px 2%;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px 8px;
     }
     .trust-item {
-        flex: 1;
+        flex: 0 0 calc(50% - 8px);
         flex-direction: column;
         align-items: center;
         text-align: center;
@@ -3450,13 +3498,18 @@ body {
     background: #021a36; /* Dark blue/black */
     color: #ffffff;
     border: none;
-    padding: 18px;
+    padding: 16px 24px;
     border-radius: 50px;
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-top: 10px;
+    margin-top: 15px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
 .btn-submit-contact:hover {

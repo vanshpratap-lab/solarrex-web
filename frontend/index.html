@@ -7,11 +7,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solar Rex | Sustainable Energy Solutions</title>
     <meta name="description" content="Solar Rex provides premium sustainable solar energy solutions for residential, commercial, and industrial roofs. Save on electricity bills with government subsidies.">
+    <meta name="theme-color" content="#f39c12">
+    <link rel="canonical" href="https://solarrex.in/">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://solarrex.in/">
+    <meta property="og:title" content="Solar Rex | Sustainable Energy Solutions">
+    <meta property="og:description" content="Solar Rex provides premium sustainable solar energy solutions for residential, commercial, and industrial roofs. Save on electricity bills with government subsidies.">
+    <meta property="og:image" content="https://solarrex.in/images/og-cover.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://solarrex.in/">
+    <meta property="twitter:title" content="Solar Rex | Sustainable Energy Solutions">
+    <meta property="twitter:description" content="Solar Rex provides premium sustainable solar energy solutions for residential, commercial, and industrial roofs. Save on electricity bills with government subsidies.">
+    <meta property="twitter:image" content="https://solarrex.in/images/og-cover.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Anton&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="/loading%20animation/loader.css">
+    <link rel="stylesheet" href="loading-animation/loader.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
@@ -65,16 +83,23 @@
     <main>
 
     <section class="hero">
-        <video autoplay muted loop playsinline class="hero-video" width="1920" height="1080" id="hero-video">
+        <video autoplay muted loop playsinline preload="auto" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" class="hero-video" width="1920" height="1080" id="hero-video">
+            <source src="/video/hero.mp4" type="video/mp4">
             <track kind="captions" src="data:text/vtt," srclang="en" label="English" default>
         </video>
+        <div class="hero-video-tap" id="hero-video-tap" aria-label="Toggle video playback"></div>
+        <div class="hero-video-indicator" id="hero-video-indicator">
+            <div class="hero-video-indicator-icon" id="hero-video-indicator-icon">
+                <i class='bx bx-pause' id="video-indicator-bx"></i>
+            </div>
+        </div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1 class="hero-title">SOLAR REX</h1>
             <p class="hero-tagline">trust that brings light to your home</p>
             <div class="hero-buttons">
-                <a href="#" class="btn-primary">Get Free Quote</a>
-                <a href="#" class="btn-secondary">Explore Solutions</a>
+                <a href="#section-6" class="btn-primary header-nav-link" data-target="section-6">Get Free Quote</a>
+                <a href="solutions.html" class="btn-secondary magic-button">Explore Solutions</a>
             </div>
         </div>
         <div class="scroll-indicator">
@@ -462,7 +487,7 @@
                 </div>
                 <!-- Waaree -->
                 <div class="partner-box">
-                    <img src="images/partners/waaree.png" alt="Waaree Energies Logo" width="1547" height="454" loading="lazy">
+                    <img src="images/partners/waaree.png" alt="Waaree Energies Logo" width="300" height="88" loading="lazy">
                 </div>
                 <!-- Vikram Solar -->
                 <div class="partner-box">
@@ -470,15 +495,15 @@
                 </div>
                 <!-- Havells -->
                 <div class="partner-box">
-                    <img src="images/partners/havells.png" alt="Havells India Logo" width="1552" height="270" loading="lazy">
+                    <img src="images/partners/havells.png" alt="Havells India Logo" width="300" height="52" loading="lazy">
                 </div>
                 <!-- Luminous -->
                 <div class="partner-box">
-                    <img src="images/partners/luminous.png" alt="Luminous Power Technologies Logo" width="1280" height="800" loading="lazy">
+                    <img src="images/partners/luminous.png" alt="Luminous Power Technologies Logo" width="300" height="187" loading="lazy">
                 </div>
                 <!-- Polycab -->
                 <div class="partner-box">
-                    <img src="images/partners/polycab.png" alt="Polycab India Logo" width="1549" height="420" loading="lazy">
+                    <img src="images/partners/polycab.png" alt="Polycab India Logo" width="300" height="81" loading="lazy">
                 </div>
                 <!-- Adani Solar -->
                 <div class="partner-box">
@@ -492,7 +517,7 @@
                 </div>
                 <!-- Waaree -->
                 <div class="partner-box">
-                    <img src="images/partners/waaree.png" alt="Waaree Energies Logo" width="1547" height="454" loading="lazy">
+                    <img src="images/partners/waaree.png" alt="Waaree Energies Logo" width="300" height="88" loading="lazy">
                 </div>
                 <!-- Vikram Solar -->
                 <div class="partner-box">
@@ -500,15 +525,15 @@
                 </div>
                 <!-- Havells -->
                 <div class="partner-box">
-                    <img src="images/partners/havells.png" alt="Havells India Logo" width="1552" height="270" loading="lazy">
+                    <img src="images/partners/havells.png" alt="Havells India Logo" width="300" height="52" loading="lazy">
                 </div>
                 <!-- Luminous -->
                 <div class="partner-box">
-                    <img src="images/partners/luminous.png" alt="Luminous Power Technologies Logo" width="1280" height="800" loading="lazy">
+                    <img src="images/partners/luminous.png" alt="Luminous Power Technologies Logo" width="300" height="187" loading="lazy">
                 </div>
                 <!-- Polycab -->
                 <div class="partner-box">
-                    <img src="images/partners/polycab.png" alt="Polycab India Logo" width="1549" height="420" loading="lazy">
+                    <img src="images/partners/polycab.png" alt="Polycab India Logo" width="300" height="81" loading="lazy">
                 </div>
                 <!-- Adani Solar -->
                 <div class="partner-box">
@@ -528,7 +553,7 @@
         <div class="cs-filter-tabs reveal-on-scroll reveal-fade">
             <div class="cs-tab active" data-filter="all">All</div>
             <div class="cs-tab" data-filter="installation">Installation</div>
-            <div class="cs-tab" data-filter="maintainance">Maintainance</div>
+            <div class="cs-tab" data-filter="maintenance">Maintenance</div>
             <div class="cs-tab" data-filter="powergrid">Power grid</div>
             <div class="cs-tab" data-filter="repair">Repair</div>
         </div>
@@ -543,10 +568,10 @@
                 </div>
             </div>
             <!-- Card 2 -->
-            <div class="cs-card" data-category="maintainance">
+            <div class="cs-card" data-category="maintenance">
                 <img src="images/calculators/cs_maint_check.png" alt="Solar Panels Maintenance Check" width="1024" height="1024" loading="lazy">
                 <div class="cs-overlay">
-                    <h3>Panel Maintainance</h3>
+                    <h3>Panel Maintenance</h3>
                     <p>Routine Checkup</p>
                 </div>
             </div>
@@ -575,7 +600,7 @@
                 </div>
             </div>
             <!-- Card 6 -->
-            <div class="cs-card" data-category="maintainance">
+            <div class="cs-card" data-category="maintenance">
                 <img src="images/calculators/cs_eff_audit.png" alt="Solar System Efficiency Performance Audit" width="1024" height="1024" loading="lazy">
                 <div class="cs-overlay">
                     <h3>Efficiency Audit</h3>
@@ -899,7 +924,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="submit-btn-new">
+                    <button type="submit" class="btn-submit-contact">
                         <span>Submit Details</span>
                         <i class='bx bx-right-arrow-alt'></i>
                     </button>
@@ -1280,7 +1305,7 @@
 
     <div class="page-transition-curtain" id="page-curtain"></div>
 
-    <script src="/loading%20animation/loader.js"></script>
+    <script type="module" src="loading-animation/loader.js"></script>
     <script type="module" src="script.js"></script>
 </body>
 
