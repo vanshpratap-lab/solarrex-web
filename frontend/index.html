@@ -6,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solar Rex | Sustainable Energy Solutions</title>
+    <meta name="description" content="Solar Rex provides premium sustainable solar energy solutions for residential, commercial, and industrial roofs. Save on electricity bills with government subsidies.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Anton&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="/loading%20animation/loader.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -58,11 +62,11 @@
         </div>
     </nav>
 
-
+    <main>
 
     <section class="hero">
-        <video autoplay muted loop playsinline class="hero-video">
-            <source src="video/Wind_turbine_blades_rotate_slowly_202606031912.mp4" type="video/mp4">
+        <video autoplay muted loop playsinline class="hero-video" width="1920" height="1080" id="hero-video">
+            <track kind="captions" src="data:text/vtt," srclang="en" label="English" default>
         </video>
         <div class="hero-overlay"></div>
         <div class="hero-content">
@@ -81,25 +85,25 @@
         <div class="trust-banner">
             <div class="trust-item">
                 <div class="trust-icon-wrapper">
-                    <img src="images/trust/trust_customers.png" alt="Happy Customers">
+                    <img src="images/trust/trust_customers.png" alt="Happy Customers" width="1024" height="1024">
                 </div>
                 <span class="trust-title">Happy Customers</span>
             </div>
             <div class="trust-item">
                 <div class="trust-icon-wrapper">
-                    <img src="images/trust/trust_india.png" alt="Proudly Made In India">
+                    <img src="images/trust/trust_india.png" alt="Proudly Made In India" width="1024" height="1024">
                 </div>
                 <span class="trust-title">Proudly Made In India</span>
             </div>
             <div class="trust-item">
                 <div class="trust-icon-wrapper">
-                    <img src="images/trust/trust_install.png" alt="Install Under 48 Hours">
+                    <img src="images/trust/trust_install.png" alt="Install Under 48 Hours" width="1024" height="1024">
                 </div>
                 <span class="trust-title">Install Under 48 Hours</span>
             </div>
             <div class="trust-item">
                 <div class="trust-icon-wrapper">
-                    <img src="images/trust/trust_materials.png" alt="Top Grade Materials">
+                    <img src="images/trust/trust_materials.png" alt="Top Grade Materials" width="1024" height="1024">
                 </div>
                 <span class="trust-title">Top Grade Materials</span>
             </div>
@@ -123,12 +127,12 @@
             </div>
             <form class="mini-form">
                 <div class="mini-input-group">
-                    <label>Name</label>
-                    <input type="text" name="name" placeholder="Full Name" required>
+                    <label for="mini-name">Name</label>
+                    <input type="text" id="mini-name" name="name" placeholder="Full Name" required>
                 </div>
                 <div class="mini-input-group">
-                    <label>Email</label>
-                    <input type="email" name="email" placeholder="email@example.com" required>
+                    <label for="mini-email">Email</label>
+                    <input type="email" id="mini-email" name="email" placeholder="email@example.com" required>
                 </div>
                 <button type="submit" class="mini-btn">
                     <span>Fast Quote</span>
@@ -152,18 +156,18 @@
                             <li><i class='bx bx-check'></i> Smart Mobile Monitoring</li>
                             <li><i class='bx bx-check'></i> 25-Year Performance Warranty</li>
                         </ul>
-                        <a href="/solutions?type=residential-solar" class="magic-button">
+                        <a href="/solutions?type=residential-solar" class="magic-button" aria-label="Learn more about Residential Solar Energy Solutions">
                             <div class="button__content">
                                 <span class="button__text">Learn More</span>
                                 <div class="button__reflection-1"></div>
                                 <div class="button__reflection-2"></div>
                             </div>
-                            <img src="Magic Animation Button/star.png" alt="" class="button__star-1">
-                            <img src="Magic Animation Button/star.png" alt="" class="button__star-2">
-                            <img src="Magic Animation Button/circle.png" alt="" class="button__circle-1">
-                            <img src="Magic Animation Button/circle.png" alt="" class="button__circle-2">
-                            <img src="Magic Animation Button/diamond.png" alt="" class="button__diamond">
-                            <img src="Magic Animation Button/triangle.png" alt="" class="button__triangle">
+                            <img src="Magic Animation Button/star.png" alt="" class="button__star-1" width="14" height="14">
+                            <img src="Magic Animation Button/star.png" alt="" class="button__star-2" width="14" height="14">
+                            <img src="Magic Animation Button/circle.png" alt="" class="button__circle-1" width="14" height="14">
+                            <img src="Magic Animation Button/circle.png" alt="" class="button__circle-2" width="14" height="14">
+                            <img src="Magic Animation Button/diamond.png" alt="" class="button__diamond" width="10" height="10">
+                            <img src="Magic Animation Button/triangle.png" alt="" class="button__triangle" width="10" height="10">
                             <div class="button__shadow"></div>
                         </a>
                     </div>
@@ -176,18 +180,18 @@
                             <li><i class='bx bx-check'></i> Federal Tax Incentives</li>
                             <li><i class='bx bx-check'></i> Scalable Energy Architecture</li>
                         </ul>
-                        <a href="/solutions?type=commercial-solar" class="magic-button">
+                        <a href="/solutions?type=commercial-solar" class="magic-button" aria-label="Learn more about Commercial Solar Systems">
                             <div class="button__content">
                                 <span class="button__text">Learn More</span>
                                 <div class="button__reflection-1"></div>
                                 <div class="button__reflection-2"></div>
                             </div>
-                            <img src="Magic Animation Button/star.png" alt="" class="button__star-1">
-                            <img src="Magic Animation Button/star.png" alt="" class="button__star-2">
-                            <img src="Magic Animation Button/circle.png" alt="" class="button__circle-1">
-                            <img src="Magic Animation Button/circle.png" alt="" class="button__circle-2">
-                            <img src="Magic Animation Button/diamond.png" alt="" class="button__diamond">
-                            <img src="Magic Animation Button/triangle.png" alt="" class="button__triangle">
+                            <img src="Magic Animation Button/star.png" alt="" class="button__star-1" width="14" height="14">
+                            <img src="Magic Animation Button/star.png" alt="" class="button__star-2" width="14" height="14">
+                            <img src="Magic Animation Button/circle.png" alt="" class="button__circle-1" width="14" height="14">
+                            <img src="Magic Animation Button/circle.png" alt="" class="button__circle-2" width="14" height="14">
+                            <img src="Magic Animation Button/diamond.png" alt="" class="button__diamond" width="10" height="10">
+                            <img src="Magic Animation Button/triangle.png" alt="" class="button__triangle" width="10" height="10">
                             <div class="button__shadow"></div>
                         </a>
                     </div>
@@ -200,18 +204,18 @@
                             <li><i class='bx bx-check'></i> Microgrid Integration</li>
                             <li><i class='bx bx-check'></i> Carbon Offset Optimization</li>
                         </ul>
-                        <a href="/solutions?type=industrial-solar" class="magic-button">
+                        <a href="/solutions?type=industrial-solar" class="magic-button" aria-label="Learn more about Industrial Grid-Scale Solar Solutions">
                             <div class="button__content">
                                 <span class="button__text">Learn More</span>
                                 <div class="button__reflection-1"></div>
                                 <div class="button__reflection-2"></div>
                             </div>
-                            <img src="Magic Animation Button/star.png" alt="" class="button__star-1">
-                            <img src="Magic Animation Button/star.png" alt="" class="button__star-2">
-                            <img src="Magic Animation Button/circle.png" alt="" class="button__circle-1">
-                            <img src="Magic Animation Button/circle.png" alt="" class="button__circle-2">
-                            <img src="Magic Animation Button/diamond.png" alt="" class="button__diamond">
-                            <img src="Magic Animation Button/triangle.png" alt="" class="button__triangle">
+                            <img src="Magic Animation Button/star.png" alt="" class="button__star-1" width="14" height="14">
+                            <img src="Magic Animation Button/star.png" alt="" class="button__star-2" width="14" height="14">
+                            <img src="Magic Animation Button/circle.png" alt="" class="button__circle-1" width="14" height="14">
+                            <img src="Magic Animation Button/circle.png" alt="" class="button__circle-2" width="14" height="14">
+                            <img src="Magic Animation Button/diamond.png" alt="" class="button__diamond" width="10" height="10">
+                            <img src="Magic Animation Button/triangle.png" alt="" class="button__triangle" width="10" height="10">
                             <div class="button__shadow"></div>
                         </a>
                     </div>
@@ -224,18 +228,18 @@
                             <li><i class='bx bx-check'></i> Annual Health Checks</li>
                             <li><i class='bx bx-check'></i> Priority Technical Support</li>
                         </ul>
-                        <a href="/solutions?type=maintenance-support" class="magic-button">
+                        <a href="/solutions?type=maintenance-support" class="magic-button" aria-label="Learn more about Solar Maintenance and Support Plans">
                             <div class="button__content">
                                 <span class="button__text">Learn More</span>
                                 <div class="button__reflection-1"></div>
                                 <div class="button__reflection-2"></div>
                             </div>
-                            <img src="Magic Animation Button/star.png" alt="" class="button__star-1">
-                            <img src="Magic Animation Button/star.png" alt="" class="button__star-2">
-                            <img src="Magic Animation Button/circle.png" alt="" class="button__circle-1">
-                            <img src="Magic Animation Button/circle.png" alt="" class="button__circle-2">
-                            <img src="Magic Animation Button/diamond.png" alt="" class="button__diamond">
-                            <img src="Magic Animation Button/triangle.png" alt="" class="button__triangle">
+                            <img src="Magic Animation Button/star.png" alt="" class="button__star-1" width="14" height="14">
+                            <img src="Magic Animation Button/star.png" alt="" class="button__star-2" width="14" height="14">
+                            <img src="Magic Animation Button/circle.png" alt="" class="button__circle-1" width="14" height="14">
+                            <img src="Magic Animation Button/circle.png" alt="" class="button__circle-2" width="14" height="14">
+                            <img src="Magic Animation Button/diamond.png" alt="" class="button__diamond" width="10" height="10">
+                            <img src="Magic Animation Button/triangle.png" alt="" class="button__triangle" width="10" height="10">
                             <div class="button__shadow"></div>
                         </a>
                     </div>
@@ -247,22 +251,22 @@
                     <div class="img-slider">
                         <div class="img-item active" style="--i:1;">
                             <div class="item">
-                                <img src="images/decorations/img1.png">
+                                <img src="images/decorations/img1.png" alt="Residential Solar Panel Installation on Roof" width="1024" height="1024" loading="lazy">
                             </div>
                         </div>
                         <div class="img-item" style="--i:2;">
                             <div class="item">
-                                <img src="images/decorations/img2.png">
+                                <img src="images/decorations/img2.png" alt="Commercial Solar Systems Layout" width="1024" height="1024" loading="lazy">
                             </div>
                         </div>
                         <div class="img-item" style="--i:3;">
                             <div class="item">
-                                <img src="images/decorations/img3.png">
+                                <img src="images/decorations/img3.png" alt="Industrial Solar Panels Array" width="1024" height="1024" loading="lazy">
                             </div>
                         </div>
                         <div class="img-item" style="--i:4;">
                             <div class="item">
-                                <img src="images/decorations/img4.png">
+                                <img src="images/decorations/img4.png" alt="Solar Technician Performing Maintenance Check" width="1024" height="1024" loading="lazy">
                             </div>
                         </div>
                     </div>
@@ -301,7 +305,7 @@
                             <figcaption>
                                 We utilize top-grade Mono PERC Half-Cut panels (540W - 620W), delivering maximum power generation in minimal roof space.
                             </figcaption>
-                            <a href="#" class="info-hub-trigger" data-hub-tab="tech" title="Read More">
+                            <a href="#" class="info-hub-trigger" data-hub-tab="tech" title="Read More" aria-label="Read more about Premium Panels Technology">
                                 <em>Explore Tech</em>
                                 <i>&#10095;&#10095;</i>
                             </a>
@@ -317,7 +321,7 @@
                             <figcaption>
                                 Take full advantage of massive Government Subsidies on our DCR solar systems. You can save up to ₹78,000 on your home installation.
                             </figcaption>
-                            <a href="#" class="info-hub-trigger" data-hub-tab="savings" title="Read More">
+                            <a href="#" class="info-hub-trigger" data-hub-tab="savings" title="Read More" aria-label="Read more about DCR Subsidy Savings">
                                 <em>View Savings</em>
                                 <i>&#10095;&#10095;</i>
                             </a>
@@ -333,7 +337,7 @@
                             <figcaption>
                                 Slash your electricity bills completely. Our highest-yield systems generate up to 1,950 units per month, saving you up to ₹18,000 monthly!
                             </figcaption>
-                            <a href="#" class="info-hub-trigger" data-hub-tab="roi" title="Read More">
+                            <a href="#" class="info-hub-trigger" data-hub-tab="roi" title="Read More" aria-label="Read more about Maximum ROI and Yield Analysis">
                                 <em>Calculate ROI</em>
                                 <i>&#10095;&#10095;</i>
                             </a>
@@ -383,7 +387,7 @@
             <!-- Center Column: Pill Image -->
             <div class="operations-center reveal-on-scroll reveal-from-bottom">
                 <div class="pill-image-wrapper">
-                    <img src="images/decorations/operations_hero.png" alt="Solar Rex Professional Engineer">
+                    <img src="images/decorations/operations_hero.png" alt="Solar Rex Professional Engineer inspecting rooftop installation" width="1024" height="1024" loading="lazy">
                 </div>
             </div>
 
@@ -454,61 +458,61 @@
                 <!-- Original Set -->
                 <!-- Tata Power Solar -->
                 <div class="partner-box">
-                    <img src="images/partners/tata_power_solar.jpg" alt="Tata Power Solar">
+                    <img src="images/partners/tata_power_solar.jpg" alt="Tata Power Solar Logo" width="182" height="27" loading="lazy">
                 </div>
                 <!-- Waaree -->
                 <div class="partner-box">
-                    <img src="images/partners/waaree.png" alt="Waaree Energies">
+                    <img src="images/partners/waaree.png" alt="Waaree Energies Logo" width="1547" height="454" loading="lazy">
                 </div>
                 <!-- Vikram Solar -->
                 <div class="partner-box">
-                    <img src="images/partners/vikram_solar.webp" alt="Vikram Solar">
+                    <img src="images/partners/vikram_solar.webp" alt="Vikram Solar Logo" width="200" height="50" loading="lazy">
                 </div>
                 <!-- Havells -->
                 <div class="partner-box">
-                    <img src="images/partners/havells.png" alt="Havells India">
+                    <img src="images/partners/havells.png" alt="Havells India Logo" width="1552" height="270" loading="lazy">
                 </div>
                 <!-- Luminous -->
                 <div class="partner-box">
-                    <img src="images/partners/luminous.png" alt="Luminous Power Technologies">
+                    <img src="images/partners/luminous.png" alt="Luminous Power Technologies Logo" width="1280" height="800" loading="lazy">
                 </div>
                 <!-- Polycab -->
                 <div class="partner-box">
-                    <img src="images/partners/polycab.png" alt="Polycab India">
+                    <img src="images/partners/polycab.png" alt="Polycab India Logo" width="1549" height="420" loading="lazy">
                 </div>
                 <!-- Adani Solar -->
                 <div class="partner-box">
-                    <img src="images/partners/adani_green.png" alt="Adani Solar">
+                    <img src="images/partners/adani_green.png" alt="Adani Solar Logo" width="251" height="45" loading="lazy">
                 </div>
 
                 <!-- Duplicate Set for continuous scrolling -->
                 <!-- Tata Power Solar -->
                 <div class="partner-box">
-                    <img src="images/partners/tata_power_solar.jpg" alt="Tata Power Solar">
+                    <img src="images/partners/tata_power_solar.jpg" alt="Tata Power Solar Logo" width="182" height="27" loading="lazy">
                 </div>
                 <!-- Waaree -->
                 <div class="partner-box">
-                    <img src="images/partners/waaree.png" alt="Waaree Energies">
+                    <img src="images/partners/waaree.png" alt="Waaree Energies Logo" width="1547" height="454" loading="lazy">
                 </div>
                 <!-- Vikram Solar -->
                 <div class="partner-box">
-                    <img src="images/partners/vikram_solar.webp" alt="Vikram Solar">
+                    <img src="images/partners/vikram_solar.webp" alt="Vikram Solar Logo" width="200" height="50" loading="lazy">
                 </div>
                 <!-- Havells -->
                 <div class="partner-box">
-                    <img src="images/partners/havells.png" alt="Havells India">
+                    <img src="images/partners/havells.png" alt="Havells India Logo" width="1552" height="270" loading="lazy">
                 </div>
                 <!-- Luminous -->
                 <div class="partner-box">
-                    <img src="images/partners/luminous.png" alt="Luminous Power Technologies">
+                    <img src="images/partners/luminous.png" alt="Luminous Power Technologies Logo" width="1280" height="800" loading="lazy">
                 </div>
                 <!-- Polycab -->
                 <div class="partner-box">
-                    <img src="images/partners/polycab.png" alt="Polycab India">
+                    <img src="images/partners/polycab.png" alt="Polycab India Logo" width="1549" height="420" loading="lazy">
                 </div>
                 <!-- Adani Solar -->
                 <div class="partner-box">
-                    <img src="images/partners/adani_green.png" alt="Adani Solar">
+                    <img src="images/partners/adani_green.png" alt="Adani Solar Logo" width="251" height="45" loading="lazy">
                 </div>
             </div>
         </div>
@@ -532,7 +536,7 @@
         <div class="cs-grid reveal-on-scroll reveal-from-bottom">
             <!-- Card 1 -->
             <div class="cs-card" data-category="installation">
-                <img src="images/calculators/cs_install_comm.png" alt="Solar Panels">
+                <img src="images/calculators/cs_install_comm.png" alt="Commercial Solar Installation Grid" width="1024" height="1024" loading="lazy">
                 <div class="cs-overlay">
                     <h3>Solar Installation</h3>
                     <p>Commercial Plant</p>
@@ -540,7 +544,7 @@
             </div>
             <!-- Card 2 -->
             <div class="cs-card" data-category="maintainance">
-                <img src="images/calculators/cs_maint_check.png" alt="Workers on building">
+                <img src="images/calculators/cs_maint_check.png" alt="Solar Panels Maintenance Check" width="1024" height="1024" loading="lazy">
                 <div class="cs-overlay">
                     <h3>Panel Maintainance</h3>
                     <p>Routine Checkup</p>
@@ -548,7 +552,7 @@
             </div>
             <!-- Card 3 -->
             <div class="cs-card" data-category="installation">
-                <img src="images/calculators/cs_rooftop_res.png" alt="Solar workers">
+                <img src="images/calculators/cs_rooftop_res.png" alt="Residential Solar Rooftop System" width="1024" height="1024" loading="lazy">
                 <div class="cs-overlay">
                     <h3>Rooftop Solar</h3>
                     <p>Residential Setup</p>
@@ -556,7 +560,7 @@
             </div>
             <!-- Card 4 -->
             <div class="cs-card" data-category="powergrid">
-                <img src="images/calculators/cs_power_grid.png" alt="Power Lines">
+                <img src="images/calculators/cs_power_grid.png" alt="Solar Microgrid Power Connection" width="1024" height="1024" loading="lazy">
                 <div class="cs-overlay">
                     <h3>Power Grid</h3>
                     <p>High Voltage Line</p>
@@ -564,7 +568,7 @@
             </div>
             <!-- Card 5 -->
             <div class="cs-card" data-category="repair">
-                <img src="images/calculators/cs_inverter_repair.png" alt="Engineer inspecting solar">
+                <img src="images/calculators/cs_inverter_repair.png" alt="Solar Inverter Repair and Diagnostics" width="1024" height="1024" loading="lazy">
                 <div class="cs-overlay">
                     <h3>Inverter Repair</h3>
                     <p>System Diagnostics</p>
@@ -572,7 +576,7 @@
             </div>
             <!-- Card 6 -->
             <div class="cs-card" data-category="maintainance">
-                <img src="images/calculators/cs_eff_audit.png" alt="Solar installation roof">
+                <img src="images/calculators/cs_eff_audit.png" alt="Solar System Efficiency Performance Audit" width="1024" height="1024" loading="lazy">
                 <div class="cs-overlay">
                     <h3>Efficiency Audit</h3>
                     <p>Performance Testing</p>
@@ -604,6 +608,7 @@
                     <!-- Slider -->
                     <div class="slider-box-new">
                         <div class="range-container">
+                            <label for="kw-slider" class="visually-hidden" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">System Size kW</label>
                             <input type="range" id="kw-slider" min="0" max="10" step="1" value="10">
                             <div class="range-labels">
                                 <span>3KW</span>
@@ -784,18 +789,18 @@
                     <!-- RESIDENTIAL FORM -->
                     <div id="form-residential" class="form-group-section active">
                         <div class="input-group">
-                            <label>Full Name <span class="required">*</span></label>
-                            <input type="text" name="full_name" required>
+                            <label for="res-full-name">Full Name <span class="required">*</span></label>
+                            <input type="text" id="res-full-name" name="full_name" required>
                         </div>
 
                         <div class="form-row">
                             <div class="input-group">
-                                <label>WhatsApp number <span class="required">*</span></label>
-                                <input type="tel" name="whatsapp" required>
+                                <label for="res-whatsapp">WhatsApp number <span class="required">*</span></label>
+                                <input type="tel" id="res-whatsapp" name="whatsapp" required>
                             </div>
                             <div class="input-group">
-                                <label>Pin code <span class="required">*</span></label>
-                                <input type="text" name="pincode" required>
+                                <label for="res-pincode">Pin code <span class="required">*</span></label>
+                                <input type="text" id="res-pincode" name="pincode" required>
                             </div>
                         </div>
 
@@ -814,28 +819,28 @@
                     <!-- HOUSING SOCIETY FORM -->
                     <div id="form-housing" class="form-group-section">
                         <div class="input-group">
-                            <label>Full Name <span class="required">*</span></label>
-                            <input type="text" name="full_name" required>
+                            <label for="housing-full-name">Full Name <span class="required">*</span></label>
+                            <input type="text" id="housing-full-name" name="full_name" required>
                         </div>
 
                         <div class="input-group">
-                            <label>Name of Housing Society <span class="required">*</span></label>
-                            <input type="text" name="society_name" required>
+                            <label for="housing-society-name">Name of Housing Society <span class="required">*</span></label>
+                            <input type="text" id="housing-society-name" name="society_name" required>
                         </div>
 
                         <div class="input-group">
-                            <label>Pin code <span class="required">*</span></label>
-                            <input type="text" name="pincode" required>
+                            <label for="housing-pincode">Pin code <span class="required">*</span></label>
+                            <input type="text" id="housing-pincode" name="pincode" required>
                         </div>
 
                         <div class="form-row">
                             <div class="input-group">
-                                <label>WhatsApp number <span class="required">*</span></label>
-                                <input type="tel" name="whatsapp" required>
+                                <label for="housing-whatsapp">WhatsApp number <span class="required">*</span></label>
+                                <input type="tel" id="housing-whatsapp" name="whatsapp" required>
                             </div>
                             <div class="input-group">
-                                <label>Monthly Electricity Bill <span class="required">*</span></label>
-                                <select name="monthly_bill_housing" required class="custom-select">
+                                <label for="housing-monthly-bill">Monthly Electricity Bill <span class="required">*</span></label>
+                                <select id="housing-monthly-bill" name="monthly_bill_housing" required class="custom-select">
                                     <option>0 - 50000</option>
                                     <option>50000 - 100000</option>
                                     <option>100000+</option>
@@ -857,47 +862,53 @@
                     <!-- COMMERCIAL FORM -->
                     <div id="form-commercial" class="form-group-section">
                         <div class="input-group">
-                            <label>Full Name <span class="required">*</span></label>
-                            <input type="text" name="full_name" required>
+                            <label for="commercial-full-name">Full Name <span class="required">*</span></label>
+                            <input type="text" id="commercial-full-name" name="full_name" required>
                         </div>
 
                         <div class="input-group">
-                            <label>Company Name <span class="required">*</span></label>
-                            <input type="text" name="company_name" required>
+                            <label for="commercial-company-name">Company Name <span class="required">*</span></label>
+                            <input type="text" id="commercial-company-name" name="company_name" required>
                         </div>
 
                         <div class="form-row">
                             <div class="input-group">
-                                <label>City <span class="required">*</span></label>
-                                <input type="text" name="city" required>
+                                <label for="commercial-city">City <span class="required">*</span></label>
+                                <input type="text" id="commercial-city" name="city" required>
                             </div>
                             <div class="input-group">
-                                <label>Pin code <span class="required">*</span></label>
-                                <input type="text" name="pincode" required>
+                                <label for="commercial-pincode">Pin code <span class="required">*</span></label>
+                                <input type="text" id="commercial-pincode" name="pincode" required>
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="input-group">
-                                <label>WhatsApp number <span class="required">*</span></label>
-                                <input type="tel" name="whatsapp" required>
+                                <label for="commercial-whatsapp">WhatsApp number <span class="required">*</span></label>
+                                <input type="tel" id="commercial-whatsapp" name="whatsapp" required>
                             </div>
                             <div class="input-group">
-                                <label>Average Monthly Bill <span class="required">*</span></label>
-                                <select name="monthly_bill_commercial" required class="custom-select">
+                                <label for="commercial-monthly-bill">Average Monthly Bill <span class="required">*</span></label>
+                                <select id="commercial-monthly-bill" name="monthly_bill_commercial" required class="custom-select">
                                     <option>Select amount</option>
                                     <option>Less than ₹10,000</option>
                                     <option>₹10,000 - ₹50,000</option>
-                                    <option>More than ₹50,000</option>
+                                    <option>₹50,000 - ₹1,00,000</option>
+                                    <option>More than ₹1,00,000</option>
                                 </select>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn-submit-contact">Submit Details</button>
+                    <button type="submit" class="submit-btn-new">
+                        <span>Submit Details</span>
+                        <i class='bx bx-right-arrow-alt'></i>
+                    </button>
                 </form>
             </div>
         </div>
     </section>
+
+    </main>
 
     <!-- Full Professional Footer -->
     <footer class="footer">
@@ -980,18 +991,18 @@
                 <!-- RESIDENTIAL FORM -->
                 <div id="form-modal-residential" class="form-group-section active">
                     <div class="input-group">
-                        <label>Full Name <span class="required">*</span></label>
-                        <input type="text" name="full_name" required>
+                        <label for="modal-res-full-name">Full Name <span class="required">*</span></label>
+                        <input type="text" id="modal-res-full-name" name="full_name" required>
                     </div>
 
                     <div class="form-row">
                         <div class="input-group">
-                            <label>WhatsApp number <span class="required">*</span></label>
-                            <input type="tel" name="whatsapp" required>
+                            <label for="modal-res-whatsapp">WhatsApp number <span class="required">*</span></label>
+                            <input type="tel" id="modal-res-whatsapp" name="whatsapp" required>
                         </div>
                         <div class="input-group">
-                            <label>Pin code <span class="required">*</span></label>
-                            <input type="text" name="pincode" required>
+                            <label for="modal-res-pincode">Pin code <span class="required">*</span></label>
+                            <input type="text" id="modal-res-pincode" name="pincode" required>
                         </div>
                     </div>
 
@@ -1008,23 +1019,23 @@
                 <!-- HOUSING SOCIETY FORM -->
                 <div id="form-modal-housing" class="form-group-section">
                     <div class="input-group">
-                        <label>Full Name <span class="required">*</span></label>
-                        <input type="text" name="full_name" required>
+                        <label for="modal-housing-full-name">Full Name <span class="required">*</span></label>
+                        <input type="text" id="modal-housing-full-name" name="full_name" required>
                     </div>
 
                     <div class="input-group">
-                        <label>Name of Housing Society <span class="required">*</span></label>
-                        <input type="text" name="society_name" required>
+                        <label for="modal-housing-society-name">Name of Housing Society <span class="required">*</span></label>
+                        <input type="text" id="modal-housing-society-name" name="society_name" required>
                     </div>
 
                     <div class="form-row">
                         <div class="input-group">
-                            <label>WhatsApp number <span class="required">*</span></label>
-                            <input type="tel" name="whatsapp" required>
+                            <label for="modal-housing-whatsapp">WhatsApp number <span class="required">*</span></label>
+                            <input type="tel" id="modal-housing-whatsapp" name="whatsapp" required>
                         </div>
                         <div class="input-group">
-                            <label>Pin code <span class="required">*</span></label>
-                            <input type="text" name="pincode" required>
+                            <label for="modal-housing-pincode">Pin code <span class="required">*</span></label>
+                            <input type="text" id="modal-housing-pincode" name="pincode" required>
                         </div>
                     </div>
                 </div>
@@ -1032,23 +1043,23 @@
                 <!-- COMMERCIAL FORM -->
                 <div id="form-modal-commercial" class="form-group-section">
                     <div class="input-group">
-                        <label>Full Name <span class="required">*</span></label>
-                        <input type="text" name="full_name" required>
+                        <label for="modal-commercial-full-name">Full Name <span class="required">*</span></label>
+                        <input type="text" id="modal-commercial-full-name" name="full_name" required>
                     </div>
 
                     <div class="input-group">
-                        <label>Company Name <span class="required">*</span></label>
-                        <input type="text" name="company_name" required>
+                        <label for="modal-commercial-company-name">Company Name <span class="required">*</span></label>
+                        <input type="text" id="modal-commercial-company-name" name="company_name" required>
                     </div>
 
                     <div class="form-row">
                         <div class="input-group">
-                            <label>WhatsApp number <span class="required">*</span></label>
-                            <input type="tel" name="whatsapp" required>
+                            <label for="modal-commercial-whatsapp">WhatsApp number <span class="required">*</span></label>
+                            <input type="tel" id="modal-commercial-whatsapp" name="whatsapp" required>
                         </div>
                         <div class="input-group">
-                            <label>Average Monthly Bill <span class="required">*</span></label>
-                            <select name="monthly_bill_commercial" required class="custom-select">
+                            <label for="modal-commercial-monthly-bill">Average Monthly Bill <span class="required">*</span></label>
+                            <select id="modal-commercial-monthly-bill" name="monthly_bill_commercial" required class="custom-select">
                                 <option>0 - 1 Lakh</option>
                                 <option>1 Lakh - 5 Lakhs</option>
                                 <option>5 Lakhs+</option>

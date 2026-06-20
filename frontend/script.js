@@ -1258,4 +1258,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Dynamic Desktop/Tablet Video Loader to optimize Mobile Network Payload sizes
+document.addEventListener('DOMContentLoaded', () => {
+    const heroVideo = document.getElementById('hero-video');
+    if (heroVideo && window.innerWidth >= 768) {
+        const source = document.createElement('source');
+        source.src = 'video/Wind_turbine_blades_rotate_slowly_202606031912.mp4';
+        source.type = 'video/mp4';
+        heroVideo.appendChild(source);
+        heroVideo.load();
+    }
+});
+
 
