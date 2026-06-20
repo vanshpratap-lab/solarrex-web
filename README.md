@@ -6,7 +6,7 @@ Welcome to the official repository for the **Solar Rex** web application. This p
 
 ## Project Structure & Architectural Layers
 
-The codebase is organized into **Frontend** and **Backend** directories, aligning with the stack architecture (APIs, Database, Hosting, Security, Logs):
+The codebase is organized into modular top-level directories aligning directly with the 13 layers of the stack architecture shown in the stack diagram:
 
 ```mermaid
 mindmap
@@ -21,14 +21,27 @@ mindmap
       backend/api/submit-form.js - Serverless Function
       api/submit-form.js - Root Proxy Route
     Database & Storage
-      Google Sheets API Integration
-      Google Apps Script Handler
-    Security & Headers
-      XSS Sanitization Logic
-      Content Security Policy
+      database-storage/google-apps-script.js - Apps Script handler
+    Auth & Permissions
+      auth-permissions/permissions-policy.json - Access scopes
     Hosting & Deployment
-      vercel.json Router config
-      vite.config.js build bundler
+      hosting-deployment/vercel-template.json - Vercel config
+    Cloud & Compute
+      cloud-compute/serverless-specs.json - Lambda specs
+    CI/CD & Version Control
+      cicd-version-control/github-workflow.yml - Github Action
+    Security & RLS
+      security-rls/csp-policy.json - Header protections
+    Rate Limiting
+      rate-limiting/rate-limit-config.json - Limit specs
+    Caching & CDN
+      caching-cdn/cache-control-headers.json - CDN setup
+    Load Balancing & Scaling
+      load-balancing-scaling/scaling-policy.json - Multi-region
+    Error Tracking & Logs
+      error-tracking-logs/logger-config.json - Monitor rules
+    Availability & Recovery
+      availability-recovery/backup-recovery-plan.json - Backups
 ```
 
 ---

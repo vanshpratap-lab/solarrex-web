@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "cleanUrls": true,
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/submit-form",
+      "destination": "/api/submit-form.js"
+    }
+  ]
+}
