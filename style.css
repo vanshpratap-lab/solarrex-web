@@ -963,18 +963,15 @@ body {
     }
 }
 
-/* Quick Connect Mini-Form (Trigger) */
 .quick-connect {
     position: fixed;
     bottom: 30px;
     right: 30px;
     width: 175px;
     z-index: 5000;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    animation: quickPopUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 0.5s,
-               quickBreathe 4s ease-in-out infinite 1.3s;
-    opacity: 0;
-    transform: translateX(150%) scale(0.9);
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 1;
+    transform: translateX(0) scale(1);
 }
 
 @keyframes hideSmoothly {
