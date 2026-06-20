@@ -116,11 +116,21 @@ const showTerminalAlert = (messages, isSuccess = false) => {
     // Clear any active timeouts
     if (terminalAutoCloseTimeout) clearTimeout(terminalAutoCloseTimeout);
 
+    const escapeHTML = (str) => {
+        if (typeof str !== 'string') return str;
+        return str
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    };
+
     // Format content as rows
     if (Array.isArray(messages)) {
-        terminalMessage.innerHTML = messages.map(msg => `• ${msg}`).join('\n');
+        terminalMessage.innerHTML = messages.map(msg => `• ${escapeHTML(msg)}`).join('\n');
     } else {
-        terminalMessage.innerHTML = messages;
+        terminalMessage.innerHTML = escapeHTML(messages);
     }
 
     // Toggle Styles/Text based on Success or Error state
