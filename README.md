@@ -4,31 +4,31 @@ Welcome to the official repository for the **Solar Rex** web application. This p
 
 ---
 
-## Project Structure & Mind Map
+## Project Structure & Architectural Layers
+
+The codebase is organized into **Frontend** and **Backend** directories, aligning with the stack architecture (APIs, Database, Hosting, Security, Logs):
 
 ```mermaid
 mindmap
-  root((Solar Rex Website))
-    Frontend Layout
-      index.html - Core Landing Page
-      solutions.html - Calculators & Pricing
-      style.css - Premium Glassmorphism UI
-      solutions.css - Pricing Styles
-    JavaScript Core
-      main.js - Carousel & Core Events
-      script.js - Navigation & State Handling
-      solutions.js - Interactive Price Calculator
-    Validation & Modals
-      5-Layer Validation checks
-      Terminal-themed Custom Validation Box
-      Intersection Observers for popups
-    Secure Backend Proxy
-      Vercel serverless integration
-      api/submit-form.js - Serverless function
-      vercel.json - Router configurations
-    Storage Logging
-      Google Sheets logging Integration
-      Google Apps Script doPost handler
+  root((Solar Rex Stack))
+    Frontend Layer
+      frontend/index.html - Landing page
+      frontend/solutions.html - Pricing Page
+      frontend/style.css - UI System
+      frontend/script.js - App Controller
+      frontend/solutions.js - Calculators
+    APIs & Backend Logic
+      backend/api/submit-form.js - Serverless Function
+      api/submit-form.js - Root Proxy Route
+    Database & Storage
+      Google Sheets API Integration
+      Google Apps Script Handler
+    Security & Headers
+      XSS Sanitization Logic
+      Content Security Policy
+    Hosting & Deployment
+      vercel.json Router config
+      vite.config.js build bundler
 ```
 
 ---
