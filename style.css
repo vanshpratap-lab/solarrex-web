@@ -1258,6 +1258,171 @@ body {
     pointer-events: auto;
 }
 
+/* Terminal-themed Custom Validation Modal Alert */
+.terminal-alert-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 12, 16, 0.65);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.terminal-alert-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.terminal-box {
+    width: 90%;
+    max-width: 480px;
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid rgba(0, 168, 255, 0.35);
+    border-radius: 12px;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 168, 255, 0.1);
+    font-family: 'Courier New', Courier, monospace;
+    overflow: hidden;
+    transform: scale(0.8) translateY(-50px);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.terminal-alert-overlay.active .terminal-box {
+    transform: scale(1) translateY(0);
+}
+
+.terminal-header {
+    background: #0b0f19;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+}
+
+.terminal-dots {
+    display: flex;
+    gap: 8px;
+}
+
+.terminal-dots .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.red-dot {
+    background: #ff5f56;
+    cursor: pointer;
+}
+.red-dot:hover {
+    background: #ff4a3d;
+}
+
+.yellow-dot {
+    background: #ffbd2e;
+}
+
+.green-dot {
+    background: #27c93f;
+}
+
+.terminal-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.terminal-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.terminal-row {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.prompt-row {
+    flex-direction: row;
+    gap: 8px;
+}
+
+.terminal-prompt {
+    color: #38bdf8;
+    font-weight: bold;
+}
+
+.terminal-cmd {
+    color: #f1f5f9;
+}
+
+.terminal-error-label {
+    color: #ef4444;
+    font-weight: bold;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    animation: terminalBlink 1s infinite alternate;
+}
+
+@keyframes terminalBlink {
+    0% { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
+.message-row {
+    background: rgba(0, 0, 0, 0.3);
+    border-left: 3px solid #ef4444;
+    padding: 12px;
+    border-radius: 4px;
+    color: #e2e8f0;
+    font-size: 12px;
+    line-height: 1.6;
+    white-space: pre-line;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.action-row {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.terminal-action-btn {
+    background: transparent;
+    color: #00a8ff;
+    border: 1px solid #00a8ff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.terminal-action-btn:hover {
+    background: rgba(0, 168, 255, 0.1);
+    color: #80d6ff;
+    box-shadow: 0 0 10px rgba(0, 168, 255, 0.2);
+}
+
 /* MacBook App Style Content with Unfold/Fold Effect */
 .quick-modal-content {
     width: 65%;

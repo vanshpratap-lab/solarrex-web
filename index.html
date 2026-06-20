@@ -1270,6 +1270,35 @@
         </div>
     </div>
 
+    <!-- Terminal-themed Custom Validation Alert -->
+    <div class="terminal-alert-overlay" id="terminal-alert">
+        <div class="terminal-box">
+            <div class="terminal-header">
+                <div class="terminal-dots">
+                    <span class="dot red-dot" id="terminal-close-dot"></span>
+                    <span class="dot yellow-dot"></span>
+                    <span class="dot green-dot"></span>
+                </div>
+                <div class="terminal-title">system_validation.sh</div>
+            </div>
+            <div class="terminal-body">
+                <div class="terminal-row prompt-row">
+                    <span class="terminal-prompt">solarrex@system:~$</span>
+                    <span class="terminal-cmd">./validate_form.sh</span>
+                </div>
+                <div class="terminal-row output-row">
+                    <span class="terminal-error-label">[ERROR] VALIDATION LAYER FAILED</span>
+                </div>
+                <div class="terminal-row message-row" id="terminal-error-message">
+                    <!-- Dynamic validation messages go here -->
+                </div>
+                <div class="terminal-row action-row">
+                    <button class="terminal-action-btn" id="terminal-ok-btn">EXECUTE RESOLUTION</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="page-transition-curtain" id="page-curtain"></div>
 
     <script src="/loading%20animation/loader.js"></script>

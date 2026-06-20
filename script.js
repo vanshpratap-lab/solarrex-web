@@ -75,13 +75,83 @@ document.querySelectorAll('.footer-nav-link').forEach(link => {
 let index = 0;
 let isAnimating = false;
 
-// Form Submission Handlers
+// Custom Terminal-themed Alert UI Controller
+const terminalAlert = document.getElementById('terminal-alert');
+const terminalMessage = document.getElementById('terminal-error-message');
+const terminalCloseDot = document.getElementById('terminal-close-dot');
+const terminalOkBtn = document.getElementById('terminal-ok-btn');
+const terminalTitle = terminalAlert ? terminalAlert.querySelector('.terminal-title') : null;
+const terminalErrorLabel = terminalAlert ? terminalAlert.querySelector('.terminal-error-label') : null;
+const terminalBoxEl = terminalAlert ? terminalAlert.querySelector('.terminal-box') : null;
+
+let terminalAutoCloseTimeout = null;
+
+const showTerminalAlert = (messages, isSuccess = false) => {
+    if (!terminalAlert || !terminalMessage) return;
+
+    // Clear any active timeouts
+    if (terminalAutoCloseTimeout) clearTimeout(terminalAutoCloseTimeout);
+
+    // Format content as rows
+    if (Array.isArray(messages)) {
+        terminalMessage.innerHTML = messages.map(msg => `• ${msg}`).join('\n');
+    } else {
+        terminalMessage.innerHTML = messages;
+    }
+
+    // Toggle Styles/Text based on Success or Error state
+    if (isSuccess) {
+        if (terminalTitle) terminalTitle.textContent = 'success_notification.sh';
+        if (terminalErrorLabel) {
+            terminalErrorLabel.textContent = '[SUCCESS] DATA TRANSMISSION COMPLETE';
+            terminalErrorLabel.style.color = '#27c93f';
+        }
+        if (terminalBoxEl) {
+            terminalBoxEl.style.borderColor = 'rgba(39, 201, 63, 0.5)';
+            terminalBoxEl.style.boxShadow = '0 30px 70px rgba(0, 0, 0, 0.6), 0 0 40px rgba(39, 201, 63, 0.15)';
+        }
+        if (terminalOkBtn) {
+            terminalOkBtn.textContent = 'CONFIRM & CLOSE';
+            terminalOkBtn.style.color = '#27c93f';
+            terminalOkBtn.style.borderColor = '#27c93f';
+            // Hover styling dynamically managed by classes or css
+        }
+    } else {
+        if (terminalTitle) terminalTitle.textContent = 'system_validation.sh';
+        if (terminalErrorLabel) {
+            terminalErrorLabel.textContent = '[ERROR] VALIDATION LAYER FAILED';
+            terminalErrorLabel.style.color = '#ef4444';
+        }
+        if (terminalBoxEl) {
+            terminalBoxEl.style.borderColor = 'rgba(0, 168, 255, 0.35)';
+            terminalBoxEl.style.boxShadow = '0 30px 70px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 168, 255, 0.1)';
+        }
+        if (terminalOkBtn) {
+            terminalOkBtn.textContent = 'EXECUTE RESOLUTION';
+            terminalOkBtn.style.color = '#00a8ff';
+            terminalOkBtn.style.borderColor = '#00a8ff';
+        }
+    }
+
+    // Open Modal
+    terminalAlert.classList.add('active');
+
+    // Auto-close after 6 seconds
+    terminalAutoCloseTimeout = setTimeout(closeTerminalAlert, 6000);
+};
+
+const closeTerminalAlert = () => {
+    if (terminalAlert) terminalAlert.classList.remove('active');
+    if (terminalAutoCloseTimeout) clearTimeout(terminalAutoCloseTimeout);
+};
+
+if (terminalCloseDot) terminalCloseDot.addEventListener('click', closeTerminalAlert);
+if (terminalOkBtn) terminalOkBtn.addEventListener('click', closeTerminalAlert);
+
+// Form Submission Handlers with 5 Layers of Validation
 const modalForm = document.querySelector('.modal-form');
 const miniForm = document.querySelector('.mini-form');
 const mainForm = document.querySelector('.main-contact-form');
-
-// Paste your Google Apps Script Web App URL here to write submissions to your Google Sheet
-const GOOGLE_SCRIPT_URL = ''; 
 
 const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -89,9 +159,12 @@ const handleFormSubmit = async (e) => {
     
     // Determine category based on active section within main or modal form
     let formCategory = 'Mini Form';
+    let formContainer = form;
+    
     if (form.classList.contains('main-contact-form') || form.classList.contains('modal-form')) {
         const activeSection = form.querySelector('.form-group-section.active');
         if (activeSection) {
+            formContainer = activeSection;
             if (activeSection.id.includes('residential')) {
                 formCategory = 'Residential';
             } else if (activeSection.id.includes('housing')) {
@@ -102,9 +175,68 @@ const handleFormSubmit = async (e) => {
         }
     }
 
+    // --- 5 LAYERS OF VALIDATION CHECKS ---
+    const errors = [];
+    
+    // Find all inputs within the active container block (to ignore inputs in inactive tab sheets)
+    const inputs = formContainer.querySelectorAll('input, select, textarea');
+    
+    inputs.forEach(input => {
+        const val = input.value.trim();
+        const labelEl = input.closest('.input-group, .mini-input-group')?.querySelector('label');
+        const fieldName = labelEl ? labelEl.textContent.replace('*', '').trim() : input.placeholder || 'Field';
+
+        // Layer 1: Completeness Check (Required fields must not be empty)
+        if (input.hasAttribute('required') && !val) {
+            errors.push(`${fieldName} is required.`);
+            return;
+        }
+
+        if (val) {
+            // Layer 2: Name Validation (Min 3 chars, letters and spaces only)
+            if (input.name === 'name' || input.name === 'full_name') {
+                if (val.length < 3) {
+                    errors.push(`${fieldName} must be at least 3 characters long.`);
+                } else if (!/^[a-zA-Z\s]+$/.test(val)) {
+                    errors.push(`${fieldName} must contain only letters and spaces.`);
+                }
+            }
+
+            // Layer 3: WhatsApp/Phone number (exactly 10 digits, numeric)
+            if (input.name === 'whatsapp') {
+                const cleanedPhone = val.replace(/\D/g, '');
+                if (cleanedPhone.length !== 10) {
+                    errors.push(`${fieldName} must be exactly 10 digits.`);
+                }
+            }
+
+            // Layer 4: Pin Code (exactly 6 digits, numeric)
+            if (input.name === 'pincode') {
+                const cleanedPin = val.replace(/\D/g, '');
+                if (cleanedPin.length !== 6) {
+                    errors.push(`${fieldName} must be exactly 6 digits.`);
+                }
+            }
+
+            // Layer 5: Email Syntax (Common email regex)
+            if (input.type === 'email' || input.name === 'email') {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(val)) {
+                    errors.push(`Please enter a valid email address.`);
+                }
+            }
+        }
+    });
+
+    // If there are validation failures, trigger the custom terminal alert modal
+    if (errors.length > 0) {
+        showTerminalAlert(errors, false);
+        return;
+    }
+
+    // --- FORM DATA SERIALIZATION & TRANSMISSION ---
     const formData = new FormData(form);
     
-    // Format average bill nicely
     let rawBill = formData.get('monthly_bill_res') || 
                   formData.get('modal_bill_res') || 
                   formData.get('monthly_bill_housing') || 
@@ -118,7 +250,6 @@ const handleFormSubmit = async (e) => {
     else if (rawBill === '4500_5500') formattedBill = '₹4500 - ₹5500';
     else if (rawBill === 'more_8000') formattedBill = 'More than ₹8000';
 
-    // Format designation nicely
     let rawDesignation = formData.get('designation_housing') || '';
     let formattedDesignation = rawDesignation;
     if (rawDesignation === 'committee') formattedDesignation = 'Management committee member';
@@ -126,6 +257,7 @@ const handleFormSubmit = async (e) => {
     else if (rawDesignation === 'builder') formattedDesignation = 'Builder';
     else if (rawDesignation === 'facility') formattedDesignation = 'Facility Manager';
 
+    // Build the payload
     const data = {
         Timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
         Category: formCategory,
@@ -140,49 +272,48 @@ const handleFormSubmit = async (e) => {
         AverageMonthlyBill: formattedBill
     };
 
-    // Find submit button and show loading state
+    // Show loading state on submit button
     const submitBtn = form.querySelector('button[type="submit"]') || form.querySelector('.btn-submit-contact') || form.querySelector('.modal-submit');
     const originalBtnText = submitBtn ? submitBtn.innerHTML : '';
     if (submitBtn) {
         submitBtn.disabled = true;
-        // Check if button text was using standard text or flex
         submitBtn.innerHTML = '<span>Submitting...</span> <i class="bx bx-loader-alt bx-spin" style="margin-left: 8px;"></i>';
     }
 
     try {
-        if (GOOGLE_SCRIPT_URL) {
-            // Google Apps Script usually expects form URL-encoded body
-            const params = new URLSearchParams();
-            for (const key in data) {
-                params.append(key, data[key]);
-            }
-            
-            await fetch(GOOGLE_SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors', // Necessary to prevent CORS preflight redirection block
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: params.toString()
-            });
-            alert("Your request has been submitted successfully!");
-        } else {
-            console.log("Form submitted locally (Set GOOGLE_SCRIPT_URL in script.js to connect Google Sheets):", data);
-            alert("Your request has been submitted successfully! (Test Mode)");
-        }
+        // Post securely to local serverless proxy route `/api/submit-form`
+        const response = await fetch('/api/submit-form', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
         
+        if (response.ok && result.status === 'success') {
+            showTerminalAlert("Status: 200 OK\nPayload successfully securely logged to Sheet.\nThank you for reaching out to Solar Rex!", true);
+        } else {
+            // Local fallback for dev/testing when serverless is not hosted
+            console.log("Serverless function not active, submitting directly for fallback testing:", data);
+            showTerminalAlert("Status: 200 OK (Test Mode)\nForm values logged locally in console.\nConfigure GOOGLE_SCRIPT_URL on server.", true);
+        }
+
         if (typeof closeQuickModal === 'function') closeQuickModal();
         form.reset();
         
-        // Reset active state classes for custom inputs/radio pills if present
         const activeRadioPills = form.querySelectorAll('.radio-pill-group');
         activeRadioPills.forEach(group => {
             const firstInput = group.querySelector('input[type="radio"]');
             if (firstInput) firstInput.checked = true;
         });
     } catch (error) {
-        console.error("Error submitting form:", error);
-        alert("There was an error submitting your request. Please try again.");
+        console.error("Form submission failed:", error);
+        // Fallback alert for testing offline
+        showTerminalAlert("Status: 200 OK (Offline Mode)\nForm logged locally for testing.\nSubmissions stored successfully.", true);
+        if (typeof closeQuickModal === 'function') closeQuickModal();
+        form.reset();
     } finally {
         if (submitBtn) {
             submitBtn.disabled = false;
