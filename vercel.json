@@ -1,9 +1,31 @@
 {
   "version": 2,
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/index",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/solutions.html",
+      "destination": "/solutions",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/api/submit-form",
       "destination": "/api/submit-form.js"
+    },
+    {
+      "source": "/solutions",
+      "destination": "/solutions.html"
     }
   ],
   "headers": [
