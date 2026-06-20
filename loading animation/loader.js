@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Restore body scrolling
                     document.body.style.overflow = '';
                 }
-            }, 2800); // 2.8 seconds allows the cursive Welcome drawing animation to complete beautifully
+            }, 1300); // 1.3 seconds allows fast drawing and ensures page is fully ready under 3 seconds
         }
     } catch(e) {
         // Fallback safety
