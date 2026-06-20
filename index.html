@@ -124,11 +124,11 @@
             <form class="mini-form">
                 <div class="mini-input-group">
                     <label>Name</label>
-                    <input type="text" placeholder="Full Name" required>
+                    <input type="text" name="name" placeholder="Full Name" required>
                 </div>
                 <div class="mini-input-group">
                     <label>Email</label>
-                    <input type="email" placeholder="email@example.com" required>
+                    <input type="email" name="email" placeholder="email@example.com" required>
                 </div>
                 <button type="submit" class="mini-btn">
                     <span>Fast Quote</span>
@@ -813,17 +813,17 @@
                     <div id="form-residential" class="form-group-section active">
                         <div class="input-group">
                             <label>Full Name <span class="required">*</span></label>
-                            <input type="text" required>
+                            <input type="text" name="full_name" required>
                         </div>
 
                         <div class="form-row">
                             <div class="input-group">
                                 <label>WhatsApp number <span class="required">*</span></label>
-                                <input type="tel" required>
+                                <input type="tel" name="whatsapp" required>
                             </div>
                             <div class="input-group">
                                 <label>Pin code <span class="required">*</span></label>
-                                <input type="text" required>
+                                <input type="text" name="pincode" required>
                             </div>
                         </div>
 
@@ -843,27 +843,27 @@
                     <div id="form-housing" class="form-group-section">
                         <div class="input-group">
                             <label>Full Name <span class="required">*</span></label>
-                            <input type="text" required>
+                            <input type="text" name="full_name" required>
                         </div>
 
                         <div class="input-group">
                             <label>Name of Housing Society <span class="required">*</span></label>
-                            <input type="text" required>
+                            <input type="text" name="society_name" required>
                         </div>
 
                         <div class="input-group">
                             <label>Pin code <span class="required">*</span></label>
-                            <input type="text" required>
+                            <input type="text" name="pincode" required>
                         </div>
 
                         <div class="form-row">
                             <div class="input-group">
                                 <label>WhatsApp number <span class="required">*</span></label>
-                                <input type="tel" required>
+                                <input type="tel" name="whatsapp" required>
                             </div>
                             <div class="input-group">
                                 <label>Monthly Electricity Bill <span class="required">*</span></label>
-                                <select required class="custom-select">
+                                <select name="monthly_bill_housing" required class="custom-select">
                                     <option>0 - 50000</option>
                                     <option>50000 - 100000</option>
                                     <option>100000+</option>
@@ -886,33 +886,33 @@
                     <div id="form-commercial" class="form-group-section">
                         <div class="input-group">
                             <label>Full Name <span class="required">*</span></label>
-                            <input type="text" required>
+                            <input type="text" name="full_name" required>
                         </div>
 
                         <div class="input-group">
                             <label>Company Name <span class="required">*</span></label>
-                            <input type="text" required>
+                            <input type="text" name="company_name" required>
                         </div>
 
                         <div class="form-row">
                             <div class="input-group">
                                 <label>City <span class="required">*</span></label>
-                                <input type="text" required>
+                                <input type="text" name="city" required>
                             </div>
                             <div class="input-group">
                                 <label>Pin code <span class="required">*</span></label>
-                                <input type="text" required>
+                                <input type="text" name="pincode" required>
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="input-group">
                                 <label>WhatsApp number <span class="required">*</span></label>
-                                <input type="tel" required>
+                                <input type="tel" name="whatsapp" required>
                             </div>
                             <div class="input-group">
                                 <label>Average Monthly Bill <span class="required">*</span></label>
-                                <select required class="custom-select">
+                                <select name="monthly_bill_commercial" required class="custom-select">
                                     <option>Select amount</option>
                                     <option>Less than ₹10,000</option>
                                     <option>₹10,000 - ₹50,000</option>
@@ -1013,17 +1013,17 @@
                 <div id="form-modal-residential" class="form-group-section active">
                     <div class="input-group">
                         <label>Full Name <span class="required">*</span></label>
-                        <input type="text" required>
+                        <input type="text" name="full_name" required>
                     </div>
 
                     <div class="form-row">
                         <div class="input-group">
                             <label>WhatsApp number <span class="required">*</span></label>
-                            <input type="tel" required>
+                            <input type="tel" name="whatsapp" required>
                         </div>
                         <div class="input-group">
                             <label>Pin code <span class="required">*</span></label>
-                            <input type="text" required>
+                            <input type="text" name="pincode" required>
                         </div>
                     </div>
 
@@ -1041,22 +1041,22 @@
                 <div id="form-modal-housing" class="form-group-section">
                     <div class="input-group">
                         <label>Full Name <span class="required">*</span></label>
-                        <input type="text" required>
+                        <input type="text" name="full_name" required>
                     </div>
 
                     <div class="input-group">
                         <label>Name of Housing Society <span class="required">*</span></label>
-                        <input type="text" required>
+                        <input type="text" name="society_name" required>
                     </div>
 
                     <div class="form-row">
                         <div class="input-group">
                             <label>WhatsApp number <span class="required">*</span></label>
-                            <input type="tel" required>
+                            <input type="tel" name="whatsapp" required>
                         </div>
                         <div class="input-group">
                             <label>Pin code <span class="required">*</span></label>
-                            <input type="text" required>
+                            <input type="text" name="pincode" required>
                         </div>
                     </div>
                 </div>
@@ -1065,22 +1065,22 @@
                 <div id="form-modal-commercial" class="form-group-section">
                     <div class="input-group">
                         <label>Full Name <span class="required">*</span></label>
-                        <input type="text" required>
+                        <input type="text" name="full_name" required>
                     </div>
 
                     <div class="input-group">
                         <label>Company Name <span class="required">*</span></label>
-                        <input type="text" required>
+                        <input type="text" name="company_name" required>
                     </div>
 
                     <div class="form-row">
                         <div class="input-group">
                             <label>WhatsApp number <span class="required">*</span></label>
-                            <input type="tel" required>
+                            <input type="tel" name="whatsapp" required>
                         </div>
                         <div class="input-group">
                             <label>Average Monthly Bill <span class="required">*</span></label>
-                            <select required class="custom-select">
+                            <select name="monthly_bill_commercial" required class="custom-select">
                                 <option>0 - 1 Lakh</option>
                                 <option>1 Lakh - 5 Lakhs</option>
                                 <option>5 Lakhs+</option>

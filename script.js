@@ -78,16 +78,122 @@ let isAnimating = false;
 // Form Submission Handlers
 const modalForm = document.querySelector('.modal-form');
 const miniForm = document.querySelector('.mini-form');
+const mainForm = document.querySelector('.main-contact-form');
 
-const handleFormSubmit = (e) => {
+// Paste your Google Apps Script Web App URL here to write submissions to your Google Sheet
+const GOOGLE_SCRIPT_URL = ''; 
+
+const handleFormSubmit = async (e) => {
     e.preventDefault();
-    closeQuickModal(); // Close modal if it was open
-    alert("Your request has been submitted successfully!");
-    e.target.reset(); // Clear form fields
+    const form = e.target;
+    
+    // Determine category based on active section within main or modal form
+    let formCategory = 'Mini Form';
+    if (form.classList.contains('main-contact-form') || form.classList.contains('modal-form')) {
+        const activeSection = form.querySelector('.form-group-section.active');
+        if (activeSection) {
+            if (activeSection.id.includes('residential')) {
+                formCategory = 'Residential';
+            } else if (activeSection.id.includes('housing')) {
+                formCategory = 'Housing Society';
+            } else if (activeSection.id.includes('commercial')) {
+                formCategory = 'Commercial';
+            }
+        }
+    }
+
+    const formData = new FormData(form);
+    
+    // Format average bill nicely
+    let rawBill = formData.get('monthly_bill_res') || 
+                  formData.get('modal_bill_res') || 
+                  formData.get('monthly_bill_housing') || 
+                  formData.get('monthly_bill_commercial') || 
+                  '';
+    
+    let formattedBill = rawBill;
+    if (rawBill === 'less_2500') formattedBill = 'Less than ₹2500';
+    else if (rawBill === '2500_3500') formattedBill = '₹2500 - ₹3500';
+    else if (rawBill === '3500_4500') formattedBill = '₹3500 - ₹4500';
+    else if (rawBill === '4500_5500') formattedBill = '₹4500 - ₹5500';
+    else if (rawBill === 'more_8000') formattedBill = 'More than ₹8000';
+
+    // Format designation nicely
+    let rawDesignation = formData.get('designation_housing') || '';
+    let formattedDesignation = rawDesignation;
+    if (rawDesignation === 'committee') formattedDesignation = 'Management committee member';
+    else if (rawDesignation === 'resident') formattedDesignation = 'Resident';
+    else if (rawDesignation === 'builder') formattedDesignation = 'Builder';
+    else if (rawDesignation === 'facility') formattedDesignation = 'Facility Manager';
+
+    const data = {
+        Timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+        Category: formCategory,
+        Name: formData.get('name') || formData.get('full_name') || '',
+        Email: formData.get('email') || '',
+        WhatsApp: formData.get('whatsapp') || '',
+        Pincode: formData.get('pincode') || '',
+        HousingSociety: formData.get('society_name') || '',
+        CompanyName: formData.get('company_name') || '',
+        City: formData.get('city') || '',
+        Designation: formattedDesignation,
+        AverageMonthlyBill: formattedBill
+    };
+
+    // Find submit button and show loading state
+    const submitBtn = form.querySelector('button[type="submit"]') || form.querySelector('.btn-submit-contact') || form.querySelector('.modal-submit');
+    const originalBtnText = submitBtn ? submitBtn.innerHTML : '';
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        // Check if button text was using standard text or flex
+        submitBtn.innerHTML = '<span>Submitting...</span> <i class="bx bx-loader-alt bx-spin" style="margin-left: 8px;"></i>';
+    }
+
+    try {
+        if (GOOGLE_SCRIPT_URL) {
+            // Google Apps Script usually expects form URL-encoded body
+            const params = new URLSearchParams();
+            for (const key in data) {
+                params.append(key, data[key]);
+            }
+            
+            await fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors', // Necessary to prevent CORS preflight redirection block
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: params.toString()
+            });
+            alert("Your request has been submitted successfully!");
+        } else {
+            console.log("Form submitted locally (Set GOOGLE_SCRIPT_URL in script.js to connect Google Sheets):", data);
+            alert("Your request has been submitted successfully! (Test Mode)");
+        }
+        
+        if (typeof closeQuickModal === 'function') closeQuickModal();
+        form.reset();
+        
+        // Reset active state classes for custom inputs/radio pills if present
+        const activeRadioPills = form.querySelectorAll('.radio-pill-group');
+        activeRadioPills.forEach(group => {
+            const firstInput = group.querySelector('input[type="radio"]');
+            if (firstInput) firstInput.checked = true;
+        });
+    } catch (error) {
+        console.error("Error submitting form:", error);
+        alert("There was an error submitting your request. Please try again.");
+    } finally {
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnText;
+        }
+    }
 };
 
 if (modalForm) modalForm.addEventListener('submit', handleFormSubmit);
 if (miniForm) miniForm.addEventListener('submit', handleFormSubmit);
+if (mainForm) mainForm.addEventListener('submit', handleFormSubmit);
 
 // Modal Interaction Logic
 const overlay = document.getElementById('quick-modal-overlay');
