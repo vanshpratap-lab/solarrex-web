@@ -22,16 +22,33 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Determine input payload (form-urlencoded or json)
+    // Determine input payload (form-urlencoded or json) & sanitize inputs against XSS/HTML Injection
     let requestBody = '';
+    const sanitize = (val) => {
+      if (typeof val !== 'string') return val;
+      return val
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#x27;')
+        .replace(/\//g, '&#x2F;');
+    };
+
     if (typeof req.body === 'object') {
       const params = new URLSearchParams();
       for (const key in req.body) {
-        params.append(key, req.body[key]);
+        params.append(key, sanitize(req.body[key]));
       }
       requestBody = params.toString();
     } else {
-      requestBody = req.body;
+      // Parse query string or raw payload, sanitize, and reconstruct
+      const tempParams = new URLSearchParams(req.body);
+      const params = new URLSearchParams();
+      for (const [key, value] of tempParams.entries()) {
+        params.append(key, sanitize(value));
+      }
+      requestBody = params.toString();
     }
 
     // Forward the payload to Google Sheets Web App
