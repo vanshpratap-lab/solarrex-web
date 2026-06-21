@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Solar Rex landing page",
   "main": "index.html",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "start": "npx -y serve -p 5000",
