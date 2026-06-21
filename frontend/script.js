@@ -99,90 +99,7 @@ document.querySelectorAll('.footer-nav-link').forEach(link => {
 let index = 0;
 let isAnimating = false;
 
-// Custom Terminal-themed Alert UI Controller
-const terminalAlert = document.getElementById('terminal-alert');
-const terminalMessage = document.getElementById('terminal-error-message');
-const terminalCloseDot = document.getElementById('terminal-close-dot');
-const terminalOkBtn = document.getElementById('terminal-ok-btn');
-const terminalTitle = terminalAlert ? terminalAlert.querySelector('.terminal-title') : null;
-const terminalErrorLabel = terminalAlert ? terminalAlert.querySelector('.terminal-error-label') : null;
-const terminalBoxEl = terminalAlert ? terminalAlert.querySelector('.terminal-box') : null;
-
-let terminalAutoCloseTimeout = null;
-
-const showTerminalAlert = (messages, isSuccess = false) => {
-    if (!terminalAlert || !terminalMessage) return;
-
-    // Clear any active timeouts
-    if (terminalAutoCloseTimeout) clearTimeout(terminalAutoCloseTimeout);
-
-    const escapeHTML = (str) => {
-        if (typeof str !== 'string') return str;
-        return str
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#39;');
-    };
-
-    // Format content as rows
-    if (Array.isArray(messages)) {
-        terminalMessage.innerHTML = messages.map(msg => `• ${escapeHTML(msg)}`).join('\n');
-    } else {
-        terminalMessage.innerHTML = escapeHTML(messages);
-    }
-
-    // Toggle Styles/Text based on Success or Error state
-    if (isSuccess) {
-        if (terminalTitle) terminalTitle.textContent = 'success_notification.sh';
-        if (terminalErrorLabel) {
-            terminalErrorLabel.textContent = '[SUCCESS] DATA TRANSMISSION COMPLETE';
-            terminalErrorLabel.style.color = '#27c93f';
-        }
-        if (terminalBoxEl) {
-            terminalBoxEl.style.borderColor = 'rgba(39, 201, 63, 0.5)';
-            terminalBoxEl.style.boxShadow = '0 30px 70px rgba(0, 0, 0, 0.6), 0 0 40px rgba(39, 201, 63, 0.15)';
-        }
-        if (terminalOkBtn) {
-            terminalOkBtn.textContent = 'CONFIRM & CLOSE';
-            terminalOkBtn.style.color = '#27c93f';
-            terminalOkBtn.style.borderColor = '#27c93f';
-            // Hover styling dynamically managed by classes or css
-        }
-    } else {
-        if (terminalTitle) terminalTitle.textContent = 'system_validation.sh';
-        if (terminalErrorLabel) {
-            terminalErrorLabel.textContent = '[ERROR] VALIDATION LAYER FAILED';
-            terminalErrorLabel.style.color = '#ef4444';
-        }
-        if (terminalBoxEl) {
-            terminalBoxEl.style.borderColor = 'rgba(0, 168, 255, 0.35)';
-            terminalBoxEl.style.boxShadow = '0 30px 70px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 168, 255, 0.1)';
-        }
-        if (terminalOkBtn) {
-            terminalOkBtn.textContent = 'EXECUTE RESOLUTION';
-            terminalOkBtn.style.color = '#00a8ff';
-            terminalOkBtn.style.borderColor = '#00a8ff';
-        }
-    }
-
-    // Open Modal
-    terminalAlert.classList.add('active');
-
-    // Auto-close after 6 seconds
-    terminalAutoCloseTimeout = setTimeout(closeTerminalAlert, 6000);
-};
-
-const closeTerminalAlert = () => {
-    if (terminalAlert) terminalAlert.classList.remove('active');
-    if (terminalAutoCloseTimeout) clearTimeout(terminalAutoCloseTimeout);
-};
-
-if (terminalCloseDot) terminalCloseDot.addEventListener('click', closeTerminalAlert);
-if (terminalOkBtn) terminalOkBtn.addEventListener('click', closeTerminalAlert);
-
-// Form Submission Handlers with 5 Layers of Validation
+// Form Submission Handlers
 const modalForm = document.querySelector('.modal-form');
 const miniForm = document.querySelector('.mini-form');
 const mainForm = document.querySelector('.main-contact-form');
@@ -209,102 +126,30 @@ const handleFormSubmit = async (e) => {
         }
     }
 
-    // --- 5 LAYERS OF VALIDATION CHECKS ---
-    const errors = [];
-    
-    // Find all inputs within the active container block (to ignore inputs in inactive tab sheets)
-    const inputs = formContainer.querySelectorAll('input, select, textarea');
-    
-    inputs.forEach(input => {
-        const val = input.value.trim();
-        const labelEl = input.closest('.input-group, .mini-input-group')?.querySelector('label');
-        const fieldName = labelEl ? labelEl.textContent.replace('*', '').trim() : input.placeholder || 'Field';
-
-        // Layer 1: Completeness Check (Required fields must not be empty)
-        if (input.hasAttribute('required') && !val) {
-            errors.push(`${fieldName} is required.`);
-            return;
-        }
-
-        if (val) {
-            // Layer 2: Name Validation (Min 3 chars, letters and spaces only)
-            if (input.name === 'name' || input.name === 'full_name') {
-                if (val.length < 3) {
-                    errors.push(`${fieldName} must be at least 3 characters long.`);
-                } else if (!/^[a-zA-Z\s]+$/.test(val)) {
-                    errors.push(`${fieldName} must contain only letters and spaces.`);
-                }
-            }
-
-            // Layer 3: WhatsApp/Phone number (exactly 10 digits, numeric)
-            if (input.name === 'whatsapp') {
-                const cleanedPhone = val.replace(/\D/g, '');
-                if (cleanedPhone.length !== 10) {
-                    errors.push(`${fieldName} must be exactly 10 digits.`);
-                }
-            }
-
-            // Layer 4: Pin Code (exactly 6 digits, numeric)
-            if (input.name === 'pincode') {
-                const cleanedPin = val.replace(/\D/g, '');
-                if (cleanedPin.length !== 6) {
-                    errors.push(`${fieldName} must be exactly 6 digits.`);
-                }
-            }
-
-            // Layer 5: Email Syntax (Common email regex)
-            if (input.type === 'email' || input.name === 'email') {
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(val)) {
-                    errors.push(`Please enter a valid email address.`);
-                }
-            }
-        }
-    });
-
-    // If there are validation failures, trigger the custom terminal alert modal
-    if (errors.length > 0) {
-        showTerminalAlert(errors, false);
-        return;
-    }
-
     // --- FORM DATA SERIALIZATION & TRANSMISSION ---
-    const formData = new FormData(form);
-    
-    let rawBill = formData.get('monthly_bill_res') || 
-                  formData.get('modal_bill_res') || 
-                  formData.get('monthly_bill_housing') || 
-                  formData.get('monthly_bill_commercial') || 
-                  '';
-    
-    let formattedBill = rawBill;
-    if (rawBill === 'less_2500') formattedBill = 'Less than ₹2500';
-    else if (rawBill === '2500_3500') formattedBill = '₹2500 - ₹3500';
-    else if (rawBill === '3500_4500') formattedBill = '₹3500 - ₹4500';
-    else if (rawBill === '4500_5500') formattedBill = '₹4500 - ₹5500';
-    else if (rawBill === 'more_8000') formattedBill = 'More than ₹8000';
-
-    let rawDesignation = formData.get('designation_housing') || '';
-    let formattedDesignation = rawDesignation;
-    if (rawDesignation === 'committee') formattedDesignation = 'Management committee member';
-    else if (rawDesignation === 'resident') formattedDesignation = 'Resident';
-    else if (rawDesignation === 'builder') formattedDesignation = 'Builder';
-    else if (rawDesignation === 'facility') formattedDesignation = 'Facility Manager';
-
-    // Build the payload
     const data = {
         Timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
         Category: formCategory,
-        Name: formData.get('name') || formData.get('full_name') || '',
-        Email: formData.get('email') || '',
-        WhatsApp: formData.get('whatsapp') || '',
-        Pincode: formData.get('pincode') || '',
-        HousingSociety: formData.get('society_name') || '',
-        CompanyName: formData.get('company_name') || '',
-        City: formData.get('city') || '',
-        Designation: formattedDesignation,
-        AverageMonthlyBill: formattedBill
+        Name: '', Email: '', WhatsApp: '', Pincode: '', HousingSociety: '', CompanyName: '', City: '', Designation: '', AverageMonthlyBill: ''
     };
+
+    const inputs = formContainer.querySelectorAll('input, select, textarea');
+    inputs.forEach(input => {
+        if (input.type === 'radio' && !input.checked) return;
+        
+        const val = input.value.trim();
+        if (!val) return;
+
+        if (input.name === 'name' || input.name === 'full_name') data.Name = val;
+        else if (input.name === 'email') data.Email = val;
+        else if (input.name === 'whatsapp') data.WhatsApp = val;
+        else if (input.name === 'pincode') data.Pincode = val;
+        else if (input.name === 'society_name') data.HousingSociety = val;
+        else if (input.name === 'company_name') data.CompanyName = val;
+        else if (input.name === 'city') data.City = val;
+        else if (input.name.includes('monthly_bill')) data.AverageMonthlyBill = val;
+        else if (input.name === 'designation_housing') data.Designation = val;
+    });
 
     // Show loading state on submit button
     const submitBtn = form.querySelector('button[type="submit"]') || form.querySelector('.btn-submit-contact') || form.querySelector('.modal-submit');
@@ -328,51 +173,156 @@ const handleFormSubmit = async (e) => {
     }
 
     try {
-        // Post securely to local serverless proxy route `/api/submit-form`
-        const response = await fetch('/api/submit-form', {
+        const scriptURL = '/api/submit-form';
+        
+        const params = new URLSearchParams();
+        for (const key in data) {
+            params.append(key, data[key]);
+        }
+
+        const response = await fetch(scriptURL, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: params
         });
 
-        const result = await response.json();
+        if (!response.ok) {
+            throw new Error(`Server returned status: ${response.status}`);
+        }
+
+        // --- BEAUTIFUL SUCCESS MESSAGE ---
+        let msgDiv = form.querySelector('.form-submit-message');
+        if (!msgDiv) {
+            msgDiv = document.createElement('div');
+            msgDiv.className = 'form-submit-message';
+            // Styling for a premium, highly visible success alert
+            msgDiv.style.marginTop = '15px';
+            msgDiv.style.marginBottom = '15px';
+            msgDiv.style.padding = '16px';
+            msgDiv.style.borderRadius = '12px';
+            msgDiv.style.textAlign = 'center';
+            msgDiv.style.fontWeight = '600';
+            msgDiv.style.fontSize = '1.1rem';
+            msgDiv.style.boxShadow = '0 4px 15px rgba(52, 211, 153, 0.2)';
+            msgDiv.style.display = 'flex';
+            msgDiv.style.alignItems = 'center';
+            msgDiv.style.justifyContent = 'center';
+            msgDiv.style.gap = '10px';
+            msgDiv.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            msgDiv.style.transform = 'translateY(10px)';
+            msgDiv.style.opacity = '0';
+            
+            // Insert the message right BEFORE the submit button so it's easily seen
+            if (submitBtn) {
+                submitBtn.parentNode.insertBefore(msgDiv, submitBtn);
+            } else {
+                form.appendChild(msgDiv);
+            }
+        }
         
-        if (response.ok && result.status === 'success') {
-            showTerminalAlert("Status: 200 OK\nPayload successfully securely logged to Sheet.\nThank you for reaching out to Solar Rex!", true);
-            if (typeof closeQuickModal === 'function') closeQuickModal();
+        // Animated icon and text
+        msgDiv.innerHTML = `<i class='bx bxs-check-circle' style='font-size: 1.5rem;'></i> <span>Done! Your details have been submitted.</span>`;
+        msgDiv.style.backgroundColor = '#ecfdf5';
+        msgDiv.style.color = '#065f46';
+        msgDiv.style.border = '2px solid #34d399';
+        msgDiv.style.display = 'flex';
+        
+        // Trigger animation
+        requestAnimationFrame(() => {
+            msgDiv.style.transform = 'translateY(0)';
+            msgDiv.style.opacity = '1';
+        });
+
+        // Hide after 5 seconds
+        setTimeout(() => {
+            msgDiv.style.transform = 'translateY(-10px)';
+            msgDiv.style.opacity = '0';
+            setTimeout(() => { msgDiv.style.display = 'none'; }, 400);
+        }, 5000);
+        
+        // Update submit button to show success
+        if (submitBtn) {
+            if (buttonTextSpan) buttonTextSpan.textContent = "Done! ✅";
+            else submitBtn.textContent = "Done! ✅";
+            submitBtn.style.backgroundColor = "#10b981"; // Emerald green
+            submitBtn.style.color = "#ffffff";
+            submitBtn.style.borderColor = "#10b981";
+            submitBtn.style.transform = "scale(1.02)";
+        }
+
+        if (typeof closeQuickModal === 'function') {
+            setTimeout(closeQuickModal, 2500); // Close modal automatically after 2.5s
+        }
+        
+        // Reset form fields
+        setTimeout(() => {
             form.reset();
             const activeRadioPills = form.querySelectorAll('.radio-pill-group');
             activeRadioPills.forEach(group => {
                 const firstInput = group.querySelector('input[type="radio"]');
                 if (firstInput) firstInput.checked = true;
             });
-        } else {
-            // Server responded but returned a non-success status
-            console.error("Form submission error from server:", result);
-            showTerminalAlert([
-                "Submission failed — server returned an error.",
-                result.message || "Please try again or contact us directly."
-            ], false);
-        }
+            // Revert button styling
+            if (submitBtn) {
+                if (buttonTextSpan) buttonTextSpan.textContent = originalText;
+                else submitBtn.textContent = originalText;
+                submitBtn.style.backgroundColor = "";
+                submitBtn.style.color = "";
+                submitBtn.style.borderColor = "";
+                submitBtn.style.transform = "";
+                submitBtn.disabled = false;
+            }
+        }, 3000);
+
     } catch (error) {
-        console.error("Form submission failed — network error:", error);
-        showTerminalAlert([
-            "Network error — could not reach the server.",
-            "Please check your internet connection and try again."
-        ], false);
-    } finally {
+        console.error("Form submission failed:", error);
+        
+        let msgDiv = form.querySelector('.form-submit-message');
+        if (!msgDiv) {
+            msgDiv = document.createElement('div');
+            msgDiv.className = 'form-submit-message';
+            msgDiv.style.marginTop = '15px';
+            msgDiv.style.marginBottom = '15px';
+            msgDiv.style.padding = '16px';
+            msgDiv.style.borderRadius = '12px';
+            msgDiv.style.textAlign = 'center';
+            msgDiv.style.fontWeight = '600';
+            msgDiv.style.fontSize = '1.1rem';
+            msgDiv.style.transition = 'all 0.4s ease';
+            msgDiv.style.opacity = '0';
+            
+            if (submitBtn) {
+                submitBtn.parentNode.insertBefore(msgDiv, submitBtn);
+            } else {
+                form.appendChild(msgDiv);
+            }
+        }
+        msgDiv.innerHTML = `<i class='bx bxs-error-circle' style='font-size: 1.5rem;'></i> <span>Connection Error. Please try again.</span>`;
+        msgDiv.style.backgroundColor = '#fef2f2';
+        msgDiv.style.color = '#991b1b';
+        msgDiv.style.border = '2px solid #f87171';
+        msgDiv.style.display = 'flex';
+        msgDiv.style.alignItems = 'center';
+        msgDiv.style.justifyContent = 'center';
+        msgDiv.style.gap = '10px';
+        
+        requestAnimationFrame(() => {
+            msgDiv.style.opacity = '1';
+        });
+
+        setTimeout(() => {
+            msgDiv.style.opacity = '0';
+            setTimeout(() => { msgDiv.style.display = 'none'; }, 400);
+        }, 5000);
+
         if (submitBtn) {
             submitBtn.disabled = false;
-            if (buttonTextSpan) {
-                buttonTextSpan.textContent = originalText;
-            } else {
-                submitBtn.textContent = originalText;
-            }
-            if (spinner && spinner.parentNode) {
-                spinner.parentNode.removeChild(spinner);
-            }
+            if (buttonTextSpan) buttonTextSpan.textContent = originalText;
+            else submitBtn.textContent = originalText;
+        }
+    } finally {
+        if (submitBtn && spinner && spinner.parentNode) {
+            spinner.parentNode.removeChild(spinner);
         }
     }
 };
@@ -756,11 +706,25 @@ if (typeBtns.length > 0) {
             const target = this.getAttribute('data-target');
             localSections.forEach(section => {
                 section.classList.remove('active');
+                const inputs = section.querySelectorAll('input, select, textarea');
+                inputs.forEach(input => input.disabled = true);
             });
             const targetSection = document.getElementById('form-' + target);
             if (targetSection) {
                 targetSection.classList.add('active');
+                const inputs = targetSection.querySelectorAll('input, select, textarea');
+                inputs.forEach(input => input.disabled = false);
             }
+        });
+    });
+
+    // Initialize form inputs disabled state based on active section
+    document.querySelectorAll('.contact-form-wrapper, .quick-modal-content').forEach(wrapper => {
+        const sections = wrapper.querySelectorAll('.form-group-section');
+        sections.forEach(section => {
+            const isActive = section.classList.contains('active');
+            const inputs = section.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => input.disabled = !isActive);
         });
     });
 }
