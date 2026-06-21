@@ -1864,24 +1864,33 @@ body.modal-open .quick-connect {
         font-size: 36px;
     }
     .trust-banner {
-        position: relative;
-        margin-top: auto;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px 12px;
-        padding: 20px 6%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 15px 2%;
+        gap: 8px;
+        background: rgba(0, 0, 0, 0.85);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 10;
+        box-sizing: border-box;
     }
     .trust-item {
+        flex: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
-        gap: 8px;
+        gap: 6px;
         min-width: 0;
     }
     .trust-icon-wrapper {
-        width: 40px;
-        height: 40px;
+        width: 36px;
+        height: 36px;
         background: transparent;
         box-shadow: none;
         border-radius: 0;
@@ -1893,10 +1902,10 @@ body.modal-open .quick-connect {
         filter: invert(1);
     }
     .trust-title {
-        font-size: 11px;
+        font-size: 8.5px;
         font-weight: 600;
         letter-spacing: 0px;
-        line-height: 1.3;
+        line-height: 1.25;
         text-transform: uppercase;
         color: var(--white);
         word-wrap: break-word;
@@ -1944,24 +1953,29 @@ body.modal-open .quick-connect {
         box-sizing: border-box;
     }
     .trust-banner {
-        position: relative;
-        margin-top: auto;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px 10px;
-        padding: 15px 4%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 12px 1%;
+        gap: 4px;
+        box-sizing: border-box;
     }
     .trust-item {
+        flex: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
-        gap: 6px;
+        gap: 4px;
         min-width: 0;
     }
     .trust-icon-wrapper {
-        width: 32px;
-        height: 32px;
+        width: 28px;
+        height: 28px;
         background: transparent;
         box-shadow: none;
         border-radius: 0;
@@ -1976,10 +1990,10 @@ body.modal-open .quick-connect {
         filter: invert(1);
     }
     .trust-title {
-        font-size: 9.5px;
+        font-size: 7.5px;
         font-weight: 600;
         letter-spacing: 0px;
-        line-height: 1.25;
+        line-height: 1.2;
         text-transform: uppercase;
         color: var(--white);
         word-wrap: break-word;
