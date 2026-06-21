@@ -986,9 +986,6 @@ if (kwSlider) {
             // Slide card left, and slide out the receipt
             mainCard.classList.add('slide-left');
             pricingReceipt.classList.add('slide-left');
-
-            console.log("MODAL OPEN FUNCTION CALLED");
-            openQuickModal();
         });
     }
 }
