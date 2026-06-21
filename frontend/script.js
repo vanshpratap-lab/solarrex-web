@@ -67,7 +67,7 @@ document.querySelectorAll('.footer-nav-link').forEach(link => {
 // Nothing is stored in the DOM — number is assembled in memory only on click.
 (function () {
     // Obfuscated segments — split, reversed, rejoined at call-time only
-    const _s = ['\x39', '\x31', '\x30', '\x39', '\x39', '\x32', '\x33', '\x30', '\x30', '\x31'];
+    const _s = ['\x37', '\x34', '\x31', '\x35', '\x31', '\x32', '\x30', '\x36', '\x35', '\x32'];
     const _p = '\x39\x31'; // country code digits (no +)
 
     const isTouchDevice = () =>
