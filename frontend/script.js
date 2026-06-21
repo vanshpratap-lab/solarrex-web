@@ -370,6 +370,8 @@ const unlockBodyScroll = () => {
 };
 
 const openQuickModal = () => {
+    // Only open on desktop (>1024px). On phone/tablet, do nothing.
+    if (window.innerWidth <= 1024) return;
     overlay.classList.add('active');
     lockBodyScroll();
 };

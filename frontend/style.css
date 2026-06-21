@@ -1244,6 +1244,13 @@ body {
     pointer-events: auto;
 }
 
+/* Never show the quick-connect popup modal on phone or tablet */
+@media (max-width: 1024px) {
+    .quick-modal-overlay {
+        display: none !important;
+    }
+}
+
 /* Hide floating quick-connect widget when modal is open */
 body.modal-open .quick-connect {
     opacity: 0 !important;
