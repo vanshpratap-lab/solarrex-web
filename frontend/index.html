@@ -83,7 +83,7 @@
     <main>
 
     <section class="hero">
-        <video autoplay muted loop playsinline preload="auto" src="video/hero.mp4" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" class="hero-video" width="1920" height="1080" id="hero-video">
+        <video autoplay muted loop playsinline preload="auto" src="video/hero.mp4" class="hero-video" width="1920" height="1080" id="hero-video">
             <source src="video/hero.mp4" type="video/mp4">
             <track kind="captions" src="data:text/vtt," srclang="en" label="English" default>
         </video>
@@ -101,6 +101,15 @@
                 <a href="#section-6" class="btn-primary header-nav-link" data-target="section-6">Get Free Quote</a>
                 <a href="solutions.html" class="btn-secondary magic-button">Explore Solutions</a>
             </div>
+        </div>
+        <div class="video-control-panel">
+            <button class="vid-btn play-pause-btn" id="vid-play-pause" title="Play/Pause Background Video" aria-label="Play or pause background video">
+                <i class='bx bx-pause'></i>
+            </button>
+            <a href="video/hero.mp4" download="solarrex-hero.mp4" class="vid-btn download-btn" id="vid-download" title="Download Background Video">
+                <i class='bx bx-download'></i>
+                <span>Download Video</span>
+            </a>
         </div>
         <div class="scroll-indicator">
             <i class='bx bx-chevron-down'></i>

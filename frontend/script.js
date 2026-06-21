@@ -1302,17 +1302,15 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// Hero Video: click/tap anywhere on hero to pause & play
+// Hero Video: click/tap anywhere on hero to pause & play, plus premium control panel binding
 document.addEventListener('DOMContentLoaded', () => {
     const heroVideo     = document.getElementById('hero-video');
     const heroTap       = document.getElementById('hero-video-tap');
     const indicator     = document.getElementById('hero-video-indicator');
     const indicatorIcon = document.getElementById('video-indicator-bx');
+    const playPauseBtn  = document.getElementById('vid-play-pause');
 
     if (heroVideo) {
-        // Prevent right-click context menu on video
-        heroVideo.addEventListener('contextmenu', e => e.preventDefault());
-
         // List of possible relative and absolute paths for the video
         const videoPaths = [
             'video/hero.mp4',
@@ -1393,6 +1391,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 flashIndicator(true);
             }
         });
+    }
+
+    // Play/Pause button from control panel
+    if (playPauseBtn && heroVideo) {
+        const playPauseIcon = playPauseBtn.querySelector('i');
+        
+        const syncBtnState = () => {
+            if (playPauseIcon) {
+                playPauseIcon.className = heroVideo.paused ? 'bx bx-play' : 'bx bx-pause';
+            }
+        };
+
+        playPauseBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (heroVideo.paused) {
+                heroVideo.play().catch(() => {});
+            } else {
+                heroVideo.pause();
+            }
+            syncBtnState();
+        });
+
+        heroVideo.addEventListener('play', syncBtnState);
+        heroVideo.addEventListener('pause', syncBtnState);
     }
 });
 
