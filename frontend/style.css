@@ -278,49 +278,9 @@ body {
     object-fit: cover;
     z-index: 1;
     transition: opacity 0.4s ease;
-}
-
-/* Invisible click/tap overlay for video play/pause control */
-.hero-video-tap {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 3;
-    cursor: default;
-    background: transparent;
-}
-
-/* Subtle play/pause icon flash — not a player, just feedback */
-.hero-video-indicator {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.6);
-    z-index: 10;
     pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.25s ease, transform 0.25s ease;
-}
-.hero-video-indicator.show {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-}
-.hero-video-indicator-icon {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(6px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-}
-.hero-video-indicator-icon i {
-    font-size: 28px;
-    color: #fff;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 .hero-overlay {
@@ -340,6 +300,7 @@ body {
     opacity: 0;
     animation: fadeIn 1.5s ease forwards, slideUp 1s cubic-bezier(0.23, 1, 0.32, 1) 0.3s both;
     position: relative;
+    margin-top: -60px;
 }
 
 .hero-title {
@@ -1326,12 +1287,7 @@ body {
     pointer-events: auto;
 }
 
-/* Never show the quick-connect popup modal on phone or tablet */
-@media (max-width: 1024px) {
-    .quick-modal-overlay {
-        display: none !important;
-    }
-}
+
 
 /* Hide floating quick-connect widget when modal is open */
 body.modal-open .quick-connect {
@@ -1822,7 +1778,7 @@ body.modal-open .quick-connect {
     }
     .hero-content {
         margin-top: auto;
-        margin-bottom: 220px;
+        margin-bottom: 36vh;
     }
     .hero-title {
         font-size: 3.5rem;
@@ -1922,7 +1878,7 @@ body.modal-open .quick-connect {
         padding-right: 4%;
     }
     .hero-content {
-        margin-bottom: 180px;
+        margin-bottom: 36vh;
     }
     .hero-title {
         font-size: 2.8rem;

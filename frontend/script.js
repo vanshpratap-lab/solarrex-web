@@ -370,8 +370,6 @@ const unlockBodyScroll = () => {
 };
 
 const openQuickModal = () => {
-    // Only open on desktop (>1024px). On phone/tablet, do nothing.
-    if (window.innerWidth <= 1024) return;
     overlay.classList.add('active');
     lockBodyScroll();
 };
@@ -1302,12 +1300,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// Hero Video: click/tap anywhere on hero to pause & play
+// Hero Background Video Autoplay and Setup
 document.addEventListener('DOMContentLoaded', () => {
-    const heroVideo     = document.getElementById('hero-video');
-    const heroTap       = document.getElementById('hero-video-tap');
-    const indicator     = document.getElementById('hero-video-indicator');
-    const indicatorIcon = document.getElementById('video-indicator-bx');
+    const heroVideo = document.getElementById('hero-video');
 
     if (heroVideo) {
         // Prevent right-click context menu on video
@@ -1370,29 +1365,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // If blocked, play on first user interaction
         document.addEventListener('click', forcePlay, { once: true });
         document.addEventListener('touchstart', forcePlay, { once: true });
-    }
-
-    if (heroTap && heroVideo && indicator && indicatorIcon) {
-        let indicatorTimer = null;
-
-        const flashIndicator = (isPaused) => {
-            indicatorIcon.className = isPaused ? 'bx bx-play' : 'bx bx-pause';
-            indicator.classList.add('show');
-            clearTimeout(indicatorTimer);
-            indicatorTimer = setTimeout(() => {
-                indicator.classList.remove('show');
-            }, 1200);
-        };
-
-        heroTap.addEventListener('click', () => {
-            if (heroVideo.paused) {
-                heroVideo.play().catch(() => {});
-                flashIndicator(false);
-            } else {
-                heroVideo.pause();
-                flashIndicator(true);
-            }
-        });
     }
 });
 
