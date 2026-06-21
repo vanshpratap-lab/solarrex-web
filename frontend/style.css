@@ -1716,6 +1716,9 @@ body.modal-open .quick-connect {
         font-size: 4rem;
         letter-spacing: 12px;
     }
+    .solutions {
+        padding: 80px 4% !important;
+    }
     .solutions-container {
         flex-direction: column-reverse;
         gap: 60px;
@@ -1728,22 +1731,29 @@ body.modal-open .quick-connect {
         gap: 20px;
     }
     .img-slider {
-        height: 90vw !important;
-        max-height: 450px !important;
+        height: 135vw !important;
+        max-height: 700px !important;
     }
     .img-item .item {
-        width: 85% !important;
+        width: 100% !important;
         height: auto !important;
-        aspect-ratio: 1/1 !important;
-        max-width: 420px !important;
+        max-height: 100% !important;
+        max-width: 650px !important;
         border: none !important;
         box-shadow: none !important;
         background: transparent !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-    /* Target only the 4th solutions image (worker character) to make it vertical and large on tablet */
+    .img-item:nth-child(1) .item,
+    .img-item:nth-child(2) .item,
+    .img-item:nth-child(3) .item {
+        aspect-ratio: 1/1 !important;
+    }
+    /* Target the 4th solutions image (worker character) to match its native 502x607 aspect ratio and large on tablet */
     .img-item:nth-child(4) .item {
-        aspect-ratio: 3/4 !important;
-        max-width: 320px !important;
+        aspect-ratio: 502/607 !important;
     }
     .img-item:nth-child(4) .item img {
         object-fit: contain !important;
@@ -5222,6 +5232,10 @@ input[type="range"]::-webkit-slider-thumb:hover {
 }
 
 @media (max-width: 480px) {
+    .solutions {
+        padding: 50px 15px !important;
+    }
+
     /* 3D Book Cover Proportionate Sizing */
     .pill-image-wrapper {
         max-width: 290px;
@@ -5241,10 +5255,10 @@ input[type="range"]::-webkit-slider-thumb:hover {
         letter-spacing: 0px !important;
     }
 
-    /* Target only the 4th solutions image (worker character) on mobile screens */
+    /* Target the 4th solutions image (worker character) on mobile screens to let it scale up to full screen width */
     .img-item:nth-child(4) .item {
-        max-width: 230px !important;
-        aspect-ratio: 3/4 !important;
+        max-width: 100% !important;
+        aspect-ratio: 502/607 !important;
     }
 }
 
