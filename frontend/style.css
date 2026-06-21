@@ -4114,6 +4114,16 @@ input[type="range"]::-webkit-slider-thumb:hover {
     line-height: 1.2;
 }
 
+.r-approx-badge {
+    font-size: 10px;
+    font-style: italic;
+    color: #6b7280;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    margin-bottom: 1px;
+    display: block;
+}
+
 .savings-green {
     color: #2ecc71;
 }
