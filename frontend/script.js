@@ -975,8 +975,10 @@ if (kwSlider) {
     // --- GET DETAILED QUOTE ---
     const getQuoteBtn = document.querySelector('.get-quote-btn-new');
     if (getQuoteBtn) {
+        console.log("BUTTON FOUND");
         getQuoteBtn.addEventListener('click', (e) => {
             e.preventDefault();
+            console.log("BUTTON CLICKED");
 
             const mainCard = document.querySelector('.calculator-main-card');
             if (!mainCard || !pricingReceipt) return;
@@ -984,6 +986,9 @@ if (kwSlider) {
             // Slide card left, and slide out the receipt
             mainCard.classList.add('slide-left');
             pricingReceipt.classList.add('slide-left');
+
+            console.log("MODAL OPEN FUNCTION CALLED");
+            openQuickModal();
         });
     }
 }
