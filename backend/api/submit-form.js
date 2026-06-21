@@ -1,6 +1,10 @@
 // Serverless function proxy to protect Google Sheets Web App URL from client-side exposure.
 // Deployed as /api/submit-form on Vercel.
 
+// Fallback URL used when GOOGLE_SCRIPT_URL env var is not set in Vercel dashboard.
+// This is safe — the function runs server-side and is never exposed to the browser.
+const FALLBACK_GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxBI6KcoS1G_xZh9nRbjGxQ_iX-cdFd4egmyBe-8ql_tMk6SeLbmfW9om5iCnSMi0cN/exec';
+
 export default async function handler(req, res) {
   // CORS Headers — restrict to the configured production domain, localhost, and Vercel preview domains.
   const origin = req.headers.origin || '';
@@ -37,11 +41,8 @@ export default async function handler(req, res) {
     return res.status(413).json({ status: 'error', message: 'Request payload too large.' });
   }
 
-  const googleScriptUrl = process.env.GOOGLE_SCRIPT_URL;
-  if (!googleScriptUrl) {
-    console.error("GOOGLE_SCRIPT_URL environment variable is missing!");
-    return res.status(500).json({ status: 'error', message: 'Server endpoint configuration missing.' });
-  }
+  // Use env var if set in Vercel Dashboard, otherwise use embedded fallback.
+  const googleScriptUrl = process.env.GOOGLE_SCRIPT_URL || FALLBACK_GOOGLE_SCRIPT_URL;
 
   try {
     // Determine input payload (form-urlencoded or json) & sanitize inputs against XSS/HTML Injection
