@@ -1041,78 +1041,7 @@ body {
 
 @media (max-width: 1024px) {
     .quick-connect {
-        position: fixed !important;
-        bottom: 20px !important;
-        right: 20px !important;
-        left: auto !important;
-        width: auto !important;
-        max-width: 165px !important;
-        display: block !important;
-        opacity: 1;
-        transform: translateY(0) scale(0.8);
-        transform-origin: bottom right !important;
-        z-index: 5000 !important;
-        pointer-events: auto !important;
-        transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
-        animation: none !important;
-    }
-    
-    .quick-connect.hide-on-hero {
-        opacity: 0 !important;
-        pointer-events: none !important;
-        transform: translateY(100px) scale(0.7) !important;
-        transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    }
-    
-    .quick-connect.hide-popup-contact,
-    .quick-connect.hide-popup-pricing,
-    .quick-connect.hide-popup-operations {
-        opacity: 0 !important;
-        pointer-events: none !important;
-        transform: translateX(180px) scale(0.7) !important;
-        transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    }
-    
-    .quick-connect:hover {
-        transform: translateY(-5px) scale(0.82) !important;
-    }
-    
-    .iphone-frame {
-        max-width: 150px !important;
-        border-width: 5px !important;
-        border-radius: 20px !important;
-        padding: 16px 10px 10px !important;
-        aspect-ratio: auto !important;
-        margin: 0 auto !important;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.3) !important;
-    }
-    
-    .iphone-notch {
-        width: 70px !important;
-        height: 15px !important;
-        top: 6px !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-    }
-    
-    .mini-form {
-        gap: 6px !important;
-        margin-top: 10px !important;
-    }
-    
-    .mini-input-group label {
-        font-size: 8px !important;
-    }
-    
-    .mini-form input {
-        padding: 6px 10px !important;
-        font-size: 11px !important;
-    }
-    
-    .mini-btn {
-        padding: 7px !important;
-        font-size: 11px !important;
-        margin-top: 2px !important;
+        display: none !important;
     }
 }
 
@@ -1301,7 +1230,7 @@ body {
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    z-index: 3000;
+    z-index: 6000;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1313,6 +1242,13 @@ body {
 .quick-modal-overlay.active {
     opacity: 1;
     pointer-events: auto;
+}
+
+/* Hide floating quick-connect widget when modal is open */
+body.modal-open .quick-connect {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: translateY(100px) scale(0.7) !important;
 }
 
 /* Terminal-themed Custom Validation Modal Alert */
@@ -1696,7 +1632,12 @@ body {
 @media (max-width: 768px) {
     .quick-modal-content { width: 95%; height: 90vh; overflow-y: auto; }
     .modal-grid { grid-template-columns: 1fr; }
-    .modal-form { padding: 25px; }
+    .modal-form { 
+        padding: 25px; 
+        max-height: none !important; 
+        overflow-y: visible !important; 
+        padding-right: 0 !important; 
+    }
 }
 
 /* Animations */
