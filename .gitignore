@@ -6,3 +6,5 @@ skills/
 .claude/
 .vercel
 .env*
+# Kimi project memory
+.kimi-memory/
