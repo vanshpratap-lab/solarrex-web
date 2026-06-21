@@ -55,6 +55,23 @@ export default defineConfig(({ mode }) => {
                     params.append(key, sanitize(payload[key]));
                   }
 
+                  const whatsapp = params.get('WhatsApp');
+                  const pincode = params.get('Pincode');
+
+                  if (whatsapp && !/^\d{10}$/.test(whatsapp)) {
+                    res.statusCode = 400;
+                    res.setHeader('Content-Type', 'application/json');
+                    res.end(JSON.stringify({ status: 'error', message: 'Invalid WhatsApp number. Must be exactly 10 digits.' }));
+                    return;
+                  }
+
+                  if (pincode && !/^\d{6}$/.test(pincode)) {
+                    res.statusCode = 400;
+                    res.setHeader('Content-Type', 'application/json');
+                    res.end(JSON.stringify({ status: 'error', message: 'Invalid Pincode. Must be exactly 6 digits.' }));
+                    return;
+                  }
+
                   const forwardResponse = await fetch(googleScriptUrl, {
                     method: 'POST',
                     headers: {

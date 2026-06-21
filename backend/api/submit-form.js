@@ -73,6 +73,19 @@ export default async function handler(req, res) {
       requestBody = params.toString();
     }
 
+    // Backend validation for WhatsApp and Pincode
+    const parsedParams = new URLSearchParams(requestBody);
+    const whatsapp = parsedParams.get('WhatsApp');
+    const pincode = parsedParams.get('Pincode');
+    
+    if (whatsapp && !/^\d{10}$/.test(whatsapp)) {
+      return res.status(400).json({ status: 'error', message: 'Invalid WhatsApp number. Must be exactly 10 digits.' });
+    }
+    
+    if (pincode && !/^\d{6}$/.test(pincode)) {
+      return res.status(400).json({ status: 'error', message: 'Invalid Pincode. Must be exactly 6 digits.' });
+    }
+
     // Forward the payload to Google Sheets Web App
     const forwardResponse = await fetch(googleScriptUrl, {
       method: 'POST',

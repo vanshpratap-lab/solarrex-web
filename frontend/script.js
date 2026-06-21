@@ -187,7 +187,12 @@ const handleFormSubmit = async (e) => {
         });
 
         if (!response.ok) {
-            throw new Error(`Server returned status: ${response.status}`);
+            let errorMsg = `Server returned status: ${response.status}`;
+            try {
+                const errData = await response.json();
+                if (errData.message) errorMsg = errData.message;
+            } catch (e) { }
+            throw new Error(errorMsg);
         }
 
         // --- BEAUTIFUL SUCCESS MESSAGE ---
@@ -297,7 +302,13 @@ const handleFormSubmit = async (e) => {
                 form.appendChild(msgDiv);
             }
         }
-        msgDiv.innerHTML = `<i class='bx bxs-error-circle' style='font-size: 1.5rem;'></i> <span>Connection Error. Please try again.</span>`;
+        
+        let displayError = error.message;
+        if (!displayError || displayError.includes('Failed to fetch')) {
+            displayError = 'Connection Error. Please try again.';
+        }
+        
+        msgDiv.innerHTML = `<i class='bx bxs-error-circle' style='font-size: 1.5rem;'></i> <span>${displayError}</span>`;
         msgDiv.style.backgroundColor = '#fef2f2';
         msgDiv.style.color = '#991b1b';
         msgDiv.style.border = '2px solid #f87171';
@@ -364,8 +375,10 @@ const openQuickModal = () => {
 };
 
 const closeQuickModal = () => {
-    overlay.classList.remove('active');
-    unlockBodyScroll();
+    if (overlay && overlay.classList.contains('active')) {
+        overlay.classList.remove('active');
+        unlockBodyScroll();
+    }
 };
 
 // Check if device is desktop
@@ -1379,5 +1392,73 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+});
+
+// --- Pincode API Verification & WhatsApp formatting ---
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. WhatsApp Input Validation (digits only, max 10)
+    document.querySelectorAll('input[name="whatsapp"]').forEach(input => {
+        input.addEventListener('input', (e) => {
+            const val = e.target.value.trim();
+            e.target.value = val.replace(/[^\d]/g, '').slice(0, 10);
+        });
+    });
+
+    // 2. Pincode API Auto-Verification
+    document.querySelectorAll('input[name="pincode"]').forEach(input => {
+        let infoSpan = input.parentNode.querySelector('.pincode-info');
+        if (!infoSpan) {
+            infoSpan = document.createElement('span');
+            infoSpan.className = 'pincode-info';
+            infoSpan.style.fontSize = '0.85rem';
+            infoSpan.style.marginTop = '6px';
+            infoSpan.style.display = 'block';
+            infoSpan.style.fontWeight = '500';
+            input.parentNode.appendChild(infoSpan);
+        }
+
+        input.addEventListener('input', async (e) => {
+            const val = e.target.value.trim();
+            e.target.value = val.replace(/[^\d]/g, '').slice(0, 6); // force 6 digits only
+            const pincode = e.target.value;
+            
+            if (pincode.length === 6) {
+                infoSpan.style.color = '#6b7280';
+                infoSpan.innerHTML = '<i class="bx bx-loader-alt bx-spin"></i> Verifying area...';
+                input.setCustomValidity('Verifying...');
+                
+                try {
+                    const res = await fetch(`https://api.postalpincode.in/pincode/${pincode}`);
+                    const data = await res.json();
+                    if (data && data[0] && data[0].Status === 'Success') {
+                        const postOffice = data[0].PostOffice[0];
+                        const areaName = `${postOffice.Name}, ${postOffice.District}, ${postOffice.State}`;
+                        infoSpan.style.color = '#10b981';
+                        infoSpan.innerHTML = `<i class='bx bxs-check-circle'></i> ${areaName}`;
+                        input.setCustomValidity(''); // Mark as valid
+                        
+                        // Auto-fill City field if it exists
+                        const formSection = input.closest('.form-group-section') || input.closest('form');
+                        if (formSection) {
+                            const cityInput = formSection.querySelector('input[name="city"]');
+                            if (cityInput && !cityInput.value) {
+                                cityInput.value = postOffice.District;
+                            }
+                        }
+                    } else {
+                        infoSpan.style.color = '#ef4444';
+                        infoSpan.innerHTML = `<i class='bx bxs-error-circle'></i> Invalid PIN code`;
+                        input.setCustomValidity('Invalid Indian PIN code');
+                    }
+                } catch (err) {
+                    infoSpan.textContent = '';
+                    input.setCustomValidity('');
+                }
+            } else {
+                infoSpan.textContent = '';
+                input.setCustomValidity(''); // Reset custom validity if less than 6 digits (HTML5 pattern="\d{6}" handles the required 6 length)
+            }
+        });
+    });
 });
 
