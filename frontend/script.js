@@ -1412,7 +1412,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         input.setCustomValidity(''); // Mark as valid
                         
                         // Auto-fill City field, or create a hidden one if it doesn't exist
-                        const formSection = input.closest('form');
+                        const formSection = input.closest('.form-group-section') || input.closest('form');
                         if (formSection) {
                             let cityInput = formSection.querySelector('input[name="city"]');
                             if (!cityInput) {
