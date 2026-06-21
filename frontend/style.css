@@ -1864,7 +1864,10 @@ body {
         border-radius: 0;
     }
     .trust-icon-wrapper img {
-        filter: brightness(0) invert(1);
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: invert(1);
     }
     .trust-title {
         font-size: 10px;
@@ -1945,8 +1948,10 @@ body {
         align-items: center;
     }
     .trust-icon-wrapper img {
-        filter: brightness(0) invert(1);
+        width: 100%;
+        height: 100%;
         object-fit: contain;
+        filter: invert(1);
     }
     .trust-title {
         font-size: 8px;
