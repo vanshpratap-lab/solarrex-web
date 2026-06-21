@@ -1432,18 +1432,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     const data = await res.json();
                     if (data && data[0] && data[0].Status === 'Success') {
                         const postOffice = data[0].PostOffice[0];
-                        const areaName = `${postOffice.Name}, ${postOffice.District}, ${postOffice.State}`;
+                        const areaName = postOffice.District; // Use short form (e.g. 'Indore')
                         infoSpan.style.color = '#10b981';
                         infoSpan.innerHTML = `<i class='bx bxs-check-circle'></i> ${areaName}`;
                         input.setCustomValidity(''); // Mark as valid
                         
-                        // Auto-fill City field if it exists
-                        const formSection = input.closest('.form-group-section') || input.closest('form');
+                        // Auto-fill City field, or create a hidden one if it doesn't exist
+                        const formSection = input.closest('form');
                         if (formSection) {
-                            const cityInput = formSection.querySelector('input[name="city"]');
-                            if (cityInput && !cityInput.value) {
-                                cityInput.value = postOffice.District;
+                            let cityInput = formSection.querySelector('input[name="city"]');
+                            if (!cityInput) {
+                                cityInput = document.createElement('input');
+                                cityInput.type = 'hidden';
+                                cityInput.name = 'city';
+                                formSection.appendChild(cityInput);
                             }
+                            cityInput.value = postOffice.District;
                         }
                     } else {
                         infoSpan.style.color = '#ef4444';
