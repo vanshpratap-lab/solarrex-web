@@ -948,13 +948,13 @@ if (kwSlider) {
                 addRow('Gen (Monthly):', d.gen);
                 addRow('Gen (Daily):', d.daily);
                 addRow('Roof Space:', `${d.area} (${d.dim})`);
-                addRow('Standard Price:', d.ndcr, true, false, false, true);
+                addRow('Standard Price:', d.ndcr + ' (Approx.)', true, false, false, true);
                 if (d.dcr === 'N/A') {
                     addRow('Subsidized Price:', 'N/A', false, false, true, false);
                 } else {
-                    addRow('Subsidized Price:', d.dcr, false, true, false, false);
+                    addRow('Subsidized Price:', d.dcr + ' (Approx.)', false, true, false, false);
                 }
-                addRow('Est. Savings:', d.savings, true, false, false, true);
+                addRow('Est. Savings/Mo:', d.savings + ' (Approx.)', true, false, false, true);
                 
                 receiptDetails.appendChild(table);
             }
