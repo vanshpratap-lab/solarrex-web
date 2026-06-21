@@ -1822,7 +1822,7 @@ body.modal-open .quick-connect {
     }
     .hero-content {
         margin-top: auto;
-        margin-bottom: auto;
+        margin-bottom: 90px;
     }
     .hero-title {
         font-size: 3.5rem;
@@ -1922,7 +1922,7 @@ body.modal-open .quick-connect {
         padding-right: 4%;
     }
     .hero-content {
-        margin-bottom: 40px;
+        margin-bottom: 75px;
     }
     .hero-title {
         font-size: 2.8rem;
