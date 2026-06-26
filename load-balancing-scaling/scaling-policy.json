@@ -1,0 +1,16 @@
+{
+  "load_balancing": {
+    "strategy": "anycast-edge-distribution",
+    "failover": {
+      "regions": ["iad1", "sfo1", "hnd1"],
+      "automatic_routing": true
+    }
+  },
+  "scaling": {
+    "serverless_concurrency": {
+      "min_instances": 0,
+      "max_instances": 50,
+      "autoscaling_trigger": "concurrency_demand"
+    }
+  }
+}
