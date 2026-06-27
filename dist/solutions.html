@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="mobile-web-app-capable" content="yes">
     <title>SOLAR REX</title>
     <meta name="description" content="Explore Solar Rex energy solutions for residential, commercial, and industrial needs. Get DCR-compliant systems with government subsidies, 25-year warranty, and fast installation across India.">
     <meta name="theme-color" content="#f39c12">
@@ -28,7 +31,19 @@
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Anton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Anton&display=swap" rel="stylesheet">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://solarrex.in/" },
+        { "@type": "ListItem", "position": 2, "name": "Energy Solutions", "item": "https://solarrex.in/solutions" }
+      ]
+    }
+    </script>
 
     <!-- Fallback if JS is disabled/fails -->
     <noscript>
@@ -36,10 +51,10 @@
             .sol-content-wrapper { opacity: 1 !important; }
         </style>
     </noscript>
-  <script type="module" crossorigin src="/assets/solutions-CDIezd35.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/style-CsbG0_7n.js">
-  <link rel="stylesheet" crossorigin href="/assets/style-DvjTXJ_i.css">
-  <link rel="stylesheet" crossorigin href="/assets/solutions-BKNpkR_u.css">
+  <script type="module" crossorigin src="/assets/solutions-DCmhv2OY.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/app-shell-BttJHnEJ.js">
+  <link rel="stylesheet" crossorigin href="/assets/app-shell-i4DNFCTm.css">
+  <link rel="stylesheet" crossorigin href="/assets/solutions-DFXmoUcd.css">
 </head>
 <body class="solutions-detail-page">
     
@@ -49,7 +64,7 @@
     <!-- Header / Navbar -->
     <nav class="navbar solutions-navbar">
         <a href="/" class="sol-back-btn" id="sol-back-nav">
-            <i class='bx bx-left-arrow-alt'></i> Back to Home
+            <i class='bx bx-left-arrow-alt'></i> <span>Back to Home</span>
         </a>
         <div class="nav-logo" style="animation: none;"><span class="logo-solar">SOLAR</span><span class="logo-rex">REX</span></div>
         <div class="nav-cta">
@@ -57,23 +72,23 @@
         </div>
     </nav>
 
+    <!-- Hero Section (full-width, outside content wrapper) -->
+    <section class="sol-hero" id="sol-main-hero">
+        <div class="sol-hero-overlay"></div>
+        <div class="sol-hero-bg" id="sol-hero-image" style="background-image: url('/assets/cat_residential-BzSINFaV.png');"></div>
+        <div class="sol-hero-content">
+            <div class="breadcrumbs">
+                <a href="/">Home</a> <i class='bx bx-chevron-right'></i> <span>Energy Solutions</span> <i class='bx bx-chevron-right'></i> <span id="breadcrumb-current">Residential Solar</span>
+            </div>
+            <h1 id="sol-title">Residential Solar Solutions</h1>
+            <p class="sol-subtitle" id="sol-subtitle">Power Your Home, Secure Your Independence</p>
+            <p class="sol-tagline" id="sol-tagline">Slash your electricity bills, get 24/7 backup power, and qualify for 100% government subsidy (DCR compliant).</p>
+        </div>
+    </section>
+
     <!-- Main Content Container -->
     <main class="sol-content-wrapper" id="sol-main-content" style="opacity: 0;">
         
-        <!-- Hero Section -->
-        <section class="sol-hero">
-            <div class="sol-hero-overlay"></div>
-            <div class="sol-hero-bg" id="sol-hero-image" style="background-image: url('/assets/cat_residential-BzSINFaV.png');"></div>
-            <div class="sol-hero-content">
-                <div class="breadcrumbs">
-                    <a href="/">Home</a> <i class='bx bx-chevron-right'></i> <span>Energy Solutions</span> <i class='bx bx-chevron-right'></i> <span id="breadcrumb-current">Residential Solar</span>
-                </div>
-                <h1 id="sol-title">Residential Solar Solutions</h1>
-                <p class="sol-subtitle" id="sol-subtitle">Power Your Home, Secure Your Independence</p>
-                <p class="sol-tagline" id="sol-tagline">Slash your electricity bills, get 24/7 backup power, and qualify for 100% government subsidy (DCR compliant).</p>
-            </div>
-        </section>
-
         <!-- Bento Grid Details Section -->
         <section class="sol-details-grid">
             
@@ -191,6 +206,6 @@
             <p>ISO 9001:2015 & CE Certified Solar Developer.</p>
         </div>
     </footer>
-
+
 </body>
 </html>

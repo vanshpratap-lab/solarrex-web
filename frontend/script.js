@@ -1,3 +1,24 @@
+function smoothScrollTo(targetY, duration = 700) {
+  const startY = window.scrollY;
+  const diff = targetY - startY;
+  if (Math.abs(diff) < 2) { window.scrollTo(0, targetY); return; }
+  const start = performance.now();
+  function cubicBezier(t) {
+    const p1x = 0.25, p1y = 0.46, p2x = 0.45, p2y = 0.94;
+    const cx = 3 * p1x, bx = 3 * (p2x - p1x) - cx, ax = 1 - cx - bx;
+    const cy = 3 * p1y, by = 3 * (p2y - p1y) - cy, ay = 1 - cy - by;
+    let s = t;
+    for (let i = 0; i < 8; i++) { const x = ((ax * s + bx) * s + cx) * s; const dx = (3 * ax * s + 2 * bx) * s + cx; if (Math.abs(dx) < 1e-6) break; s -= (x - t) / dx; }
+    return ((ay * s + by) * s + cy) * s;
+  }
+  function step(now) {
+    const t = Math.min((now - start) / duration, 1);
+    window.scrollTo(0, startY + diff * cubicBezier(t));
+    if (t < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
 const imgSlider = document.querySelector('.img-slider');
 const imgItems = document.querySelectorAll('.img-item');
 const infoItems = document.querySelectorAll('.info-item');
@@ -15,9 +36,10 @@ if (navLogo) {
         setTimeout(() => navLogo.classList.remove('logo-pulse'), 600);
 
         // Smooth scroll to very top
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        smoothScrollTo(0);
     });
 }
+
 
 // Header nav links & CTA → smooth scroll to sections
 document.querySelectorAll('.header-nav-link').forEach(link => {
@@ -25,13 +47,13 @@ document.querySelectorAll('.header-nav-link').forEach(link => {
         e.preventDefault();
         const target = link.dataset.target;
         if (target === 'top') {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            smoothScrollTo(0);
         } else {
             const section = document.getElementById(target);
             if (section) {
                 const offset = 80; // account for fixed navbar height
                 const top = section.getBoundingClientRect().top + window.scrollY - offset;
-                window.scrollTo({ top, behavior: 'smooth' });
+                smoothScrollTo(top);
             }
         }
         
@@ -49,13 +71,13 @@ document.querySelectorAll('.footer-nav-link').forEach(link => {
         e.preventDefault();
         const target = link.dataset.target;
         if (target === 'top') {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            smoothScrollTo(0);
         } else {
             const section = document.getElementById(target);
             if (section) {
                 const offset = 80; // account for fixed navbar height
                 const top = section.getBoundingClientRect().top + window.scrollY - offset;
-                window.scrollTo({ top, behavior: 'smooth' });
+                smoothScrollTo(top);
             }
         }
     });
@@ -366,12 +388,17 @@ const unlockBodyScroll = () => {
     document.body.style.width = '';
     document.body.style.overflow = '';
     document.body.classList.remove('modal-open');
+    const se = document.scrollingElement || document.documentElement;
+    const prev = se.style.scrollBehavior;
+    se.style.scrollBehavior = 'auto';
     window.scrollTo(0, bodyScrollPosition);
+    requestAnimationFrame(() => { se.style.scrollBehavior = prev; });
 };
 
 const openQuickModal = () => {
-    overlay.classList.add('active');
+    if (!overlay) return;
     lockBodyScroll();
+    overlay.classList.add('active');
 };
 
 const closeQuickModal = () => {
@@ -558,8 +585,9 @@ navItems.forEach((item, i) => {
 });
 
 // Scroll intercept logic for Section 02 (Product Slider)
-solutionsSection.addEventListener('wheel', (e) => {
-    const rect = solutionsSection.getBoundingClientRect();
+if (solutionsSection) {
+    solutionsSection.addEventListener('wheel', (e) => {
+        const rect = solutionsSection.getBoundingClientRect();
     
     // Check if the section is perfectly aligned with the top
     const isAligned = Math.abs(rect.top) < 10;
@@ -635,37 +663,36 @@ solutionsSection.addEventListener('touchmove', (e) => {
         }
     }
 }, { passive: false });
+}
 
 // Navbar mobile menu toggle
 const navMenuBtn = document.querySelector('.nav-menu-btn');
 const navLinks = document.querySelector('.nav-links');
 
-navMenuBtn.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    document.body.classList.toggle('menu-active'); // For coordinated popup shift
-    navMenuBtn.querySelector('i').classList.toggle('bx-x');
-});
-
-// Close menu when a link is clicked
-document.querySelectorAll('.nav-links li a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        document.body.classList.remove('menu-active');
-        navMenuBtn.querySelector('i').classList.remove('bx-x');
+if (navMenuBtn && navLinks) {
+    navMenuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        document.body.classList.toggle('menu-active');
+        navMenuBtn.querySelector('i')?.classList.toggle('bx-x');
     });
-});
 
-// Close menu when clicking outside of the navbar menu drawer
-document.addEventListener('click', (e) => {
-    if (navLinks && navLinks.classList.contains('active') && 
-        !navLinks.contains(e.target) && !navMenuBtn.contains(e.target)) {
-        navLinks.classList.remove('active');
-        document.body.classList.remove('menu-active');
-        if (navMenuBtn.querySelector('i')) {
-            navMenuBtn.querySelector('i').classList.remove('bx-x');
+    document.querySelectorAll('.nav-links li a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            document.body.classList.remove('menu-active');
+            navMenuBtn.querySelector('i')?.classList.remove('bx-x');
+        });
+    });
+
+    document.addEventListener('click', (e) => {
+        if (navLinks.classList.contains('active') &&
+            !navLinks.contains(e.target) && !navMenuBtn.contains(e.target)) {
+            navLinks.classList.remove('active');
+            document.body.classList.remove('menu-active');
+            navMenuBtn.querySelector('i')?.classList.remove('bx-x');
         }
-    }
-});
+    });
+}
 
 // Operations Interactive Showcase (Section 4) Tab Logic
 const opMenuItems = document.querySelectorAll('.operations-menu li');
@@ -680,13 +707,22 @@ if (opMenuItems.length > 0 && opContents.length > 0) {
             // Add active class to clicked menu item
             item.classList.add('active');
             
+            // Arrow bounce animation on click
+            const icon = item.querySelector('.icon-circle');
+            if (icon) {
+                icon.classList.remove('bounce');
+                void icon.offsetWidth; // force reflow to restart animation
+                icon.classList.add('bounce');
+                setTimeout(() => icon.classList.remove('bounce'), 600);
+            }
+            
             // Get the target content ID
             const targetId = 'content-' + item.getAttribute('data-target');
             
             // Hide all content blocks
             opContents.forEach(content => content.classList.remove('active'));
             
-            // Show the target content block
+            // Show the target content block with fade-in
             const targetContent = document.getElementById(targetId);
             if (targetContent) {
                 targetContent.classList.add('active');
@@ -758,15 +794,26 @@ if (csTabs.length > 0) {
 
             const filterValue = tab.getAttribute('data-filter');
 
-            // Filter cards
+            // Filter cards with staggered animation
+            let idx = 0;
             csCards.forEach(card => {
                 if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
                     card.classList.remove('hide');
+                    card.style.animationDelay = `${idx * 0.1}s`;
+                    idx++;
                 } else {
                     card.classList.add('hide');
                 }
             });
         });
+    });
+    // Trigger initial animation on load
+    let idx = 0;
+    csCards.forEach(card => {
+        if (!card.classList.contains('hide')) {
+            card.style.animationDelay = `${idx * 0.1}s`;
+            idx++;
+        }
     });
 }
 
@@ -1038,9 +1085,9 @@ const openInfoHub = (tabName) => {
         }
     });
 
-    // Open overlay
-    infoHubOverlay.classList.add('active');
+    // Lock body scroll FIRST, then open overlay
     lockBodyScroll();
+    infoHubOverlay.classList.add('active');
 
     // Trigger initial calculator updates if opening calculator tabs
     if (tabName === 'savings') {
@@ -1071,6 +1118,28 @@ infoHubTriggers.forEach(trigger => {
 // Bind close events
 if (infoHubCloseDot) infoHubCloseDot.addEventListener('click', closeInfoHub);
 if (infoHubCloseMain) infoHubCloseMain.addEventListener('click', closeInfoHub);
+
+// ── Terminal Alert ──────────────────────────────────────
+const terminalAlert = document.getElementById('terminal-alert');
+const terminalCloseDot = document.getElementById('terminal-close-dot');
+const terminalOkBtn = document.getElementById('terminal-ok-btn');
+const terminalErrorMessage = document.getElementById('terminal-error-message');
+
+const showTerminalAlert = (msg) => {
+    if (!terminalAlert) return;
+    if (terminalErrorMessage) terminalErrorMessage.textContent = msg || '[UNKNOWN] VALIDATION LAYER ERROR — CHECK INPUT FIELDS AND RETRY.';
+    lockBodyScroll();
+    terminalAlert.classList.add('active');
+};
+
+const closeTerminalAlert = () => {
+    if (!terminalAlert) return;
+    terminalAlert.classList.remove('active');
+    unlockBodyScroll();
+};
+
+if (terminalCloseDot) terminalCloseDot.addEventListener('click', closeTerminalAlert);
+if (terminalOkBtn) terminalOkBtn.addEventListener('click', closeTerminalAlert);
 
 // Click outside overlay disabled to trap user activity inside the popup
 
@@ -1469,22 +1538,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// FAQ Accordion
+// FAQ Accordion — butter-smooth open/close with dynamic height
 document.querySelectorAll('.faq-question').forEach(btn => {
     btn.addEventListener('click', () => {
         const item = btn.closest('.faq-item');
+        const answer = item.querySelector('.faq-answer');
         const isActive = item.classList.contains('active');
+
         document.querySelectorAll('.faq-item.active').forEach(el => {
             if (el !== item) {
+                const otherAnswer = el.querySelector('.faq-answer');
                 el.classList.remove('active');
+                otherAnswer.style.maxHeight = '0px';
                 el.querySelector('.faq-question')?.setAttribute('aria-expanded', 'false');
             }
         });
+
         if (isActive) {
             item.classList.remove('active');
+            answer.style.maxHeight = '0px';
             btn.setAttribute('aria-expanded', 'false');
         } else {
             item.classList.add('active');
+            requestAnimationFrame(() => {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            });
             btn.setAttribute('aria-expanded', 'true');
         }
     });

@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="mobile-web-app-capable" content="yes">
     <title>SOLAR REX</title>
     <meta name="description"
         content="Solar Rex provides premium sustainable solar energy solutions for residential, commercial, and industrial roofs. Save on electricity bills with government subsidies.">
@@ -33,7 +36,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Anton&display=swap"
-        rel="stylesheet">
+        rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-KFGEXB7XJ5"></script>
@@ -45,9 +48,69 @@
 
         gtag('config', 'G-KFGEXB7XJ5');
     </script>
-  <script type="module" crossorigin src="/assets/main-B_paRV_p.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/style-CsbG0_7n.js">
-  <link rel="stylesheet" crossorigin href="/assets/style-DvjTXJ_i.css">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Solar Rex",
+      "url": "https://solarrex.in/",
+      "logo": "https://solarrex.in/images/logo/SOLAR%20REX%20--logo.png",
+      "description": "Premium solar panel installation, maintenance, and energy solutions for residential, commercial, and industrial clients in India.",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-XXX-XXX-XXXX",
+        "contactType": "customer service",
+        "availableLanguage": ["English", "Hindi"]
+      },
+      "sameAs": []
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Solar Rex",
+      "image": "https://solarrex.in/images/logo/SOLAR%20REX%20--logo.png",
+      "url": "https://solarrex.in/",
+      "telephone": "+91-XXX-XXX-XXXX",
+      "priceRange": "₹₹",
+      "description": "Premium solar panel installation, maintenance, and energy solutions for residential, commercial, and industrial clients.",
+      "areaServed": "India",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Solar Energy Services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Residential Solar Installation" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Commercial Solar Solutions" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Industrial Solar Systems" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Solar Panel Maintenance" } }
+        ]
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "What causes solar panel soiling loss?", "acceptedAnswer": { "@type": "Answer", "text": "Dust, pollen, bird droppings, and industrial soot block sunlight from hitting the solar cells. This is called soiling loss. In dry climates, soiling can reduce power generation by 1.5% per week, cumulating to over 25% if left uncleaned." } },
+        { "@type": "Question", "name": "What does your AMC include?", "acceptedAnswer": { "@type": "Answer", "text": "Our AMC includes: Scheduled panel washing (twice a month), semi-annual electrical tests (string voltage, insulation resistance), annual thermal imaging of panels/connections, priority troubleshooting, and inverter service sweeps." } },
+        { "@type": "Question", "name": "How does thermal imaging detect panel faults?", "acceptedAnswer": { "@type": "Answer", "text": "We use infrared thermal cameras to scan panels. Defective solar cells or loose cable connectors generate heat and appear as bright hot spots under thermal imaging. Catching these early prevents cell degradation and fire hazards." } },
+        { "@type": "Question", "name": "How often should panels be cleaned?", "acceptedAnswer": { "@type": "Answer", "text": "Typically, twice a month is ideal to prevent soiling losses. In dusty industrial zones or near highways, weekly cleanings may be required. We offer automated robotic dry-cleaning solutions as well." } },
+        { "@type": "Question", "name": "Do you service third-party solar installations?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, we provide full diagnostic audits, performance optimization, and Annual Maintenance Contracts (AMC) for existing third-party solar installations." } },
+        { "@type": "Question", "name": "What is your emergency response time?", "acceptedAnswer": { "@type": "Answer", "text": "Under our Premium AMC, we guarantee a remote diagnostic response within 2 hours and an on-site technician deployment within 4 hours for any critical system outages." } },
+        { "@type": "Question", "name": "How do drone thermal scans work?", "acceptedAnswer": { "@type": "Answer", "text": "High-resolution thermal cameras mounted on drones scan the entire array to detect hot spots, micro-cracks, and bypassed diodes that are invisible to the naked eye, preventing system degradation and fire risks." } },
+        { "@type": "Question", "name": "Does AMC cover inverter maintenance?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, the AMC covers regular inverter air filter cleaning, thermal inspection of contactors, firmware updates, and diagnostic sweeps to prevent sudden inverter failure." } }
+      ]
+    }
+    </script>
+  <script type="module" crossorigin src="/assets/main-Dpslwgk7.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/app-shell-BttJHnEJ.js">
+  <link rel="stylesheet" crossorigin href="/assets/app-shell-i4DNFCTm.css">
   <link rel="stylesheet" crossorigin href="/assets/main-SyBI4n1a.css">
 </head>
 
@@ -68,6 +131,10 @@
                     }
                 } catch (e) { }
             })();
+        </script>
+        <script>
+            document.querySelectorAll('img').forEach(i => i.setAttribute('draggable', 'false'));
+            document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
         </script>
         <div class="welcome-container">
             <span class="welcome-letter" style="--d: 0.1s">W</span>
@@ -102,15 +169,13 @@
     <main>
 
         <section class="hero">
-            <video autoplay muted loop playsinline preload="auto" src="video/hero.mp4" class="hero-video" width="1920"
+            <video autoplay muted loop playsinline preload="auto" src="/assets/hero-BY_w1czq.mp4" class="hero-video" width="1920"
                 height="1080" id="hero-video">
-                <source src="video/hero.mp4" type="video/mp4">
-                <track kind="captions" src="data:text/vtt," srclang="en" label="English" default>
             </video>
             <div class="hero-overlay"></div>
             <div class="hero-content">
                 <h1 class="hero-title">SOLAR REX</h1>
-                <p class="hero-tagline">trust that brings light to your home</p>
+                <p class="hero-tagline">Premium Solar Panel Installation &amp; Energy Solutions in India</p>
                 <div class="hero-buttons">
                     <a href="#section-6" class="btn-primary header-nav-link" data-target="section-6">Get Free Quote</a>
                     <a href="solutions.html" class="btn-secondary magic-button">Explore Solutions</a>
@@ -157,8 +222,8 @@
                 <div class="iphone-notch"></div>
                 <div class="quick-header" id="quick-header-trigger" title="Click to Expand">
                     <div class="header-main">
-                        <i class='bx bxs-bolt-circle'></i>
-                        <h3>Quick Connect</h3>
+                        <i class='bx bx-conversation'></i>
+                        <h3>Contact Me</h3>
                     </div>
                     <div class="header-controls">
                         <div class="quick-expand-icon">
@@ -176,7 +241,7 @@
                         <input type="email" id="mini-email" name="email" placeholder="email@example.com" required>
                     </div>
                     <button type="submit" class="mini-btn">
-                        <span>Fast Quote</span>
+                        <span>Send Message</span>
                         <i class='bx bx-right-arrow-alt'></i>
                     </button>
                 </form>
@@ -364,8 +429,8 @@
                             </div>
                             <div class="img-item" style="--i:4;">
                                 <div class="item">
-                                    <img src="/assets/operations_hero-d58k_NxO.png"
-                                        alt="Solar technician monitoring maintenance performance in a solar field"
+                                    <img src="/assets/img4-BRbLl280.png"
+                                        alt="Maintenance Support"
                                         width="1024" height="1024" loading="lazy">
                                 </div>
                             </div>
@@ -727,8 +792,8 @@
                     <!-- Main Calculator Card -->
                     <div class="calculator-main-card">
                         <!-- Top Display -->
-                        <div class="kw-display-new">
-                            <h2 id="current-kw">15 KW</h2>
+                         <div class="kw-display-new">
+                            <h2 id="current-kw">6 KW</h2>
                             <span>SYSTEM SIZE</span>
                         </div>
 
@@ -738,11 +803,12 @@
                                 <label for="kw-slider" class="visually-hidden"
                                     style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">System
                                     Size kW</label>
-                                <input type="range" id="kw-slider" min="0" max="10" step="1" value="10">
+                                <input type="range" id="kw-slider" min="0" max="10" step="1" value="3">
                                 <div class="range-labels">
-                                    <span>3KW</span>
-                                    <span>15KW</span>
+                                    <span>← 3KW</span>
+                                    <span>15KW →</span>
                                 </div>
+                                <div class="range-hint"><span class="range-hint-arrow">⟷</span> Drag to adjust system size <span class="range-hint-arrow">⟷</span></div>
                             </div>
                         </div>
 
@@ -755,6 +821,7 @@
                                 <div class="r-info">
                                     <span class="r-label">AFTER SUBSIDY (DCR)</span>
                                     <span class="r-val" id="val-dcr">₹78,000</span>
+                                    <span class="r-subtext" id="val-dcr-strike" style="display:none;"></span>
                                 </div>
                             </div>
 
@@ -837,9 +904,9 @@
 
                     <div class="category-item reveal-on-scroll reveal-from-bottom delay-100">
                         <div class="category-circle">
-                            <img src="/assets/cat_power_system-U6gx9fT_.png" alt="Solar Power System">
+                            <img src="/assets/cat_power_system-U6gx9fT_.png" alt="Maintenance Support">
                         </div>
-                        <span class="category-label">Solar Power System</span>
+                        <span class="category-label">Maintenance Support</span>
                     </div>
 
                     <div class="category-item reveal-on-scroll reveal-from-bottom delay-200">
@@ -899,20 +966,41 @@
                         <div class="detail-item full-width">
                             <span class="detail-label">Call Support Center 24/7</span>
                             <span class="detail-value highlight secure-phone-trigger"
-                                style="cursor: pointer; user-select: none;">+91 7415 120 652</span>
+                                style="cursor: pointer; user-select: none;">+91 91099 23001</span>
                         </div>
 
                         <div class="detail-item">
                             <span class="detail-label">Our Address</span>
-                            <span class="detail-value">51, Sunder Nagar Extension,<br>5th Floor Gravity Mall, Indore -
-                                452010</span>
+                            <span class="detail-value address-block">51, Sunder Nagar Extension<br>5th Floor, Gravity Mall<br>Indore - 452010</span>
                         </div>
 
-                        <div class="detail-item">
+                        <div class="detail-item email-inbox-card">
                             <span class="detail-label">Our mail Address</span>
-                            <div class="email-list">
-                                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=solarrex.in@solarrex.in"
-                                    target="_blank"><i class='bx bxs-envelope'></i> solarrex.in@solarrex.in</a>
+                            <div class="email-inbox-wrapper">
+                                <div class="email-inbox-header">
+                                    <div class="email-inbox-avatar">
+                                        <i class='bx bxs-envelope'></i>
+                                    </div>
+                                    <div class="email-inbox-from">
+                                        <span class="email-inbox-name">Solar Rex Support</span>
+                                        <span class="email-inbox-subject">Quick Reply</span>
+                                    </div>
+                                    <span class="email-inbox-time">now</span>
+                                </div>
+                                <div class="email-inbox-body">
+                                    <div class="email-inbox-to">
+                                        <span class="email-inbox-to-label">to:</span>
+                                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=solarrex.in@solarrex.in"
+                                            target="_blank" class="email-inbox-address">solarrex.in@solarrex.in</a>
+                                    </div>
+                                    <div class="email-inbox-message">
+                                        <p>Hi! How can we help you with your solar journey today? Send us a message and we'll get back to you within 24 hours.</p>
+                                    </div>
+                                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=solarrex.in@solarrex.in"
+                                        target="_blank" class="email-inbox-compose">
+                                        <i class='bx bxs-pencil'></i> Compose Message
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1077,6 +1165,95 @@
             </div>
         </section>
 
+        <!-- Section: FAQ -->
+        <section class="section-faq" id="section-faq">
+            <div class="faq-container">
+                <h2 class="faq-title reveal-on-scroll reveal-from-bottom">Frequently Asked Questions</h2>
+
+                <div class="faq-list">
+                    <div class="faq-item reveal-on-scroll reveal-from-bottom delay-100">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>What causes solar panel soiling loss?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Dust, pollen, bird droppings, and industrial soot block sunlight from hitting the solar cells. This is called soiling loss. In dry climates, soiling can reduce power generation by 1.5% per week, cumulating to over 25% if left uncleaned.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item reveal-on-scroll reveal-from-bottom delay-200">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>What does your AMC include?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Our AMC includes: Scheduled panel washing (twice a month), semi-annual electrical tests (string voltage, insulation resistance), annual thermal imaging of panels/connections, priority troubleshooting, and inverter service sweeps.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item reveal-on-scroll reveal-from-bottom delay-100">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>How does thermal imaging detect panel faults?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>We use infrared thermal cameras to scan panels. Defective solar cells or loose cable connectors generate heat and appear as bright "hot spots" under thermal imaging. Catching these early prevents cell degradation and fire hazards.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item reveal-on-scroll reveal-from-bottom delay-200">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>How often should panels be cleaned?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Typically, twice a month is ideal to prevent soiling losses. In dusty industrial zones or near highways, weekly cleanings may be required. We offer automated robotic dry-cleaning solutions as well.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item reveal-on-scroll reveal-from-bottom delay-100">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>Do you service third-party solar installations?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes, we provide full diagnostic audits, performance optimization, and Annual Maintenance Contracts (AMC) for existing third-party solar installations.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item reveal-on-scroll reveal-from-bottom delay-200">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>What is your emergency response time?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Under our Premium AMC, we guarantee a remote diagnostic response within 2 hours and an on-site technician deployment within 4 hours for any critical system outages.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item reveal-on-scroll reveal-from-bottom delay-100">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>How do drone thermal scans work?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>High-resolution thermal cameras mounted on drones scan the entire array to detect hot spots, micro-cracks, and bypassed diodes that are invisible to the naked eye, preventing system degradation and fire risks.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item reveal-on-scroll reveal-from-bottom delay-200">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>Does AMC cover inverter maintenance?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes, the AMC covers regular inverter air filter cleaning, thermal inspection of contactors, firmware updates, and diagnostic sweeps to prevent sudden inverter failure.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- Full Professional Footer -->
@@ -1103,6 +1280,7 @@
                     <li><a href="#section-3" class="footer-nav-link" data-target="section-3">Services</a></li>
                     <li><a href="#section-case-studies" class="footer-nav-link"
                             data-target="section-case-studies">Projects</a></li>
+                    <li><a href="#section-faq" class="footer-nav-link" data-target="section-faq">FAQ</a></li>
                     <li><a href="#section-6" class="footer-nav-link" data-target="section-6">Contact</a></li>
                 </ul>
             </div>
@@ -1127,7 +1305,7 @@
                 <ul class="footer-col-list footer-contact-list">
                     <li><i class='bx bx-map'></i> Indore, MP, India</li>
                     <li><i class='bx bx-phone'></i> <span class="secure-phone-trigger"
-                            style="cursor: pointer; user-select: none;">+91 7415 120 652</span></li>
+                            style="cursor: pointer; user-select: none;">+91 91099 23001</span></li>
                     <li><i class='bx bx-envelope'></i> <a
                             href="https://mail.google.com/mail/?view=cm&fs=1&to=solarrex.in@solarrex.in"
                             target="_blank">solarrex.in@solarrex.in</a></li>
@@ -1154,7 +1332,7 @@
                     <span class="mac-dot yellow"></span>
                     <span class="mac-dot green"></span>
                 </div>
-                <h3>Start Your Project</h3>
+                <h3>Get In Touch</h3>
                 <button class="modal-close-main" id="modal-close-main" title="Close Window">
                     <i class='bx bx-x'></i>
                 </button>
@@ -1396,9 +1574,9 @@
 
                         <div class="calc-interface">
                             <div class="calc-input-group">
-                                <label for="subsidy-kw-slider">System Size: <span id="subsidy-kw-val">15
+                                <label for="subsidy-kw-slider">System Size: <span id="subsidy-kw-val">6
                                         kW</span></label>
-                                <input type="range" id="subsidy-kw-slider" min="0" max="10" step="1" value="10">
+                                <input type="range" id="subsidy-kw-slider" min="0" max="10" step="1" value="3">
                                 <div class="range-labels">
                                     <span>3 kW</span>
                                     <span>15 kW</span>
@@ -1544,7 +1722,7 @@
     </div>
 
     <div class="page-transition-curtain" id="page-curtain"></div>
-
+
 </body>
 
 </html>

@@ -416,15 +416,27 @@ document.addEventListener('DOMContentLoaded', () => {
             item.appendChild(btn);
             item.appendChild(answerDiv);
             
-            // Accordion toggle behavior
+            // Accordion toggle behavior — butter-smooth with dynamic height
             btn.addEventListener('click', () => {
                 const isActive = item.classList.contains('active');
                 
-                // close all other items
-                document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
+                // close all other items with dynamic height reset
+                document.querySelectorAll('.faq-item').forEach(el => {
+                    if (el !== item) {
+                        el.classList.remove('active');
+                        const a = el.querySelector('.faq-answer');
+                        if (a) a.style.maxHeight = '0px';
+                    }
+                });
                 
-                if (!isActive) {
+                if (isActive) {
+                    item.classList.remove('active');
+                    answerDiv.style.maxHeight = '0px';
+                } else {
                     item.classList.add('active');
+                    requestAnimationFrame(() => {
+                        answerDiv.style.maxHeight = answerDiv.scrollHeight + 'px';
+                    });
                 }
             });
             
@@ -454,6 +466,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Standard clicks only
             if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
             e.preventDefault();
+            
+            // Button pop animation
+            backBtn.classList.add('animating');
             
             // Transition back
             curtain.classList.add('active');
