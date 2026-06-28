@@ -1,0 +1,14 @@
+{
+  "logging_policies": {
+    "console_logs": {
+      "enabled": true,
+      "log_levels": ["info", "warn", "error"],
+      "sanitize_pii": true
+    },
+    "error_alerting": {
+      "provider": "vercel-runtime-log-inspector",
+      "sentry_hook_active": false,
+      "email_alert_on_critical_failure": true
+    }
+  }
+}

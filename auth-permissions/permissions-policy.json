@@ -1,0 +1,26 @@
+{
+  "auth_strategies": {
+    "frontend_origin_enforcement": {
+      "enabled": true,
+      "allowed_origins": [
+        "https://solarrex.in",
+        "https://*.vercel.app"
+      ],
+      "action": "allow_origins_only"
+    },
+    "credentials_isolation": {
+      "google_script_url": "stored_in_vercel_secrets_never_client_side",
+      "environment_restrictions": [
+        "production",
+        "preview"
+      ]
+    }
+  },
+  "sheets_permissions": {
+    "owner": "system_admin",
+    "access_control": {
+      "leads_spreadsheet": "private_access_restricted_to_owner",
+      "google_apps_script_execution": "executable_by_anyone_anonymous_to_permit_contact_form_posts"
+    }
+  }
+}
