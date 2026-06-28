@@ -29,30 +29,11 @@ html {
     --light-color: #f5f5f7;
     --white: #ffffff;
     --text-muted: #5c5e62;
-    --transition-slow: 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    --transition-fast: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    --smooth: 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    --smooth-bounce: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --transition-slow: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: 0.3s ease;
     --glass-bg: rgba(255, 255, 255, 0.1);
     --glass-border: rgba(255, 255, 255, 0.2);
     --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-}
-
-/* ── Global butter-smooth transitions ── */
-button, a, .btn, .btn-primary, .btn-secondary, .btn-quote, .btn-learn,
-.btn-submit-contact, .modal-submit, .btn-box, .mini-btn,
-.nav-item, .nav-links li a, .nav-menu-btn, .nav-logo,
-.trust-item, .partner-box, .category-item, .tech-card,
-.cs-card, .cs-tab, .type-btn, .result-card, .grid-item,
-.faq-item, .operations-menu li, .email-inbox-wrapper,
-.magic-button, .footer-col a, .footer-social-btn,
-.footer-col-list li a, .quick-connect, .quick-dismiss,
-.modal-close-main, .info-hub-close-btn, .terminal-action-btn,
-.category-circle, .pill-image-wrapper,
-.get-quote-btn-new, .sol-back-btn,
-.app-tab, .app-fab,
-input, select, textarea, .radio-pill span, .custom-select {
-    transition: var(--smooth);
 }
 
 ::selection {
@@ -71,20 +52,13 @@ input, select, textarea, .radio-pill span, .custom-select {
     backface-visibility: hidden;
 }
 
-/* Prevent image/video highlight and drag */
+/* Prevent image/video highlight, drag, and copy */
 img, video {
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    -webkit-user-drag: none !important;
-    -khtml-user-drag: none;
-    -moz-user-drag: none;
-    -o-user-drag: none;
-    pointer-events: none !important;
-}
-a img, button img, [role="button"] img, label img, .cs-card img, .partner-box img, .nav-logo img {
-    pointer-events: auto !important;
+    pointer-events: none;
 }
 
 body {
@@ -202,11 +176,6 @@ body {
     100% { transform: scale(1);    filter: brightness(1); }
 }
 
-@keyframes slideInDown {
-    from { transform: translateY(-20px); opacity: 0; }
-    to   { transform: translateY(0);     opacity: 1; }
-}
-
 
 .nav-links {
     display: flex;
@@ -311,7 +280,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: visible;
+    overflow: hidden;
     background: linear-gradient(135deg, var(--dark-color) 0%, #1c2331 100%);
 }
 
@@ -344,7 +313,7 @@ body {
     text-align: center;
     z-index: 5;
     opacity: 0;
-    animation: fadeInSimple 1.5s ease forwards, slideUp 1s cubic-bezier(0.23, 1, 0.32, 1) 0.3s both;
+    animation: fadeIn 1.5s ease forwards, slideUp 1s cubic-bezier(0.23, 1, 0.32, 1) 0.3s both;
     position: relative;
     margin-top: -60px;
 }
@@ -441,7 +410,6 @@ body {
     position: absolute;
     bottom: 0;
     left: 0;
-    right: 0;
     width: 100%;
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(10px);
@@ -452,7 +420,6 @@ body {
     padding: 30px 8%;
     z-index: 10;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    transform: translateY(0);
 }
 
 .trust-item {
@@ -1122,8 +1089,7 @@ body {
         padding-bottom: 6px !important;
     }
 
-.quick-header h3,
-.quick-connect-title {
+    .quick-header h3 {
         font-size: 10px !important;
     }
 
@@ -1577,7 +1543,7 @@ body.modal-open .quick-connect {
 }
 
 .mac-controls {
-    display: flex;
+    display: none !important;
     gap: 8px;
     position: absolute;
     left: 20px;
@@ -1764,7 +1730,7 @@ body.modal-open .quick-connect {
 }
 
 /* Animations */
-@keyframes fadeInSimple {
+@keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
@@ -1874,7 +1840,7 @@ body.modal-open .quick-connect {
         font-size: 20px;
         color: var(--dark-color);
     }
-.nav-menu-btn {
+    .nav-menu-btn {
         display: block;
         z-index: 1001;
     }
@@ -2648,7 +2614,7 @@ body.modal-open .quick-connect {
 }
 
 .testimonial-card {
-    min-width: min(450px, 85vw);
+    min-width: 450px;
     background: var(--white);
     padding: 40px;
     border-radius: 30px;
@@ -3327,16 +3293,6 @@ body.modal-open .quick-connect {
     to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes arrowBounce {
-    0% { transform: scale(1) rotate(0deg); }
-    40% { transform: scale(1.25) rotate(-15deg); }
-    70% { transform: scale(1.3) rotate(20deg); }
-    100% { transform: scale(1) rotate(0deg); }
-}
-.operations-menu li .icon-circle.bounce {
-    animation: arrowBounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
-}
-
 @media (max-width: 1200px) {
     .operations-container {
         grid-template-columns: 1fr;
@@ -3512,135 +3468,6 @@ body.modal-open .quick-connect {
 
 .email-list a:hover {
     color: #0284c7;
-}
-
-/* ── Email Inbox Card ────────────────────────────────── */
-.email-inbox-card {
-    margin-top: 10px;
-}
-@media (max-width: 767px) {
-    .email-inbox-card {
-        grid-column: 1 / -1;
-    }
-}
-.email-inbox-wrapper {
-    background: #ffffff;
-    border: 2px solid #0284c7;
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(2, 132, 199, 0.15);
-    overflow: hidden;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-    max-width: 480px;
-    animation: emailCardPop 0.6s ease-out;
-}
-@keyframes emailCardPop {
-    0% { transform: scale(0.95); opacity: 0.7; }
-    100% { transform: scale(1); opacity: 1; }
-}
-.email-inbox-wrapper:hover {
-    box-shadow: 0 12px 40px rgba(2, 132, 199, 0.25);
-    transform: translateY(-3px);
-}
-.email-inbox-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 14px 16px;
-    background: #f8f9fb;
-    border-bottom: 1px solid #e8ecf0;
-}
-.email-inbox-avatar {
-    width: 38px;
-    height: 38px;
-    background: linear-gradient(135deg, #0284c7, #0ea5e9);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 18px;
-    flex-shrink: 0;
-}
-.email-inbox-from {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-}
-.email-inbox-name {
-    font-size: 14px;
-    font-weight: 700;
-    color: #0f172a;
-    line-height: 1.2;
-}
-.email-inbox-subject {
-    font-size: 12px;
-    font-weight: 500;
-    color: #64748b;
-    line-height: 1.2;
-}
-.email-inbox-time {
-    font-size: 11px;
-    font-weight: 500;
-    color: #94a3b8;
-    white-space: nowrap;
-}
-.email-inbox-body {
-    padding: 16px;
-}
-.email-inbox-to {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 12px;
-    padding: 6px 10px;
-    background: #f1f5f9;
-    border-radius: 8px;
-    font-size: 13px;
-}
-.email-inbox-to-label {
-    font-weight: 600;
-    color: #64748b;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-size: 11px;
-}
-.email-inbox-address {
-    font-weight: 600;
-    color: #0284c7;
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-.email-inbox-address:hover {
-    color: #0369a1;
-    text-decoration: underline;
-}
-.email-inbox-message p {
-    font-size: 13px;
-    color: #475569;
-    line-height: 1.7;
-    margin: 0 0 16px;
-}
-.email-inbox-compose {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: linear-gradient(135deg, #0284c7, #0ea5e9);
-    color: #fff;
-    font-size: 13px;
-    font-weight: 600;
-    padding: 10px 20px;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: filter 0.2s ease, transform 0.2s ease;
-}
-.email-inbox-compose:hover {
-    filter: brightness(1.1);
-    transform: translateY(-1px);
-    color: #fff;
-}
-.email-inbox-compose i {
-    font-size: 16px;
 }
 
 /* Right: Contact Form Wrapper */
@@ -3903,55 +3730,30 @@ body.modal-open .quick-connect {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 15px;
     margin-bottom: 50px;
-    position: relative;
 }
 
 .cs-tab {
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    color: #64748b;
+    font-size: 16px;
+    font-weight: 600;
+    color: #475569;
     cursor: pointer;
-    padding: 12px 28px;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.6);
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    backdrop-filter: blur(10px);
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    padding: 10px 24px;
+    border-radius: 50px;
+    background-color: #f1f5f9;
+    transition: all 0.3s ease;
 }
 
 .cs-tab:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(255, 179, 0, 0.15);
-    border-color: rgba(255, 179, 0, 0.3);
-    color: #1e293b;
+    background-color: #e2e8f0;
+    color: #0f172a;
 }
 
 .cs-tab.active {
+    background-color: #0284c7;
     color: #ffffff;
-    border-color: transparent;
-    box-shadow: 0 8px 30px rgba(255, 179, 0, 0.3);
-    transform: translateY(-3px);
-    background: linear-gradient(135deg, #ffb300, #ff8c00);
-}
-
-@keyframes tabPulse {
-    0% { box-shadow: 0 8px 30px rgba(255, 179, 0, 0.3); }
-    50% { box-shadow: 0 8px 40px rgba(255, 179, 0, 0.5); }
-    100% { box-shadow: 0 8px 30px rgba(255, 179, 0, 0.3); }
-}
-
-.cs-tab.active {
-    animation: tabPulse 2s ease-in-out infinite;
-}
-
-@keyframes cardFadeIn {
-    from { opacity: 0; transform: translateY(30px) scale(0.95); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
+    box-shadow: 0 4px 6px -1px rgba(2, 132, 199, 0.2);
 }
 
 .cs-grid {
@@ -3960,17 +3762,13 @@ body.modal-open .quick-connect {
     gap: 30px;
 }
 
-.cs-card:not(.hide) {
-    animation: cardFadeIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-}
-
 .cs-card {
     border-radius: 16px;
     overflow: hidden;
     aspect-ratio: 4/5;
     position: relative;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-    border: 1px solid rgba(0, 0, 0, 0.04);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); /* Very subtle base shadow */
+    border: 1px solid rgba(0, 0, 0, 0.04); /* Extremely light frame border */
     background-color: #ffffff;
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
@@ -4073,9 +3871,8 @@ body.modal-open .quick-connect {
         gap: 10px;
     }
     .cs-tab {
-        font-size: 12px;
-        padding: 8px 16px;
-        border-radius: 8px;
+        font-size: 14px;
+        padding: 6px 16px;
     }
     .cs-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -4410,6 +4207,9 @@ input[type="range"]::-webkit-slider-thumb:hover {
     transform: translate3d(0, 0, 0);
 }
 
+.calculator-main-card.slide-left {
+    transform: translateX(-180px);
+}
 
 .kw-display-new {
     text-align: center;
@@ -5765,13 +5565,11 @@ body.modal-open {
 .faq-answer {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    will-change: max-height;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .faq-item.active .faq-answer {
     max-height: 500px;
-    transition: max-height 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .faq-answer p {
@@ -5797,15 +5595,4 @@ body.modal-open {
         padding: 0 20px 20px;
         font-size: 14px;
     }
-}
-
-@media (max-width: 360px) {
-    .hero-title { font-size: 2.2rem; letter-spacing: 3px; }
-    .cs-grid { grid-template-columns: 1fr; }
-    .testimonial-card { min-width: 100%; }
-    .pricing-receipt-wrapper { width: 100%; margin-left: 0; left: 0; position: relative; }
-    .operations-title { font-size: 28px; }
-    .operations-menu li { padding: 14px; }
-    .footer-cta h2 { font-size: 28px; }
-    .footer-container { padding: 40px 4%; }
 }

@@ -524,7 +524,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .hero-video {
@@ -603,9 +603,8 @@ body{
 /* Trust Banner Styles */
 .trust-banner {
     position: absolute;
-    bottom: 0;
+    bottom: -105px;
     left: 0;
-    right: 0;
     width: 100%;
     background: #000000;
     display: flex;

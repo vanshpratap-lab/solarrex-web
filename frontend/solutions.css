@@ -9,12 +9,6 @@ body.solutions-detail-page {
     overflow-x: hidden;
 }
 
-/* ── Global butter-smooth transitions ── */
-.sol-back-btn, .grid-item, .breadcrumbs a,
-.faq-item, .faq-question-btn, .faq-answer {
-    transition: var(--smooth);
-}
-
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', sans-serif !important;
 }
@@ -41,116 +35,30 @@ h1, h2, h3, h4, h5, h6 {
     text-decoration: none;
     font-weight: 600;
     font-size: 15px;
-    padding: 8px 16px 8px 12px;
-    border-radius: 50px;
-    background: rgba(255, 255, 255, 0.6);
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    backdrop-filter: blur(10px);
-    position: relative;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-}
-
-.solutions-navbar .sol-back-btn::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 50px;
-    background: linear-gradient(135deg, #ffb300, #ff8c00);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-}
-
-.solutions-navbar .sol-back-btn::after {
-    content: 'go back';
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    color: #ffb300;
-    opacity: 0;
-    transform: translateX(-8px);
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.solutions-navbar .sol-back-btn:hover::after {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.solutions-navbar .sol-back-btn:hover {
-    border-color: rgba(255, 179, 0, 0.3);
-    box-shadow: 0 8px 25px rgba(255, 179, 0, 0.15);
-    color: #ff8c00;
-    padding-right: 20px;
+    transition: var(--transition-fast);
 }
 
 .solutions-navbar .sol-back-btn i {
     font-size: 20px;
-    position: relative;
-    z-index: 1;
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: transform 0.3s ease;
 }
 
-.solutions-navbar .sol-back-btn span {
-    position: relative;
-    z-index: 1;
-}
-
-@keyframes arrowSlideBack {
-    0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(-6px); }
+.solutions-navbar .sol-back-btn:hover {
+    color: var(--primary-color);
 }
 
 .solutions-navbar .sol-back-btn:hover i {
     transform: translateX(-4px);
-    animation: arrowSlideBack 1s ease-in-out infinite;
 }
-
-@keyframes backBtnPop {
-    0% { transform: scale(1); }
-    40% { transform: scale(1.15); box-shadow: 0 0 40px rgba(255, 179, 0, 0.4); }
-    100% { transform: scale(0.95); opacity: 0; }
-}
-
-.solutions-navbar .sol-back-btn.animating {
-    animation: backBtnPop 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-    pointer-events: none;
-}
-
-.solutions-navbar .sol-back-btn.animating::before {
-    opacity: 1;
-}
-
-.solutions-navbar .sol-back-btn.animating i,
-.solutions-navbar .sol-back-btn.animating span {
-    color: #fff;
-}
-
-.solutions-navbar .sol-back-btn.animating::after {
-    opacity: 0;
-}
-
 
 /* Hero Banner (White text on dark graphic overlay overlay for legibility) */
 .sol-hero {
     position: relative;
-    width: 100%;
     padding: 180px 8% 80px;
     min-height: 50vh;
     display: flex;
     align-items: flex-end;
     overflow: hidden;
-}
-
-.sol-hero .sol-hero-content {
-    position: relative;
-    max-width: 1200px;
-    margin: 0 auto;
-    width: 100%;
-    z-index: 3;
-    color: var(--white);
 }
 
 .sol-hero-bg {
@@ -171,6 +79,15 @@ h1, h2, h3, h4, h5, h6 {
     inset: 0;
     background: linear-gradient(180deg, rgba(23, 26, 32, 0.3) 0%, rgba(23, 26, 32, 0.85) 100%);
     z-index: 2;
+}
+
+.sol-hero-content {
+    position: relative;
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+    z-index: 3;
+    color: var(--white);
 }
 
 .breadcrumbs {
@@ -232,7 +149,7 @@ h1, h2, h3, h4, h5, h6 {
 .sol-content-wrapper {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 60px 6% 60px;
+    padding: 60px 6% 100px;
     box-sizing: border-box;
     transition: opacity 0.8s ease;
 }
@@ -324,22 +241,10 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 10px;
 }
 
-.table-wrapper {
-    width: 100%;
-    overflow-x: auto;
-}
-
-.specs-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-
 .specs-table td {
     padding: 16px 0;
     font-size: 15px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-    word-break: break-word;
 }
 
 .specs-table tr:last-child td {
@@ -350,7 +255,6 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
     color: #86868b;
     width: 45%;
-    padding-right: 16px;
 }
 
 .specs-table td:last-child {
@@ -435,7 +339,7 @@ h1, h2, h3, h4, h5, h6 {
     border: 1px solid rgba(0, 0, 0, 0.07);
     border-radius: 24px;
     padding: 50px;
-    margin-bottom: 0;
+    margin-bottom: 80px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
 }
 
@@ -509,12 +413,14 @@ h1, h2, h3, h4, h5, h6 {
 .faq-answer {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
     padding: 0 30px;
 }
 
 .faq-item.active .faq-answer {
-    max-height: 2000px;
+    max-height: 500px;
+    transition: max-height 0.5s ease-in-out;
+    padding: 0 30px 24px;
 }
 
 .faq-answer p {
@@ -523,7 +429,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #515154;
     margin: 0;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
-    padding: 16px 0 24px;
+    padding-top: 16px;
 }
 
 /* Footer Section */
@@ -548,22 +454,20 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--text-muted);
 }
 
-/* Tablet: keep 2-column grid but tighter spacing */
-@media (min-width: 769px) and (max-width: 1024px) {
-    .sol-details-grid {
-        gap: 20px;
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .choose-split-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
     }
 
-    .grid-item {
-        padding: 30px;
+    .choose-media-wrapper {
+        height: 340px;
     }
 
-    .grid-item h3 {
-        font-size: 20px;
-    }
-
-    .specs-table td:last-child {
-        text-align: left;
+    .choose-stats-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
     }
 }
 
@@ -576,55 +480,46 @@ h1, h2, h3, h4, h5, h6 {
         grid-column: span 1;
     }
 
-    .grid-item {
-        padding: 24px;
+    .sol-header {
+        padding: 15px 4%;
     }
 
-    .grid-item h3 {
-        font-size: 20px;
+    .sol-cta-btn {
+        display: none;
+    }
+
+    .grid-item {
+        padding: 30px;
     }
 
     .sol-faq-section {
-        padding: 24px;
+        padding: 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    .choose-stats-row {
+        grid-template-columns: 1fr;
+        gap: 25px;
     }
 
-    .faq-section-title {
-        font-size: 24px;
+    .cta-actions {
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
     }
 
-    .faq-question-btn {
-        padding: 18px 20px;
-        font-size: 15px;
+    .btn-cta-primary, .btn-cta-secondary {
+        text-align: center;
+        justify-content: center;
     }
 
-    .faq-answer p {
-        font-size: 14px;
-        padding: 12px 0 16px;
+    .choose-cta-box h3 {
+        font-size: 26px;
     }
 
-    /* Spec table mobile friendly */
-    .specs-table td {
-        padding: 12px 0;
-        font-size: 13px;
-    }
-
-    .specs-table td:first-child {
-        width: 40%;
-        padding-right: 10px;
-    }
-
-    .specs-table td:last-child {
-        text-align: left;
-    }
-
-    /* Overview mobile */
-    .overview-card p {
-        font-size: 14px;
-        margin: 0 0 20px;
-    }
-
-    .highlights-list li {
-        font-size: 14px;
+    .choose-section-header h2 {
+        font-size: 30px;
     }
 }
 
@@ -632,19 +527,4 @@ h1, h2, h3, h4, h5, h6 {
     .sol-hero {
         padding: 150px 6% 60px;
     }
-    .sol-back-btn { font-size: 13px; padding: 6px 12px 6px 8px; }
-    .sol-back-btn i { font-size: 16px; }
-    .breadcrumbs { font-size: 12px; flex-wrap: wrap; }
-    .specs-table td:first-child { width: 35%; }
-    .specs-table td { font-size: 13px; padding: 10px 8px; }
-    .timeline-step { column-gap: 16px; }
-    .step-dot { width: 32px; height: 32px; font-size: 13px; }
-}
-
-@media (max-width: 360px) {
-    .sol-hero { padding: 120px 4% 50px; }
-    .sol-content-wrapper { padding: 30px 4%; }
-    .grid-item { padding: 20px; }
-    .specs-table td:first-child { width: 30%; }
-    .step-dot { width: 28px; height: 28px; font-size: 11px; }
 }
