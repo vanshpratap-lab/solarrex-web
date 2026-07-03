@@ -8,40 +8,40 @@ let index = 0;
 let isAnimating = false;
 
 const slider = () => {
-    // Update Active Image with Exit Animation
-    const activeImg = document.querySelector('.img-item.active');
-    if (activeImg) {
-        activeImg.classList.remove('active');
-        activeImg.classList.add('exit');
-        const oldImg = activeImg;
-        setTimeout(() => {
-            oldImg.classList.remove('exit');
-        }, 800);
+    // --- Image Slider ---
+    const prevImg = document.querySelector('.img-item.active');
+    // Remove active from previous, add exit animation
+    if (prevImg && prevImg !== imgItems[index]) {
+        prevImg.classList.remove('active');
+        prevImg.classList.add('exit');
+        setTimeout(() => { prevImg.classList.remove('exit'); }, 800);
     }
+    // Activate new image
+    imgItems[index].classList.remove('exit');
     imgItems[index].classList.add('active');
 
-    // Update Active Content with Exit Animation
-    const activeInfo = document.querySelector('.info-item.active');
-    if (activeInfo) {
-        activeInfo.classList.remove('active');
-        activeInfo.classList.add('exit');
-        const oldInfo = activeInfo;
-        setTimeout(() => {
-            oldInfo.classList.remove('exit');
-        }, 800);
+    // --- Info Content Slider ---
+    const prevInfo = document.querySelector('.info-item.active');
+    // Remove active from previous, add exit animation
+    if (prevInfo && prevInfo !== infoItems[index]) {
+        prevInfo.classList.remove('active');
+        prevInfo.classList.add('exit');
+        setTimeout(() => { prevInfo.classList.remove('exit'); }, 800);
     }
+    // Activate new info panel
+    infoItems[index].classList.remove('exit');
     infoItems[index].classList.add('active');
 
-    // Update Active Nav Item
-    document.querySelector('.nav-item.active').classList.remove('active');
+    // --- Bottom Nav ---
+    const activeNavItem = document.querySelector('.nav-item.active');
+    if (activeNavItem) activeNavItem.classList.remove('active');
     navItems[index].classList.add('active');
 }
 
 // Auto-play the slideshow every 8.5 seconds
 let autoplayTimer = setInterval(() => {
     index++;
-    if(index > imgItems.length - 1)
-    {
+    if (index > imgItems.length - 1) {
         index = 0;
     }
     slider();
@@ -58,6 +58,7 @@ const stopAutoplay = () => {
 // Bottom Nav Click Handlers
 navItems.forEach((item, i) => {
     item.addEventListener('click', () => {
+        if (i === index) return; // Already on this slide
         stopAutoplay();
         index = i;
         slider();
@@ -67,15 +68,15 @@ navItems.forEach((item, i) => {
 // Scroll intercept logic for Desktop (Mouse Wheel)
 solutionsSection.addEventListener('wheel', (e) => {
     const rect = solutionsSection.getBoundingClientRect();
-    
-    // Only lock and intercept if the section is aligned with the top of the viewport
+
+    // Only lock and intercept if the section is near the top of the viewport
     const isAligned = Math.abs(rect.top) < 80;
 
     if (!isAligned) {
-        return; // Allow normal page scroll
+        return; // Section not in view — allow normal page scroll
     }
 
-    // If aligned and we are currently transitioning, block the wheel inputs
+    // If animating, block extra inputs
     if (isAnimating) {
         e.preventDefault();
         return;
@@ -84,26 +85,27 @@ solutionsSection.addEventListener('wheel', (e) => {
     const delta = e.deltaY;
 
     if (delta > 0) {
-        // Scroll Down -> Next Product
+        // Scroll Down -> Next slide
         if (index < imgItems.length - 1) {
+            // Still have slides to show — intercept
             e.preventDefault();
-            // Align the section perfectly to keep it locked
             if (Math.abs(rect.top) > 5) {
-                window.scrollTo(0, window.scrollY + rect.top);
+                window.scrollTo({ top: window.scrollY + rect.top, behavior: 'instant' });
             }
             stopAutoplay();
             isAnimating = true;
             index++;
             slider();
-            setTimeout(() => { isAnimating = false; }, 850); // Cooldown matching animation transition (850ms)
+            setTimeout(() => { isAnimating = false; }, 850);
         }
+        // else: last slide — let page scroll continue naturally
     } else if (delta < 0) {
-        // Scroll Up -> Previous Product
+        // Scroll Up -> Previous slide
         if (index > 0) {
+            // Still have slides to go back to — intercept
             e.preventDefault();
-            // Align the section perfectly to keep it locked
             if (Math.abs(rect.top) > 5) {
-                window.scrollTo(0, window.scrollY + rect.top);
+                window.scrollTo({ top: window.scrollY + rect.top, behavior: 'instant' });
             }
             stopAutoplay();
             isAnimating = true;
@@ -111,20 +113,43 @@ solutionsSection.addEventListener('wheel', (e) => {
             slider();
             setTimeout(() => { isAnimating = false; }, 850);
         }
+        // else: first slide — let page scroll continue naturally
     }
 }, { passive: false });
 
 // Touch swipe intercept logic for Mobile devices
+// Only intercept vertical swipes within the solutions section when it's in view
 let touchStartY = 0;
+let touchStartX = 0;
+let isTouchScrolling = false;
+
 solutionsSection.addEventListener('touchstart', (e) => {
     touchStartY = e.touches[0].clientY;
+    touchStartX = e.touches[0].clientX;
+    isTouchScrolling = false;
+}, { passive: true });
+
+solutionsSection.addEventListener('touchmove', (e) => {
+    // Mark as scrolling so touchend knows it was a scroll not a tap
+    if (!isTouchScrolling) {
+        const dx = Math.abs(e.touches[0].clientX - touchStartX);
+        const dy = Math.abs(e.touches[0].clientY - touchStartY);
+        // Only flag as scrolling if mostly vertical movement (not horizontal)
+        if (dy > dx && dy > 5) {
+            isTouchScrolling = true;
+        }
+    }
+    // NEVER call preventDefault here — always let native scroll work freely
 }, { passive: true });
 
 solutionsSection.addEventListener('touchend', (e) => {
-    const rect = solutionsSection.getBoundingClientRect();
-    const isAligned = Math.abs(rect.top) < 80;
+    if (!isTouchScrolling) return; // Was a tap, not a swipe
 
-    if (!isAligned) {
+    const rect = solutionsSection.getBoundingClientRect();
+    // Only intercept slides when section fills viewport (user is on that section)
+    const sectionVisible = rect.top >= -50 && rect.top <= 50;
+
+    if (!sectionVisible) {
         return; // Allow normal swipe-scrolling
     }
 
@@ -133,14 +158,11 @@ solutionsSection.addEventListener('touchend', (e) => {
     const touchEndY = e.changedTouches[0].clientY;
     const diffY = touchStartY - touchEndY;
 
-    // Threshold of 50px for swipe gesture
-    if (Math.abs(diffY) > 50) {
+    // Threshold of 60px for intentional swipe gesture
+    if (Math.abs(diffY) > 60) {
         if (diffY > 0) {
-            // Swiped Up (scroll down) -> Next Product
+            // Swiped Up (scroll down) -> Next slide
             if (index < imgItems.length - 1) {
-                if (Math.abs(rect.top) > 5) {
-                    window.scrollTo(0, window.scrollY + rect.top);
-                }
                 stopAutoplay();
                 isAnimating = true;
                 index++;
@@ -148,11 +170,8 @@ solutionsSection.addEventListener('touchend', (e) => {
                 setTimeout(() => { isAnimating = false; }, 850);
             }
         } else {
-            // Swiped Down (scroll up) -> Previous Product
+            // Swiped Down (scroll up) -> Previous slide
             if (index > 0) {
-                if (Math.abs(rect.top) > 5) {
-                    window.scrollTo(0, window.scrollY + rect.top);
-                }
                 stopAutoplay();
                 isAnimating = true;
                 index--;
@@ -161,6 +180,8 @@ solutionsSection.addEventListener('touchend', (e) => {
             }
         }
     }
+
+    isTouchScrolling = false;
 }, { passive: true });
 
 // Navbar mobile menu toggle
@@ -170,6 +191,8 @@ const navLinks = document.querySelector('.nav-links');
 navMenuBtn.addEventListener('click', () => {
     navLinks.classList.toggle('active');
     navMenuBtn.querySelector('i').classList.toggle('bx-x');
+    // Lock/unlock body scroll when mobile menu is open
+    document.body.classList.toggle('menu-open');
 });
 
 // Close menu when a link is clicked
@@ -177,5 +200,6 @@ document.querySelectorAll('.nav-links li a').forEach(link => {
     link.addEventListener('click', () => {
         navLinks.classList.remove('active');
         navMenuBtn.querySelector('i').classList.remove('bx-x');
+        document.body.classList.remove('menu-open');
     });
 });

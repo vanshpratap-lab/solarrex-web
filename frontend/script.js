@@ -173,6 +173,20 @@ const handleFormSubmit = async (e) => {
     }
 
     try {
+        // --- CLIENT-SIDE VALIDATION ---
+        if (form.querySelector('input[name="name"], input[name="full_name"]') && !data.Name) {
+            throw new Error('Please enter your full name.');
+        }
+        if (form.querySelector('input[name="email"]') && data.Email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.Email)) {
+            throw new Error('Please enter a valid email address.');
+        }
+        if (form.querySelector('input[name="whatsapp"]') && (!data.WhatsApp || !/^\d{10}$/.test(data.WhatsApp))) {
+            throw new Error('Please enter a valid 10-digit WhatsApp number.');
+        }
+        if (form.querySelector('input[name="pincode"]') && (!data.Pincode || !/^\d{6}$/.test(data.Pincode))) {
+            throw new Error('Please enter a valid 6-digit Pincode.');
+        }
+
         const scriptURL = '/api/submit-form';
         
         const params = new URLSearchParams();
@@ -308,7 +322,10 @@ const handleFormSubmit = async (e) => {
             displayError = 'Connection Error. Please try again.';
         }
         
-        msgDiv.innerHTML = `<i class='bx bxs-error-circle' style='font-size: 1.5rem;'></i> <span>${displayError}</span>`;
+        msgDiv.innerHTML = `<i class='bx bxs-error-circle' style='font-size: 1.5rem;'></i> `;
+        const errText = document.createElement('span');
+        errText.textContent = displayError;
+        msgDiv.appendChild(errText);
         msgDiv.style.backgroundColor = '#fef2f2';
         msgDiv.style.color = '#991b1b';
         msgDiv.style.border = '2px solid #f87171';
@@ -1437,7 +1454,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         const postOffice = data[0].PostOffice[0];
                         const areaName = postOffice.District; // Use short form (e.g. 'Indore')
                         infoSpan.style.color = '#10b981';
-                        infoSpan.innerHTML = `<i class='bx bxs-check-circle'></i> ${areaName}`;
+                        infoSpan.innerHTML = `<i class='bx bxs-check-circle'></i> `;
+                        const areaText = document.createElement('span');
+                        areaText.textContent = areaName;
+                        infoSpan.appendChild(areaText);
                         input.setCustomValidity(''); // Mark as valid
                         
                         // Auto-fill City field, or create a hidden one if it doesn't exist

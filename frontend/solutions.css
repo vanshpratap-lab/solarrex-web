@@ -163,7 +163,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .grid-item {
-    background: #ffffff;
+    background: var(--light-card);
     border: 1px solid rgba(0, 0, 0, 0.07);
     border-radius: 20px;
     padding: 40px;
@@ -198,7 +198,7 @@ h1, h2, h3, h4, h5, h6 {
 .overview-card p {
     font-size: 15px;
     line-height: 1.7;
-    color: #515154;
+    color: var(--text-secondary-light);
     margin: 0 0 30px;
 }
 
@@ -253,7 +253,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .specs-table td:first-child {
     font-weight: 600;
-    color: #86868b;
+    color: var(--text-muted);
     width: 45%;
 }
 
@@ -301,7 +301,7 @@ h1, h2, h3, h4, h5, h6 {
 .step-dot {
     width: 42px;
     height: 42px;
-    background: #ffffff;
+    background: var(--light-card);
     border: 2px solid var(--primary-color);
     border-radius: 50%;
     color: var(--primary-color);
@@ -329,13 +329,13 @@ h1, h2, h3, h4, h5, h6 {
 .step-content p {
     font-size: 14px;
     line-height: 1.5;
-    color: #6e6e73;
+    color: var(--text-secondary-light);
     margin: 0;
 }
 
 /* FAQ Section */
 .sol-faq-section {
-    background: #ffffff;
+    background: var(--light-card);
     border: 1px solid rgba(0, 0, 0, 0.07);
     border-radius: 24px;
     padding: 50px;
@@ -367,7 +367,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .faq-item {
-    background: #fbfbfd;
+    background: var(--light-surface);
     border: 1px solid rgba(0, 0, 0, 0.04);
     border-radius: 12px;
     margin-bottom: 16px;
@@ -426,7 +426,7 @@ h1, h2, h3, h4, h5, h6 {
 .faq-answer p {
     font-size: 15px;
     line-height: 1.6;
-    color: #515154;
+    color: var(--text-secondary-light);
     margin: 0;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
     padding-top: 16px;
