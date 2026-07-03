@@ -141,7 +141,7 @@ const APP = (() => {
         const update = () => {
           const v = s.value, mn = parseFloat(s.min) || 0, mx = parseFloat(s.max) || 100;
           const pct = ((v - mn) / (mx - mn)) * 100;
-          s.style.background = `linear-gradient(to right, #ffb300 ${pct}%, #e8e8ed ${pct}%)`;
+          s.style.background = `linear-gradient(to right, #91b34b ${pct}%, #e8e8ed ${pct}%)`;
           // Update sibling label spans
           const label = s.closest('.calc-input-group, .roi-input-group')?.querySelector('span');
           if (label) {
