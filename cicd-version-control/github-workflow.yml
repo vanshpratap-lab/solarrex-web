@@ -1,0 +1,26 @@
+name: Solar Rex CI/CD pipeline
+
+on:
+  push:
+    branches: [ main, Rudra ]
+  pull_request:
+    branches: [ main, Rudra ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run Build Check
+      run: npm run build

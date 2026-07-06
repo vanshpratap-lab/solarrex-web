@@ -1,0 +1,20 @@
+{
+  "name": "solarrex-web",
+  "version": "1.0.0",
+  "description": "Solar Rex landing page",
+  "main": "index.html",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "start": "npx -y serve -p 5000",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "puppeteer-core": "^25.1.0"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.3",
+    "vite": "^8.0.16"
+  }
+}

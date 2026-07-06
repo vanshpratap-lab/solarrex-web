@@ -1,0 +1,14 @@
+{
+  "rate_limiting_rules": {
+    "api_endpoint_submit_form": {
+      "requests_per_minute": 15,
+      "burst_capacity": 5,
+      "block_duration_seconds": 300,
+      "client_ip_tracking": true
+    },
+    "client_ui_protections": {
+      "instant_button_disable": true,
+      "double_submit_window_ms": 3000
+    }
+  }
+}
