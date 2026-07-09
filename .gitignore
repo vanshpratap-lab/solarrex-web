@@ -3,5 +3,6 @@ dist/
 build/
 .DS_Store
 *.log
-.env
-.env.local
+claude-seo/
+Solar rex LOGO files/
+

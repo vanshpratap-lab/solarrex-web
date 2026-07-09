@@ -171,6 +171,30 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
+/* Transparent navbar (Home Page - not scrolled) link and button colors */
+.navbar:not(.scrolled):not(.solutions-navbar) .nav-links li a {
+    color: var(--white);
+    opacity: 0.9;
+}
+.navbar:not(.scrolled):not(.solutions-navbar) .nav-links li a:hover {
+    color: var(--primary);
+    opacity: 1;
+}
+.navbar:not(.scrolled):not(.solutions-navbar) .btn-quote {
+    color: var(--white);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+.navbar:not(.scrolled):not(.solutions-navbar) .btn-quote::before {
+    background: var(--white);
+}
+.navbar:not(.scrolled):not(.solutions-navbar) .btn-quote:hover {
+    color: var(--dark-base);
+    border-color: var(--white);
+}
+.navbar:not(.scrolled):not(.solutions-navbar) .nav-menu-btn {
+    color: var(--white);
+}
+
 .nav-logo {
     display: flex;
     align-items: baseline;
@@ -395,27 +419,27 @@ body {
 .hero-title {
     font-size: 6rem;
     font-weight: 900;
-    letter-spacing: 20px;
+    letter-spacing: 12px;
     margin: 0;
     text-transform: uppercase;
-    font-family: 'Anton', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .hero-tagline {
     font-size: 1rem;
-    font-weight: 400;
+    font-weight: 500;
     letter-spacing: 8px;
     margin-top: 30px;
     text-transform: uppercase;
-    opacity: 0.9;
-    background: var(--glass-bg);
+    color: var(--white);
+    background: rgba(11, 15, 18, 0.6); /* Dark semi-transparent backdrop for high contrast */
     padding: 18px 35px;
     border-radius: 50px;
     display: inline-block;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Hero Buttons */
@@ -424,6 +448,38 @@ body {
     display: flex;
     gap: 25px;
     justify-content: center;
+}
+
+/* Hero section specific primary CTA (Amber-Yellow highlight for visual focal point) */
+.hero .btn-primary {
+    background: #ffb703;
+    border-color: #ffb703;
+    color: #0b0f12;
+    box-shadow: 0 10px 20px rgba(255, 183, 3, 0.2);
+}
+
+.hero .btn-primary:hover {
+    background: #ffa200;
+    border-color: #ffa200;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 183, 3, 0.45);
+}
+
+/* Hero section specific secondary CTA (Premium dark-glass effect for secondary prominence) */
+.hero .btn-secondary {
+    background: rgba(11, 15, 18, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: var(--white);
+    border: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+.hero .btn-secondary:hover {
+    background: var(--white);
+    color: var(--dark-base);
+    border-color: var(--white);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.35);
 }
 
 .btn-primary, .btn-secondary {
@@ -1407,8 +1463,9 @@ body {
 
 
 
-/* Hide floating quick-connect widget when modal is open */
-body.modal-open .quick-connect {
+/* Hide floating quick-connect widget when modal or mobile menu is open */
+body.modal-open .quick-connect,
+body.menu-active .quick-connect {
     opacity: 0 !important;
     pointer-events: none !important;
     transform: translateY(100px) scale(0.7) !important;
@@ -1915,6 +1972,14 @@ body.modal-open .quick-connect {
         font-size: 20px;
         color: var(--dark-color);
     }
+    .navbar:not(.scrolled):not(.solutions-navbar) .nav-links li a {
+        color: var(--dark-color) !important;
+        opacity: 0.9;
+    }
+    .navbar:not(.scrolled):not(.solutions-navbar) .nav-links li a:hover {
+        color: var(--primary) !important;
+        opacity: 1;
+    }
     .nav-menu-btn {
         display: block;
         z-index: 1001;
@@ -2019,6 +2084,27 @@ body.modal-open .quick-connect {
         text-transform: uppercase;
         color: var(--white);
         word-wrap: break-word;
+    }
+
+    /* Partner Slider mobile optimization - show more logos at a time */
+    .slider-container::before,
+    .slider-container::after {
+        width: 50px;
+    }
+    .partner-box {
+        width: 150px;
+        height: 85px;
+        padding: 8px 12px;
+        border-radius: 8px;
+    }
+    .slider-track {
+        width: calc(150px * 14 + 16px * 14);
+        gap: 16px;
+        animation: scroll-mobile 18s linear infinite;
+    }
+    @keyframes scroll-mobile {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-150px * 7 - 16px * 7)); }
     }
 }
 
@@ -2868,26 +2954,23 @@ body.modal-open .quick-connect {
 }
 
 .footer-logo {
-    font-family: 'Anton', sans-serif;
-    font-style: italic;
-    font-weight: 900;
-    font-size: 36px;
-    text-transform: uppercase;
     display: flex;
-    align-items: baseline;
-    gap: 0;
+    align-items: center;
+    gap: 8px;
     line-height: 1;
 }
 
-.footer-logo .logo-solar {
-    color: #7ba13a;
-    text-shadow: 2px 2px 0px rgba(2, 100, 180, 0.5), 4px 4px 0px rgba(2, 100, 180, 0.25);
+.footer-logo-img {
+    height: 38px;
+    width: auto;
+    object-fit: contain;
 }
 
-.footer-logo .logo-rex {
-    color: #7ba13a;
-    text-shadow: 2px 2px 0px rgba(200, 80, 0, 0.5), 4px 4px 0px rgba(200, 80, 0, 0.25);
-    margin-left: 8px;
+.footer-logo-text-img {
+    height: 34px;
+    width: auto;
+    object-fit: contain;
+    filter: invert(1) brightness(10);
 }
 
 .footer-tagline {
@@ -5683,6 +5766,11 @@ body.modal-open {
     width: auto;
     object-fit: contain;
     transition: transform 0.3s ease;
+}
+
+/* Home Page navbar - invert logo text to white on dark video when not scrolled */
+.navbar:not(.scrolled):not(.solutions-navbar) .nav-logo-text-img {
+    filter: invert(1) brightness(10);
 }
 
 @media (max-width: 480px) {
