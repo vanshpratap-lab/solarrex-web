@@ -896,7 +896,7 @@ if (kwSlider) {
             if (valDcr) {
                 const labelEl = document.getElementById('val-dcr-label');
                 const badgeEl = document.getElementById('val-dcr-badge');
-                if (d.kw > 10) {
+                if (false) {
                     if (labelEl) labelEl.textContent = 'DCR PRICE';
                     if (badgeEl) badgeEl.textContent = 'Approx.';
                     valDcr.textContent = d.dcr;
@@ -972,7 +972,7 @@ if (kwSlider) {
                 addRow('Gen (Monthly):', d.gen);
                 addRow('Gen (Daily):', d.daily);
                 addRow('Roof Space:', `${d.area} (${d.dim})`);
-                if (d.kw <= 10) {
+                if (true) {
                     addRow('Price (Before Subsidy):', d.dcrStrike + ' (Approx.)', false, false, false, true);
                     addRow('Government Subsidy:', '₹78,000', false, false, true, false);
                     addRow('Net Subsidized Price:', d.dcr + ' (Approx.)', true, true, false, false);
@@ -1120,7 +1120,7 @@ const updateSubsidyCalculator = () => {
     let cost = 0;
     let subsidy = 0;
     
-    if (d.kw <= 10) {
+    if (true) {
         cost = parseInt(d.dcrStrike.replace(/[^0-9]/g, '')) || 0;
         subsidy = 78000;
     } else {
