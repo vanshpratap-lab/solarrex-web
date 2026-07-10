@@ -902,7 +902,7 @@ if (kwSlider) {
                     valDcr.textContent = d.dcr;
                     if (valDcrStrike) valDcrStrike.innerHTML = '<span style="font-size:10px;color:#e74c3c">No Subsidy Above 10KW</span>';
                 } else {
-                    if (labelEl) labelEl.textContent = 'DCR PRICE (AFTER SUBSIDY)';
+                    if (labelEl) labelEl.textContent = 'DCR PRICE (AFTER ₹78,000 SUBSIDY)';
                     if (badgeEl) badgeEl.textContent = 'Approx.';
                     valDcr.textContent = d.dcr;
                     if (valDcrStrike) valDcrStrike.innerHTML = `Without Subsidy: <del>${d.dcrStrike}</del> | Subsidy: ₹78,000 (Fixed)`;
