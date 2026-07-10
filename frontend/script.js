@@ -994,7 +994,7 @@ if (kwSlider) {
         const spans = rangeLabels.querySelectorAll('span');
         if (spans.length >= 2) {
             spans[0].classList.toggle('range-end-active', v === 0);
-            spans[1].classList.toggle('range-end-active', v === 10);
+            spans[1].classList.toggle('range-end-active', v === 7);
         }
     };
 
@@ -1143,7 +1143,7 @@ if (subsidySlider) {
         const spans = subsidyLabels.querySelectorAll('span');
         if (spans.length >= 2) {
             spans[0].classList.toggle('range-end-active', v === 0);
-            spans[1].classList.toggle('range-end-active', v === 10);
+            spans[1].classList.toggle('range-end-active', v === 7);
         }
     };
     subsidySlider.value = 3;
