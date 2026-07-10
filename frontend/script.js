@@ -905,7 +905,7 @@ if (kwSlider) {
                     if (labelEl) labelEl.textContent = 'DCR PRICE (AFTER SUBSIDY)';
                     if (badgeEl) badgeEl.textContent = 'Approx.';
                     valDcr.textContent = d.dcr;
-                    if (valDcrStrike) valDcrStrike.innerHTML = `Without Subsidy: <del>${d.dcrStrike}</del>`;
+                    if (valDcrStrike) valDcrStrike.innerHTML = `Without Subsidy: <del>${d.dcrStrike}</del> | Subsidy: ₹78,000 (Fixed)`;
                 }
             }
             if (valSavings) valSavings.textContent  = d.savings;
