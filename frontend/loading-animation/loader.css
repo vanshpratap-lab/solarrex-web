@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
 
+body.loading > :not(#loader-overlay) {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+
 #loader-overlay {
     position: fixed;
     top: 0;
