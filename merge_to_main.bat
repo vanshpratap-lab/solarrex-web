@@ -1,7 +1,17 @@
 @echo off
 echo === SOLARREX MERGE AUTOMATION ===
-echo Detecting main branch...
+echo Detecting remote repository...
 
+git remote | findstr /R "^target$" >nul 2>&1
+if %errorlevel% equ 0 (
+    set REMOTE_NAME=target
+) else (
+    set REMOTE_NAME=origin
+)
+
+echo Target remote detected as: %REMOTE_NAME%
+
+echo Detecting main branch...
 git rev-parse --verify main >nul 2>&1
 if %errorlevel% equ 0 (
     set MAIN_BRANCH=main
@@ -16,7 +26,7 @@ git checkout %MAIN_BRANCH%
 if %errorlevel% neq 0 goto error
 
 echo Pulling latest changes...
-git pull origin %MAIN_BRANCH%
+git pull %REMOTE_NAME% %MAIN_BRANCH%
 if %errorlevel% neq 0 goto error
 
 echo Merging Rudra branch...
@@ -24,7 +34,7 @@ git merge Rudra --no-ff -m "Merge branch 'Rudra' into %MAIN_BRANCH%"
 if %errorlevel% neq 0 goto error
 
 echo Pushing merged changes to remote...
-git push origin %MAIN_BRANCH%
+git push %REMOTE_NAME% %MAIN_BRANCH%
 if %errorlevel% neq 0 goto error
 
 echo.
