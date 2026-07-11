@@ -11,14 +11,20 @@ async function runTest() {
   // 1. Start Vite dev server in the background
   console.log("Step 1: Starting Vite dev server...");
   const devServer = spawn('npm', ['run', 'dev'], {
-    cwd: 'c:\\Users\\maste\\OneDrive\\Desktop\\solarrex-web-Rudra',
+    cwd: 'c:\\Users\\maste\\OneDrive\\Desktop\\solar\\SOLAR-REX-webside',
     shell: true
   });
 
   let serverStarted = false;
+  let serverPort = 5173;
   devServer.stdout.on('data', (data) => {
     const output = data.toString();
-    if (output.includes('http://localhost:') || output.includes('Local:')) {
+    const match = output.match(/http:\/\/localhost:(\d+)/);
+    if (match) {
+      serverPort = parseInt(match[1]);
+      serverStarted = true;
+    } else if (output.includes('http://localhost:') || output.includes('Local:')) {
+      // General match fallback
       serverStarted = true;
     }
   });
@@ -78,7 +84,7 @@ async function runTest() {
 
     // 3. Open index.html (localhost:5173)
     console.log("Step 3: Loading website homepage...");
-    await page.goto('http://localhost:5173', { waitUntil: 'networkidle2' });
+    await page.goto(`http://localhost:${serverPort}`, { waitUntil: 'networkidle2' });
 
     // 4. Fill form with test data
     console.log("Step 4: Filling the Residential form...");
@@ -122,52 +128,49 @@ async function runTest() {
     console.log("Waiting for submission pipeline completion...");
     await page.waitForTimeout ? await page.waitForTimeout(5000) : await new Promise(r => setTimeout(r, 5000));
 
-    // Check terminal success popup state
-    const popupState = await page.evaluate(() => {
-      const alert = document.getElementById('terminal-alert');
-      const message = document.getElementById('terminal-error-message');
+    // Check form success visual indicators
+    const formState = await page.evaluate(() => {
+      const msgDiv = document.querySelector('.form-submit-message');
+      const submitBtn = document.querySelector('.btn-submit-contact');
       return {
-        isActive: alert ? alert.classList.contains('active') : false,
-        message: message ? message.innerText.trim() : ''
+        successMessageVisible: msgDiv ? (msgDiv.style.opacity === '1' || msgDiv.textContent.includes("Done")) : false,
+        successMessageText: msgDiv ? msgDiv.innerText.trim() : '',
+        buttonText: submitBtn ? submitBtn.innerText.trim() : ''
       };
     });
 
     console.log("=== VERIFICATION CHECKLIST ===");
     
-    // Verify 1: FORM SUBMIT FIRED console log
-    const submitFiredLogged = consoleLogs.some(log => log.includes("FORM SUBMIT FIRED"));
-    console.log(`1. "FORM SUBMIT FIRED" logged: ${submitFiredLogged ? 'PASSED' : 'FAILED'}`);
+    // Verify 1: API Request Sent
+    console.log(`1. API Request /api/submit-form sent: ${submitFormRequestSent ? 'PASSED' : 'FAILED'}`);
 
-    // Verify 2: SENDING REQUEST console log
-    const sendingRequestLogged = consoleLogs.some(log => log.includes("SENDING REQUEST"));
-    console.log(`2. "SENDING REQUEST" logged: ${sendingRequestLogged ? 'PASSED' : 'FAILED'}`);
-
-    // Verify 3: API Request Sent
-    console.log(`3. API Request /api/submit-form sent: ${submitFormRequestSent ? 'PASSED' : 'FAILED'}`);
-
-    // Verify 4: API Response Status
+    // Verify 2: API Response Status
     const responseStatusPassed = submitFormResponse && submitFormResponse.status === 200;
-    console.log(`4. API Response Status is 200: ${responseStatusPassed ? 'PASSED' : 'FAILED'} (Got: ${submitFormResponse ? submitFormResponse.status : 'N/A'})`);
+    console.log(`2. API Response Status is 200: ${responseStatusPassed ? 'PASSED' : 'FAILED'} (Got: ${submitFormResponse ? submitFormResponse.status : 'N/A'})`);
 
-    // Verify 5: Google Apps Script Response
+    // Verify 3: Google Apps Script Response
     let appsScriptPassed = false;
     if (submitFormResponse) {
       try {
         const bodyObj = JSON.parse(submitFormResponse.body);
         appsScriptPassed = bodyObj.status === 'success' || bodyObj.data.status === 'success';
-        console.log(`5. Apps Script Success: ${appsScriptPassed ? 'PASSED' : 'FAILED'} (Body: ${submitFormResponse.body})`);
+        console.log(`3. Apps Script Success: ${appsScriptPassed ? 'PASSED' : 'FAILED'} (Body: ${submitFormResponse.body})`);
       } catch (e) {
-        console.log(`5. Apps Script Success: FAILED (Failed to parse response body: ${submitFormResponse.body})`);
+        console.log(`3. Apps Script Success: FAILED (Failed to parse response body: ${submitFormResponse.body})`);
       }
     } else {
-      console.log(`5. Apps Script Success: FAILED (No response received)`);
+      console.log(`3. Apps Script Success: FAILED (No response received)`);
     }
 
-    // Verify 6: Terminal Alert Modal
-    console.log(`6. Terminal Success Alert Shown: ${popupState.isActive ? 'PASSED' : 'FAILED'}`);
-    console.log(`   Alert Message: "${popupState.message}"`);
+    // Verify 4: Success Message Shown
+    console.log(`4. Success Message Visible: ${formState.successMessageVisible ? 'PASSED' : 'FAILED'}`);
+    console.log(`   Message Text: "${formState.successMessageText}"`);
 
-    const allPassed = submitFiredLogged && sendingRequestLogged && submitFormRequestSent && responseStatusPassed && appsScriptPassed && popupState.isActive;
+    // Verify 5: Button Success Status
+    const buttonPassed = formState.buttonText.includes("Done") || formState.buttonText.includes("✅");
+    console.log(`5. Submit Button Text contains Done/Checkmark: ${buttonPassed ? 'PASSED' : 'FAILED'} (Got: "${formState.buttonText}")`);
+
+    const allPassed = submitFormRequestSent && responseStatusPassed && appsScriptPassed && formState.successMessageVisible && buttonPassed;
     if (allPassed) {
       console.log("\n*** E2E TEST PASSED SUCCESSFULLY! ***");
     } else {
