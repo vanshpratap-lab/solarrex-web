@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (overlay) {
                 overlay.style.display = 'none';
             }
+            document.body.classList.remove('loading');
             document.body.style.overflow = '';
         } else {
             // First load or manual refresh: Play the animation
@@ -23,12 +24,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (overlay) {
                     overlay.classList.add('fade-out');
                     // Restore body scrolling
+                    document.body.classList.remove('loading');
                     document.body.style.overflow = '';
                 }
             }, 1300); // 1.3 seconds allows fast drawing and ensures page is fully ready under 3 seconds
         }
     } catch(e) {
         // Fallback safety
+        document.body.classList.remove('loading');
         document.body.style.overflow = '';
     }
 });
